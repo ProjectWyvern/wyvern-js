@@ -4,7 +4,8 @@
   "description": "Offical Javascript SDK for the Wyvern Exchange protocol.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "scripts/test.sh",
+    "abi_gen": "scripts/abi_gen.sh"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/ProjectWyvern/wyvern-js/issues"
   },
-  "homepage": "https://github.com/ProjectWyvern/wyvern-js#readme"
+  "homepage": "https://github.com/ProjectWyvern/wyvern-js#readme",
+  "dependencies": {
+    "@0xproject/abi-gen": "^0.1.1",
+    "@0xproject/types": "^0.1.3",
+    "@0xproject/utils": "^0.1.3",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
+    "web3-typescript-typings": "^0.9.3"
+  }
 }
