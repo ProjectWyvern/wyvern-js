@@ -1,0 +1,20 @@
+{
+    "include": [
+      "./node_modules/web3-typescript-typings/index.d.ts",
+      "./src/**/*"
+    ],
+    "compilerOptions": {
+        "outDir": "lib",
+        "noImplicitThis": false,
+        "module": "commonjs",
+        "target": "es5",
+        "types": ["node"],
+        "lib": ["es2017", "dom"],
+        "sourceMap": true,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "noImplicitReturns": true,
+        "pretty": true,
+        "strict": true
+    }
+}

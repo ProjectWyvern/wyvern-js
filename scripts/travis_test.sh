@@ -1,3 +1,5 @@
 #!/bin/sh
 
-exit 0
+set -e
+
+yarn test

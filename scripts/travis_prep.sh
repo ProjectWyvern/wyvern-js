@@ -1,3 +1,6 @@
 #!/bin/sh
 
-exit 0
+set -e
+
+yarn list
+yarn lint
