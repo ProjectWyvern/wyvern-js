@@ -16,7 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, '_bundles'),
     filename: '[name].js',
     libraryTarget: 'commonjs',
-    library: 'WyvernExchange'
+    library: 'WyvernProtocol'
   },
   resolve: {
     extensions: ['.ts', '.js', '.json']

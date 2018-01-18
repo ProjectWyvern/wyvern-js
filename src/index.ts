@@ -1,1 +1,1 @@
-export { WyvernExchange } from './wyvernExchange';
+export { WyvernProtocol } from './wyvernProtocol';

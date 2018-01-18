@@ -6,7 +6,7 @@
 
 ### Synopsis
 
-This is the official Javascript SDK for the Wyvern Exchange protocol. Modeled in part after the excellent [0x.js](https://github.com/0xProject/0x.js).
+This is the standard Javascript SDK for the Wyvern Protocol. Modeled in part after the excellent [0x.js](https://github.com/0xProject/0x.js).
 
 ### Development Information
 
