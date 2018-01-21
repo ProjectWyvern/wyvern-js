@@ -2,12 +2,13 @@
   "name": "wyvern-js",
   "version": "0.1.0",
   "description": "Offical Javascript SDK for the Wyvern Exchange protocol.",
-  "main": "_bundles/index.min.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "scripts/test.sh",
     "lint": "scripts/lint.sh",
     "build": "scripts/build.sh",
-    "abi_gen": "scripts/abi_gen.sh"
+    "abi_gen": "scripts/abi_gen.sh",
+    "const_gen": "node scripts/const_gen.js"
   },
   "repository": {
     "type": "git",
@@ -35,11 +36,11 @@
     "@types/lodash": "^4.14.92",
     "@types/node": "^9.3.0",
     "awesome-typescript-loader": "^3.4.1",
-    "babel-preset-es2015": "^6.24.1",
     "bn.js": "^4.11.8",
     "ethereumjs-abi": "^0.6.5",
     "ethereumjs-util": "^5.1.3",
     "json-loader": "^0.5.7",
+    "jsonschema": "^1.2.2",
     "lodash": "^4.17.4",
     "tslint": "^5.9.1",
     "tslint-eslint-rules": "^4.1.1",

@@ -43,11 +43,11 @@ export const utils = {
             { value: order.saleKind, type: SolidityTypes.Uint8 },
             { value: order.target, type: SolidityTypes.Address },
             { value: order.howToCall, type: SolidityTypes.Uint8 },
-            { value: order.calldata, type: SolidityTypes.Bytes },
-            { value: order.replacementPattern, type: SolidityTypes.Bytes },
+            { value: new Buffer(order.calldata, 'hex'), type: SolidityTypes.Bytes },
+            { value: new Buffer(order.replacementPattern, 'hex'), type: SolidityTypes.Bytes },
         ];
         const orderPartsB = [
-            { value: order.metadataHash, type: SolidityTypes.Bytes },
+            { value: new Buffer(order.metadataHash, 'hex'), type: SolidityTypes.Bytes },
             { value: order.paymentToken, type: SolidityTypes.Address },
             { value: utils.bigNumberToBN(order.basePrice), type: SolidityTypes.Uint256 },
             { value: utils.bigNumberToBN(order.extra), type: SolidityTypes.Uint256 },
@@ -58,14 +58,12 @@ export const utils = {
         const typesA = _.map(orderPartsA, o => o.type);
         const valuesA = _.map(orderPartsA, o => o.value);
         const hashBufA = ethABI.soliditySHA3(typesA, valuesA);
-        const hashHexA = ethUtil.bufferToHex(hashBufA);
         const typesB = _.map(orderPartsB, o => o.type);
         const valuesB = _.map(orderPartsB, o => o.value);
         const hashBufB = ethABI.soliditySHA3(typesB, valuesB);
-        const hashHexB = ethUtil.bufferToHex(hashBufB);
         const orderPartsC = [
-            { value: hashHexA, type: SolidityTypes.Bytes },
-            { value: hashHexB, type: SolidityTypes.Bytes },
+            { value: hashBufA, type: SolidityTypes.Bytes },
+            { value: hashBufB, type: SolidityTypes.Bytes },
         ];
         const typesC = _.map(orderPartsC, o => o.type);
         const valuesC = _.map(orderPartsC, o => o.value);

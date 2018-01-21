@@ -31,7 +31,7 @@ const orderSchema = {
         'taker',
         'makerFee',
         'takerFee',
-        'feeReceipient',
+        'feeRecipient',
         'side',
         'saleKind',
         'target',
