@@ -137,6 +137,16 @@ export class WyvernProtocol {
         assert.isWeb3Provider('provider', provider);
         // assert.doesConformToSchema('config', config, wyvernProtocolConfigSchema)
         this._web3Wrapper = new Web3Wrapper(provider, { gasPrice: config.gasPrice });
+
+        this.wyvernExchange = new WyvernExchangeContract(
+            this._web3Wrapper.getContractInstance((constants.EXCHANGE_ABI as any), config.wyvernExchangeContractAddress as any),
+            {},
+        );
+
+        this.wyvernProxyRegistry = new WyvernProxyRegistryContract(
+            this._web3Wrapper.getContractInstance((constants.PROXY_REGISTRY_ABI as any), config.wyvernProxyRegistryContractAddress as any),
+            {},
+        );
     }
 
     /**
@@ -175,7 +185,6 @@ export class WyvernProtocol {
         /* await assert.isSenderAddressAsync('signerAddress', signerAddress, this._web3Wrapper); */
 
         let msgHashHex;
-        /*
         const nodeVersion = await this._web3Wrapper.getNodeVersionAsync();
         const isParityNode = utils.isParityNode(nodeVersion);
         const isTestRpc = utils.isTestRpc(nodeVersion);
@@ -187,10 +196,6 @@ export class WyvernProtocol {
             const msgHashBuff = ethUtil.hashPersonalMessage(orderHashBuff);
             msgHashHex = ethUtil.bufferToHex(msgHashBuff);
         }
-        */
-        const orderHashBuff = ethUtil.toBuffer(orderHash);
-        const msgHashBuff = ethUtil.hashPersonalMessage(orderHashBuff);
-        msgHashHex = ethUtil.bufferToHex(msgHashBuff);
 
         const signature = await this._web3Wrapper.signTransactionAsync(signerAddress, msgHashHex);
 
