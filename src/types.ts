@@ -3,14 +3,34 @@ import { BigNumber } from '@0xproject/utils';
 import * as Web3 from 'web3';
 
 export interface WyvernProtocolConfig {
-    networkId: number;
+    network: Network;
     gasPrice?: BigNumber;
     wyvernExchangeContractAddress?: string;
     wyvernProxyRegistryContractAddress?: string;
+    wyvernDAOContractAddress?: string;
+    wyvernTokenContractAddress?: string;
 }
 
 export type AsyncMethod = (...args: any[]) => Promise<any>;
 export type SyncMethod = (...args: any[]) => any;
+
+export enum Network {
+    Main = 'main',
+    Rinkeby = 'rinkeby',
+}
+
+export enum SaleKind {
+    FixedPrice = 0,
+    EnglishAuction = 1,
+    DutchAuction = 2,
+}
+
+export enum HowToCall {
+    Call = 0,
+    DelegateCall = 1,
+    StaticCall = 2,
+    Create = 3,
+}
 
 export enum AbiType {
     Function = 'function',

@@ -1,6 +1,8 @@
+import { daoABI } from './daoABI';
 import { deployed } from './deployed';
 import { exchangeABI } from './exchangeABI';
 import { proxyRegistryABI } from './proxyRegistryABI';
+import { tokenABI } from './tokenABI';
 
 export const constants = {
     NULL_ADDRESS: '0x0000000000000000000000000000000000000000',
@@ -12,4 +14,6 @@ export const constants = {
     DEPLOYED: deployed,
     EXCHANGE_ABI: exchangeABI,
     PROXY_REGISTRY_ABI: proxyRegistryABI,
+    DAO_ABI: daoABI,
+    TOKEN_ABI: tokenABI,
 };

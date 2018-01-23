@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 import {
   ECSignature,
+  Network,
   Order,
   SignedOrder,
   TransactionReceiptWithDecodedLogs,
@@ -22,21 +23,44 @@ import { decorators } from './utils/decorators';
 import { signatureUtils } from './utils/signature_utils';
 import { utils } from './utils/utils';
 
+import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
 import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
+import { WyvernTokenContract } from './abi_gen/wyvern_token';
 
 export class WyvernProtocol {
 
     public static NULL_ADDRESS = constants.NULL_ADDRESS;
 
-    public static DEPLOYED = constants.DEPLOYED;
+    public wyvernExchange: WyvernExchangeContract;
 
-    private wyvernExchange: WyvernExchangeContract;
+    public wyvernProxyRegistry: WyvernProxyRegistryContract;
 
-    private wyvernProxyRegistry: WyvernProxyRegistryContract;
+    public wyvernDAO: WyvernDAOContract;
+
+    public wyvernToken: WyvernTokenContract;
 
     private _web3Wrapper: Web3Wrapper;
+
     private _abiDecoder: AbiDecoder;
+
+    public static getExchangeContractAddress(network: Network): string {
+        // @ts-ignore
+        return constants.DEPLOYED[network].WyvernExchange;
+    }
+
+    public static getProxyRegistryContractAddress(network: Network): string {
+        // @ts-ignore
+        return constants.DEPLOYED[network].WyvernProxyRegistry;
+    }
+
+    public static getTokenContractAddress(network: Network): string {
+        return constants.DEPLOYED[network].WyvernToken;
+    }
+
+    public static getDAOContractAddress(network: Network): string {
+        return constants.DEPLOYED[network].WyvernDAO;
+    }
 
     /**
      * Verifies that the elliptic curve signature `signature` was generated
@@ -138,13 +162,27 @@ export class WyvernProtocol {
         // assert.doesConformToSchema('config', config, wyvernProtocolConfigSchema)
         this._web3Wrapper = new Web3Wrapper(provider, { gasPrice: config.gasPrice });
 
+        const exchangeContractAddress = config.wyvernExchangeContractAddress || WyvernProtocol.getExchangeContractAddress(config.network);
         this.wyvernExchange = new WyvernExchangeContract(
-            this._web3Wrapper.getContractInstance((constants.EXCHANGE_ABI as any), config.wyvernExchangeContractAddress as any),
+            this._web3Wrapper.getContractInstance((constants.EXCHANGE_ABI as any), exchangeContractAddress),
             {},
         );
 
+        const proxyRegistryContractAddress = config.wyvernProxyRegistryContractAddress || WyvernProtocol.getProxyRegistryContractAddress(config.network);
         this.wyvernProxyRegistry = new WyvernProxyRegistryContract(
-            this._web3Wrapper.getContractInstance((constants.PROXY_REGISTRY_ABI as any), config.wyvernProxyRegistryContractAddress as any),
+            this._web3Wrapper.getContractInstance((constants.PROXY_REGISTRY_ABI as any), proxyRegistryContractAddress),
+            {},
+        );
+
+        const daoContractAddress = config.wyvernDAOContractAddress || WyvernProtocol.getDAOContractAddress(config.network);
+        this.wyvernDAO = new WyvernDAOContract(
+            this._web3Wrapper.getContractInstance((constants.DAO_ABI as any), daoContractAddress),
+            {},
+        );
+
+        const tokenContractAddress = config.wyvernTokenContractAddress || WyvernProtocol.getTokenContractAddress(config.network);
+        this.wyvernToken = new WyvernTokenContract(
+            this._web3Wrapper.getContractInstance((constants.TOKEN_ABI as any), tokenContractAddress),
             {},
         );
     }
