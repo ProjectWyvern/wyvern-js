@@ -240,6 +240,37 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'buyCalldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'buyReplacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'sellCalldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'sellReplacementPattern',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'orderCalldataCanMatch',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function',
+    },
+    {
         'constant': false,
         'inputs': [
             {
@@ -331,6 +362,57 @@ export const exchangeABI = [
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[12]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[14]',
+            },
+            {
+                'name': 'sidesKindsHowToCalls',
+                'type': 'uint8[6]',
+            },
+            {
+                'name': 'calldataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'calldataSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'metadataHashBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'metadataHashSell',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'ordersCanMatch_',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
         'type': 'function',
     },
     {
