@@ -43,11 +43,11 @@ export const utils = {
             { value: order.saleKind, type: SolidityTypes.Uint8 },
             { value: order.target, type: SolidityTypes.Address },
             { value: order.howToCall, type: SolidityTypes.Uint8 },
-            { value: new Buffer(order.calldata, 'hex'), type: SolidityTypes.Bytes },
-            { value: new Buffer(order.replacementPattern, 'hex'), type: SolidityTypes.Bytes },
+            { value: new Buffer(order.calldata.slice(2), 'hex'), type: SolidityTypes.Bytes },
+            { value: new Buffer(order.replacementPattern.slice(2), 'hex'), type: SolidityTypes.Bytes },
         ];
         const orderPartsB = [
-            { value: new Buffer(order.metadataHash, 'hex'), type: SolidityTypes.Bytes },
+            { value: new Buffer(order.metadataHash.slice(2), 'hex'), type: SolidityTypes.Bytes },
             { value: order.paymentToken, type: SolidityTypes.Address },
             { value: utils.bigNumberToBN(order.basePrice), type: SolidityTypes.Uint256 },
             { value: utils.bigNumberToBN(order.extra), type: SolidityTypes.Uint256 },
