@@ -25,6 +25,7 @@ import { utils } from './utils/utils';
 
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
+import { WyvernLazyBankContract } from './abi_gen/wyvern_lazy_bank';
 import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
 import { WyvernTokenContract } from './abi_gen/wyvern_token';
 
@@ -42,6 +43,8 @@ export class WyvernProtocol {
 
     public wyvernToken: WyvernTokenContract;
 
+    public wyvernLazyBank: WyvernLazyBankContract;
+
     private _web3Wrapper: Web3Wrapper;
 
     private _abiDecoder: AbiDecoder;
@@ -54,6 +57,11 @@ export class WyvernProtocol {
     public static getProxyRegistryContractAddress(network: Network): string {
         // @ts-ignore
         return constants.DEPLOYED[network].WyvernProxyRegistry;
+    }
+
+    public static getLazyBankContractAddress(network: Network): string {
+        // @ts-ignore
+        return constants.DEPLOYED[network].WyvernLazyBank;
     }
 
     public static getTokenContractAddress(network: Network): string {
@@ -185,6 +193,12 @@ export class WyvernProtocol {
         const tokenContractAddress = config.wyvernTokenContractAddress || WyvernProtocol.getTokenContractAddress(config.network);
         this.wyvernToken = new WyvernTokenContract(
             this._web3Wrapper.getContractInstance((constants.TOKEN_ABI as any), tokenContractAddress),
+            {},
+        );
+
+        const lazyBankContractAddress = config.wyvernLazyBankContractAddress || WyvernProtocol.getLazyBankContractAddress(config.network);
+        this.wyvernLazyBank = new WyvernLazyBankContract(
+            this._web3Wrapper.getContractInstance((constants.LAZY_BANK_ABI as any), lazyBankContractAddress),
             {},
         );
     }

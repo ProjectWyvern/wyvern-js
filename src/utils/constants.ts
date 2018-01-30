@@ -1,6 +1,7 @@
 import { daoABI } from './daoABI';
 import { deployed } from './deployed';
 import { exchangeABI } from './exchangeABI';
+import { lazyBankABI } from './lazyBankABI';
 import { proxyRegistryABI } from './proxyRegistryABI';
 import { tokenABI } from './tokenABI';
 
@@ -16,4 +17,5 @@ export const constants = {
     PROXY_REGISTRY_ABI: proxyRegistryABI,
     DAO_ABI: daoABI,
     TOKEN_ABI: tokenABI,
+    LAZY_BANK_ABI: lazyBankABI,
 };

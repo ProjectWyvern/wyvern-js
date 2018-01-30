@@ -13,3 +13,6 @@ fs.writeFileSync('./src/utils/daoABI.ts', 'export const daoABI = ' + JSON.string
 
 var tokenABI = JSON.parse(fs.readFileSync('./src/wyvern-ethereum/build/contracts/WyvernToken.json')).abi
 fs.writeFileSync('./src/utils/tokenABI.ts', 'export const tokenABI = ' + JSON.stringify(tokenABI, null, 4).replace(/"/g, '\'') + ';\n// tslint:disable:max-file-line-count')
+
+var lazyBankABI = JSON.parse(fs.readFileSync('./src/wyvern-ethereum/build/contracts/WyvernLazyBank.json')).abi
+fs.writeFileSync('./src/utils/lazyBankABI.ts', 'export const lazyBankABI = ' + JSON.stringify(lazyBankABI, null, 4).replace(/"/g, '\'') + ';\n// tslint:disable:max-file-line-count')

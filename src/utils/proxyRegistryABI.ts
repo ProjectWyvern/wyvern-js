@@ -15,6 +15,95 @@ export const proxyRegistryABI = [
     },
     {
         'constant': true,
+        'inputs': [],
+        'name': 'initialAddressSet',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'bankAddress',
+                'type': 'address',
+            },
+        ],
+        'name': 'setLazyBank',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addr',
+                'type': 'address',
+            },
+        ],
+        'name': 'endGrantAuthentication',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addr',
+                'type': 'address',
+            },
+        ],
+        'name': 'revokeAuthentication',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'name': 'pending',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'lazyBank',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
         'inputs': [
             {
                 'name': '',
@@ -22,6 +111,20 @@ export const proxyRegistryABI = [
             },
         ],
         'name': 'contracts',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'lazyBankSet',
         'outputs': [
             {
                 'name': '',
@@ -47,24 +150,6 @@ export const proxyRegistryABI = [
         'type': 'function',
     },
     {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'addr',
-                'type': 'address',
-            },
-            {
-                'name': 'allowed',
-                'type': 'bool',
-            },
-        ],
-        'name': 'updateContract',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
         'constant': true,
         'inputs': [
             {
@@ -85,6 +170,20 @@ export const proxyRegistryABI = [
     },
     {
         'constant': false,
+        'inputs': [
+            {
+                'name': 'addr',
+                'type': 'address',
+            },
+        ],
+        'name': 'startGrantAuthentication',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': false,
         'inputs': [],
         'name': 'registerProxy',
         'outputs': [
@@ -93,6 +192,34 @@ export const proxyRegistryABI = [
                 'type': 'address',
             },
         ],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'DELAY_PERIOD',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'authAddress',
+                'type': 'address',
+            },
+        ],
+        'name': 'grantInitialAuthentication',
+        'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function',
