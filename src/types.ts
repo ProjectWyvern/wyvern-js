@@ -9,7 +9,6 @@ export interface WyvernProtocolConfig {
     wyvernProxyRegistryContractAddress?: string;
     wyvernDAOContractAddress?: string;
     wyvernTokenContractAddress?: string;
-    wyvernLazyBankContractAddress?: string;
 }
 
 export type AsyncMethod = (...args: any[]) => Promise<any>;
@@ -80,6 +79,7 @@ export enum SolidityTypes {
     Uint8 = 'uint8',
     Uint = 'uint',
     Bytes = 'bytes',
+    String = 'string',
 }
 
 export type RawLog = Web3.LogEntry;
@@ -111,7 +111,8 @@ export interface Order {
     howToCall: number;
     calldata: string;
     replacementPattern: string;
-    metadataHash: string;
+    staticTarget: string;
+    staticExtradata: string;
     paymentToken: string;
     basePrice: BigNumber;
     extra: BigNumber;

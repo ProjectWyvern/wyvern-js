@@ -7,7 +7,8 @@ import { ECSignature } from '../types';
 export const signatureUtils = {
     isValidSignature(data: string, signature: ECSignature, signerAddress: string): boolean {
         const dataBuff = ethUtil.toBuffer(data);
-        const msgHashBuff = ethUtil.hashPersonalMessage(dataBuff);
+        // const msgHashBuff = ethUtil.hashPersonalMessage(dataBuff);
+        const msgHashBuff = dataBuff;
         try {
             const pubKey = ethUtil.ecrecover(
                 msgHashBuff,

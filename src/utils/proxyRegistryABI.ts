@@ -31,20 +31,6 @@ export const proxyRegistryABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'bankAddress',
-                'type': 'address',
-            },
-        ],
-        'name': 'setLazyBank',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
                 'name': 'addr',
                 'type': 'address',
             },
@@ -90,20 +76,6 @@ export const proxyRegistryABI = [
     },
     {
         'constant': true,
-        'inputs': [],
-        'name': 'lazyBank',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'address',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
         'inputs': [
             {
                 'name': '',
@@ -111,20 +83,6 @@ export const proxyRegistryABI = [
             },
         ],
         'name': 'contracts',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [],
-        'name': 'lazyBankSet',
         'outputs': [
             {
                 'name': '',

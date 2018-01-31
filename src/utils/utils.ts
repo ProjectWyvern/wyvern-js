@@ -47,7 +47,8 @@ export const utils = {
             { value: new Buffer(order.replacementPattern.slice(2), 'hex'), type: SolidityTypes.Bytes },
         ];
         const orderPartsB = [
-            { value: new Buffer(order.metadataHash.slice(2), 'hex'), type: SolidityTypes.Bytes },
+            { value: order.staticTarget, type: SolidityTypes.Address },
+            { value: new Buffer(order.staticExtradata.slice(2), 'hex'), type: SolidityTypes.Bytes },
             { value: order.paymentToken, type: SolidityTypes.Address },
             { value: utils.bigNumberToBN(order.basePrice), type: SolidityTypes.Uint256 },
             { value: utils.bigNumberToBN(order.extra), type: SolidityTypes.Uint256 },
@@ -62,6 +63,7 @@ export const utils = {
         const valuesB = _.map(orderPartsB, o => o.value);
         const hashBufB = ethABI.soliditySHA3(typesB, valuesB);
         const orderPartsC = [
+            { value: '\x19Ethereum Signed Message:\n32', type: SolidityTypes.String },
             { value: hashBufA, type: SolidityTypes.Bytes },
             { value: hashBufB, type: SolidityTypes.Bytes },
         ];

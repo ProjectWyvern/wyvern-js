@@ -1,7 +1,6 @@
 import { SchemaValidator } from '@0xproject/json-schemas';
 import { BigNumber, intervalUtils } from '@0xproject/utils';
 import { Web3Wrapper } from '@0xproject/web3-wrapper';
-import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
 
 import {
@@ -25,7 +24,6 @@ import { utils } from './utils/utils';
 
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
-import { WyvernLazyBankContract } from './abi_gen/wyvern_lazy_bank';
 import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
 import { WyvernTokenContract } from './abi_gen/wyvern_token';
 
@@ -43,8 +41,6 @@ export class WyvernProtocol {
 
     public wyvernToken: WyvernTokenContract;
 
-    public wyvernLazyBank: WyvernLazyBankContract;
-
     private _web3Wrapper: Web3Wrapper;
 
     private _abiDecoder: AbiDecoder;
@@ -57,11 +53,6 @@ export class WyvernProtocol {
     public static getProxyRegistryContractAddress(network: Network): string {
         // @ts-ignore
         return constants.DEPLOYED[network].WyvernProxyRegistry;
-    }
-
-    public static getLazyBankContractAddress(network: Network): string {
-        // @ts-ignore
-        return constants.DEPLOYED[network].WyvernLazyBank;
     }
 
     public static getTokenContractAddress(network: Network): string {
@@ -195,12 +186,6 @@ export class WyvernProtocol {
             this._web3Wrapper.getContractInstance((constants.TOKEN_ABI as any), tokenContractAddress),
             {},
         );
-
-        const lazyBankContractAddress = config.wyvernLazyBankContractAddress || WyvernProtocol.getLazyBankContractAddress(config.network);
-        this.wyvernLazyBank = new WyvernLazyBankContract(
-            this._web3Wrapper.getContractInstance((constants.LAZY_BANK_ABI as any), lazyBankContractAddress),
-            {},
-        );
     }
 
     /**
@@ -238,6 +223,7 @@ export class WyvernProtocol {
         assert.isHexString('orderHash', orderHash);
         /* await assert.isSenderAddressAsync('signerAddress', signerAddress, this._web3Wrapper); */
 
+        /*
         let msgHashHex;
         const nodeVersion = await this._web3Wrapper.getNodeVersionAsync();
         const isParityNode = utils.isParityNode(nodeVersion);
@@ -250,6 +236,8 @@ export class WyvernProtocol {
             const msgHashBuff = ethUtil.hashPersonalMessage(orderHashBuff);
             msgHashHex = ethUtil.bufferToHex(msgHashBuff);
         }
+        */
+        const msgHashHex = orderHash;
 
         const signature = await this._web3Wrapper.signTransactionAsync(signerAddress, msgHashHex);
 
