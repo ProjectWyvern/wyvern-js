@@ -17,6 +17,33 @@ export const exchangeABI = [
         'constant': true,
         'inputs': [
             {
+                'name': 'target',
+                'type': 'address',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'extradata',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'staticCall',
+        'outputs': [
+            {
+                'name': 'result',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
                 'name': 'addrs',
                 'type': 'address[14]',
             },
@@ -192,70 +219,6 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'token',
-                'type': 'address',
-            },
-            {
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'deposit',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'name': 'token',
-                'type': 'address',
-            },
-        ],
-        'name': 'lockedFor',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': '',
-                'type': 'bytes32',
-            },
-        ],
-        'name': 'topBids',
-        'outputs': [
-            {
-                'name': 'bidder',
-                'type': 'address',
-            },
-            {
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
         'constant': true,
         'inputs': [
             {
@@ -338,25 +301,42 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': false,
+        'constant': true,
         'inputs': [
             {
-                'name': 'token',
-                'type': 'address',
+                'name': 'side',
+                'type': 'uint8',
             },
             {
-                'name': 'amount',
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'basePrice',
                 'type': 'uint256',
             },
             {
-                'name': 'dest',
-                'type': 'address',
+                'name': 'extra',
+                'type': 'uint256',
+            },
+            {
+                'name': 'listingTime',
+                'type': 'uint256',
+            },
+            {
+                'name': 'expirationTime',
+                'type': 'uint256',
             },
         ],
-        'name': 'withdraw',
-        'outputs': [],
+        'name': 'calculateFinalPrice',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
         'payable': false,
-        'stateMutability': 'nonpayable',
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -466,75 +446,6 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': true,
-        'inputs': [
-            {
-                'name': '',
-                'type': 'address',
-            },
-            {
-                'name': '',
-                'type': 'address',
-            },
-        ],
-        'name': 'balances',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': '',
-                'type': 'address',
-            },
-            {
-                'name': '',
-                'type': 'address',
-            },
-        ],
-        'name': 'locked',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'name': 'token',
-                'type': 'address',
-            },
-        ],
-        'name': 'availableFor',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
         'constant': false,
         'inputs': [
             {
@@ -608,64 +519,6 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'addrs',
-                'type': 'address[7]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[7]',
-            },
-            {
-                'name': 'side',
-                'type': 'uint8',
-            },
-            {
-                'name': 'saleKind',
-                'type': 'uint8',
-            },
-            {
-                'name': 'howToCall',
-                'type': 'uint8',
-            },
-            {
-                'name': 'calldata',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPattern',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradata',
-                'type': 'bytes',
-            },
-            {
-                'name': 'v',
-                'type': 'uint8',
-            },
-            {
-                'name': 'r',
-                'type': 'bytes32',
-            },
-            {
-                'name': 's',
-                'type': 'bytes32',
-            },
-            {
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'bid_',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
         'constant': true,
         'inputs': [
             {
@@ -702,29 +555,6 @@ export const exchangeABI = [
             },
         ],
         'name': 'calculateCurrentPrice_',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'name': 'token',
-                'type': 'address',
-            },
-        ],
-        'name': 'balanceFor',
         'outputs': [
             {
                 'name': '',
@@ -943,28 +773,6 @@ export const exchangeABI = [
         'inputs': [
             {
                 'indexed': true,
-                'name': 'hash',
-                'type': 'bytes32',
-            },
-            {
-                'indexed': true,
-                'name': 'bidder',
-                'type': 'address',
-            },
-            {
-                'indexed': false,
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'OrderBidOn',
-        'type': 'event',
-    },
-    {
-        'anonymous': false,
-        'inputs': [
-            {
-                'indexed': true,
                 'name': 'buyHash',
                 'type': 'bytes32',
             },
@@ -975,94 +783,6 @@ export const exchangeABI = [
             },
         ],
         'name': 'OrdersMatched',
-        'type': 'event',
-    },
-    {
-        'anonymous': false,
-        'inputs': [
-            {
-                'indexed': true,
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'indexed': true,
-                'name': 'token',
-                'type': 'address',
-            },
-            {
-                'indexed': false,
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'Credited',
-        'type': 'event',
-    },
-    {
-        'anonymous': false,
-        'inputs': [
-            {
-                'indexed': true,
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'indexed': true,
-                'name': 'token',
-                'type': 'address',
-            },
-            {
-                'indexed': false,
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'Debited',
-        'type': 'event',
-    },
-    {
-        'anonymous': false,
-        'inputs': [
-            {
-                'indexed': true,
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'indexed': true,
-                'name': 'token',
-                'type': 'address',
-            },
-            {
-                'indexed': false,
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'Locked',
-        'type': 'event',
-    },
-    {
-        'anonymous': false,
-        'inputs': [
-            {
-                'indexed': true,
-                'name': 'user',
-                'type': 'address',
-            },
-            {
-                'indexed': true,
-                'name': 'token',
-                'type': 'address',
-            },
-            {
-                'indexed': false,
-                'name': 'amount',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'Unlocked',
         'type': 'event',
     },
 ];
