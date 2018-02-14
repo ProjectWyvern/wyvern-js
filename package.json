@@ -1,7 +1,7 @@
 {
   "name": "wyvern-js",
   "version": "0.1.0",
-  "description": "Offical Javascript SDK for the Wyvern Exchange protocol.",
+  "description": "Javascript SDK for the Wyvern Exchange protocol.",
   "main": "lib/index.js",
   "scripts": {
     "test": "scripts/test.sh",
