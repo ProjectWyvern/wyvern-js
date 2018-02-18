@@ -31,6 +31,11 @@ export const utils = {
     spawnSwitchErr(name: string, value: any): Error {
         return new Error(`Unexpected switch value: ${value} encountered for ${name}`);
     },
+    getAssetHashHex(assetHash: string, schema: string): string {
+      const concat = schema + ':' + assetHash;
+      const hashBuf = ethABI.soliditySHA3(['string'], [concat]);
+      return ethUtil.bufferToHex(hashBuf);
+    },
     getOrderHashHex(order: Order | SignedOrder): string {
         const orderPartsA = [
             { value: order.exchange, type: SolidityTypes.Address },

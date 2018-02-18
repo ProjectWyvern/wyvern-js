@@ -489,8 +489,8 @@ export const exchangeABI = [
                 'type': 'uint8[2]',
             },
             {
-                'name': 'rss',
-                'type': 'bytes32[4]',
+                'name': 'rssMetadata',
+                'type': 'bytes32[5]',
             },
         ],
         'name': 'atomicMatch_',
@@ -772,13 +772,33 @@ export const exchangeABI = [
         'anonymous': false,
         'inputs': [
             {
-                'indexed': true,
+                'indexed': false,
                 'name': 'buyHash',
                 'type': 'bytes32',
             },
             {
-                'indexed': true,
+                'indexed': false,
                 'name': 'sellHash',
+                'type': 'bytes32',
+            },
+            {
+                'indexed': true,
+                'name': 'maker',
+                'type': 'address',
+            },
+            {
+                'indexed': true,
+                'name': 'taker',
+                'type': 'address',
+            },
+            {
+                'indexed': false,
+                'name': 'price',
+                'type': 'uint256',
+            },
+            {
+                'indexed': true,
+                'name': 'metadata',
                 'type': 'bytes32',
             },
         ],

@@ -46,12 +46,10 @@ export class WyvernProtocol {
     private _abiDecoder: AbiDecoder;
 
     public static getExchangeContractAddress(network: Network): string {
-        // @ts-ignore
         return constants.DEPLOYED[network].WyvernExchange;
     }
 
     public static getProxyRegistryContractAddress(network: Network): string {
-        // @ts-ignore
         return constants.DEPLOYED[network].WyvernProxyRegistry;
     }
 
@@ -156,6 +154,14 @@ export class WyvernProtocol {
         assert.doesConformToSchema('order', order, schemas.orderSchema);
         const orderHashHex = utils.getOrderHashHex(order);
         return orderHashHex;
+    }
+
+    /**
+     * Computes the assetHash for a supplied asset.
+     */
+    public static getAssetHashHex(assetHash: string, schema: string): string {
+        const assetHashHex = utils.getAssetHashHex(assetHash, schema);
+        return assetHashHex;
     }
 
     constructor(provider: Web3Provider, config: WyvernProtocolConfig) {
