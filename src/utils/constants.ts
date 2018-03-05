@@ -1,3 +1,4 @@
+import { atomicizerABI } from './atomicizerABI';
 import { daoABI } from './daoABI';
 import { deployed } from './deployed';
 import { exchangeABI } from './exchangeABI';
@@ -12,6 +13,7 @@ export const constants = {
     MAX_DIGITS_IN_UNSIGNED_256_INT: 78,
     DEFAULT_BLOCK_POLLING_INTERVAL: 1000,
     DEPLOYED: deployed,
+    ATOMICIZER_ABI: atomicizerABI,
     EXCHANGE_ABI: exchangeABI,
     PROXY_REGISTRY_ABI: proxyRegistryABI,
     DAO_ABI: daoABI,

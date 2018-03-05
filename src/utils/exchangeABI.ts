@@ -15,6 +15,20 @@ export const exchangeABI = [
     },
     {
         'constant': true,
+        'inputs': [],
+        'name': 'tokenTransferProxy',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
         'inputs': [
             {
                 'name': 'target',
@@ -41,97 +55,28 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': true,
+        'constant': false,
         'inputs': [
             {
-                'name': 'addrs',
-                'type': 'address[14]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[14]',
-            },
-            {
-                'name': 'sidesKindsHowToCalls',
-                'type': 'uint8[6]',
-            },
-            {
-                'name': 'calldataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'calldataSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataSell',
-                'type': 'bytes',
+                'name': 'newMinimumMakerProtocolFee',
+                'type': 'uint256',
             },
         ],
-        'name': 'ordersCanMatch_',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
-            },
-        ],
+        'name': 'changeMinimumMakerProtocolFee',
+        'outputs': [],
         'payable': false,
-        'stateMutability': 'view',
+        'stateMutability': 'nonpayable',
         'type': 'function',
     },
     {
         'constant': false,
         'inputs': [
             {
-                'name': 'addrs',
-                'type': 'address[7]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[7]',
-            },
-            {
-                'name': 'side',
-                'type': 'uint8',
-            },
-            {
-                'name': 'saleKind',
-                'type': 'uint8',
-            },
-            {
-                'name': 'howToCall',
-                'type': 'uint8',
-            },
-            {
-                'name': 'calldata',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPattern',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradata',
-                'type': 'bytes',
-            },
-            {
-                'name': 'orderbookInclusionDesired',
-                'type': 'bool',
+                'name': 'newMinimumTakerProtocolFee',
+                'type': 'uint256',
             },
         ],
-        'name': 'approveOrder_',
+        'name': 'changeMinimumTakerProtocolFee',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -165,7 +110,35 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
-        'constant': false,
+        'constant': true,
+        'inputs': [],
+        'name': 'minimumTakerProtocolFee',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'codename',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
         'inputs': [
             {
                 'name': 'addrs',
@@ -173,7 +146,11 @@ export const exchangeABI = [
             },
             {
                 'name': 'uints',
-                'type': 'uint256[7]',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
             },
             {
                 'name': 'side',
@@ -199,23 +176,44 @@ export const exchangeABI = [
                 'name': 'staticExtradata',
                 'type': 'bytes',
             },
+        ],
+        'name': 'calculateCurrentPrice_',
+        'outputs': [
             {
-                'name': 'v',
-                'type': 'uint8',
-            },
-            {
-                'name': 'r',
-                'type': 'bytes32',
-            },
-            {
-                'name': 's',
-                'type': 'bytes32',
+                'name': '',
+                'type': 'uint256',
             },
         ],
-        'name': 'cancelOrder_',
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'newProtocolFeeRecipient',
+                'type': 'address',
+            },
+        ],
+        'name': 'changeProtocolFeeRecipient',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'version',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -254,101 +252,15 @@ export const exchangeABI = [
         'inputs': [
             {
                 'name': 'addrs',
-                'type': 'address[14]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[14]',
-            },
-            {
-                'name': 'sidesKindsHowToCalls',
-                'type': 'uint8[6]',
-            },
-            {
-                'name': 'calldataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'calldataSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataSell',
-                'type': 'bytes',
-            },
-        ],
-        'name': 'calculateMatchPrice_',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'side',
-                'type': 'uint8',
-            },
-            {
-                'name': 'saleKind',
-                'type': 'uint8',
-            },
-            {
-                'name': 'basePrice',
-                'type': 'uint256',
-            },
-            {
-                'name': 'extra',
-                'type': 'uint256',
-            },
-            {
-                'name': 'listingTime',
-                'type': 'uint256',
-            },
-            {
-                'name': 'expirationTime',
-                'type': 'uint256',
-            },
-        ],
-        'name': 'calculateFinalPrice',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'addrs',
                 'type': 'address[7]',
             },
             {
                 'name': 'uints',
-                'type': 'uint256[7]',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
             },
             {
                 'name': 'side',
@@ -400,135 +312,7 @@ export const exchangeABI = [
     },
     {
         'constant': true,
-        'inputs': [],
-        'name': 'registry',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'address',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
         'inputs': [
-            {
-                'name': '',
-                'type': 'bytes32',
-            },
-        ],
-        'name': 'cancelledOrFinalized',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [],
-        'name': 'exchangeToken',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'address',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'addrs',
-                'type': 'address[14]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[14]',
-            },
-            {
-                'name': 'sidesKindsHowToCalls',
-                'type': 'uint8[6]',
-            },
-            {
-                'name': 'calldataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'calldataSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'replacementPatternSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataBuy',
-                'type': 'bytes',
-            },
-            {
-                'name': 'staticExtradataSell',
-                'type': 'bytes',
-            },
-            {
-                'name': 'vs',
-                'type': 'uint8[2]',
-            },
-            {
-                'name': 'rssMetadata',
-                'type': 'bytes32[5]',
-            },
-        ],
-        'name': 'atomicMatch_',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': '',
-                'type': 'bytes32',
-            },
-        ],
-        'name': 'approvedOrders',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'addrs',
-                'type': 'address[7]',
-            },
-            {
-                'name': 'uints',
-                'type': 'uint256[7]',
-            },
             {
                 'name': 'side',
                 'type': 'uint8',
@@ -538,23 +322,23 @@ export const exchangeABI = [
                 'type': 'uint8',
             },
             {
-                'name': 'howToCall',
-                'type': 'uint8',
+                'name': 'basePrice',
+                'type': 'uint256',
             },
             {
-                'name': 'calldata',
-                'type': 'bytes',
+                'name': 'extra',
+                'type': 'uint256',
             },
             {
-                'name': 'replacementPattern',
-                'type': 'bytes',
+                'name': 'listingTime',
+                'type': 'uint256',
             },
             {
-                'name': 'staticExtradata',
-                'type': 'bytes',
+                'name': 'expirationTime',
+                'type': 'uint256',
             },
         ],
-        'name': 'calculateCurrentPrice_',
+        'name': 'calculateFinalPrice',
         'outputs': [
             {
                 'name': '',
@@ -567,6 +351,20 @@ export const exchangeABI = [
     },
     {
         'constant': true,
+        'inputs': [],
+        'name': 'protocolFeeRecipient',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
         'inputs': [
             {
                 'name': 'addrs',
@@ -574,7 +372,11 @@ export const exchangeABI = [
             },
             {
                 'name': 'uints',
-                'type': 'uint256[7]',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
             },
             {
                 'name': 'side',
@@ -613,13 +415,458 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[14]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[18]',
+            },
+            {
+                'name': 'feeMethodsSidesKindsHowToCalls',
+                'type': 'uint8[8]',
+            },
+            {
+                'name': 'calldataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'calldataSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataSell',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'ordersCanMatch_',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[7]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
+            },
+            {
+                'name': 'side',
+                'type': 'uint8',
+            },
+            {
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'orderbookInclusionDesired',
+                'type': 'bool',
+            },
+        ],
+        'name': 'approveOrder_',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'registry',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'minimumMakerProtocolFee',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': '',
+                'type': 'bytes32',
+            },
+        ],
+        'name': 'cancelledOrFinalized',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'owner',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'exchangeToken',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[7]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
+            },
+            {
+                'name': 'side',
+                'type': 'uint8',
+            },
+            {
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'v',
+                'type': 'uint8',
+            },
+            {
+                'name': 'r',
+                'type': 'bytes32',
+            },
+            {
+                'name': 's',
+                'type': 'bytes32',
+            },
+        ],
+        'name': 'cancelOrder_',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[14]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[18]',
+            },
+            {
+                'name': 'feeMethodsSidesKindsHowToCalls',
+                'type': 'uint8[8]',
+            },
+            {
+                'name': 'calldataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'calldataSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'vs',
+                'type': 'uint8[2]',
+            },
+            {
+                'name': 'rssMetadata',
+                'type': 'bytes32[5]',
+            },
+        ],
+        'name': 'atomicMatch_',
+        'outputs': [],
+        'payable': true,
+        'stateMutability': 'payable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[7]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
+            },
+            {
+                'name': 'side',
+                'type': 'uint8',
+            },
+            {
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradata',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'validateOrderParameters_',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'INVERSE_BASIS_POINT',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[14]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[18]',
+            },
+            {
+                'name': 'feeMethodsSidesKindsHowToCalls',
+                'type': 'uint8[8]',
+            },
+            {
+                'name': 'calldataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'calldataSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPatternSell',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataBuy',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradataSell',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'calculateMatchPrice_',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': '',
+                'type': 'bytes32',
+            },
+        ],
+        'name': 'approvedOrders',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'newOwner',
+                'type': 'address',
+            },
+        ],
+        'name': 'transferOwnership',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
         'inputs': [
             {
                 'name': 'registryAddress',
                 'type': 'address',
             },
             {
+                'name': 'tokenTransferProxyAddress',
+                'type': 'address',
+            },
+            {
                 'name': 'tokenAddress',
+                'type': 'address',
+            },
+            {
+                'name': 'protocolFeeAddress',
                 'type': 'address',
             },
         ],
@@ -652,18 +899,33 @@ export const exchangeABI = [
             },
             {
                 'indexed': false,
-                'name': 'makerFee',
+                'name': 'makerRelayerFee',
                 'type': 'uint256',
             },
             {
                 'indexed': false,
-                'name': 'takerFee',
+                'name': 'takerRelayerFee',
+                'type': 'uint256',
+            },
+            {
+                'indexed': false,
+                'name': 'makerProtocolFee',
+                'type': 'uint256',
+            },
+            {
+                'indexed': false,
+                'name': 'takerProtocolFee',
                 'type': 'uint256',
             },
             {
                 'indexed': true,
                 'name': 'feeRecipient',
                 'type': 'address',
+            },
+            {
+                'indexed': false,
+                'name': 'feeMethod',
+                'type': 'uint8',
             },
             {
                 'indexed': false,
@@ -680,16 +942,6 @@ export const exchangeABI = [
                 'name': 'target',
                 'type': 'address',
             },
-            {
-                'indexed': false,
-                'name': 'howToCall',
-                'type': 'uint8',
-            },
-            {
-                'indexed': false,
-                'name': 'calldata',
-                'type': 'bytes',
-            },
         ],
         'name': 'OrderApprovedPartOne',
         'type': 'event',
@@ -701,6 +953,16 @@ export const exchangeABI = [
                 'indexed': true,
                 'name': 'hash',
                 'type': 'bytes32',
+            },
+            {
+                'indexed': false,
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'indexed': false,
+                'name': 'calldata',
+                'type': 'bytes',
             },
             {
                 'indexed': false,
@@ -803,6 +1065,23 @@ export const exchangeABI = [
             },
         ],
         'name': 'OrdersMatched',
+        'type': 'event',
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
+                'name': 'previousOwner',
+                'type': 'address',
+            },
+            {
+                'indexed': true,
+                'name': 'newOwner',
+                'type': 'address',
+            },
+        ],
+        'name': 'OwnershipTransferred',
         'type': 'event',
     },
 ];

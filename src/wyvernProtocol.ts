@@ -22,6 +22,7 @@ import { decorators } from './utils/decorators';
 import { signatureUtils } from './utils/signature_utils';
 import { utils } from './utils/utils';
 
+import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
 import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
@@ -41,6 +42,8 @@ export class WyvernProtocol {
 
     public wyvernToken: WyvernTokenContract;
 
+    public wyvernAtomicizer: WyvernAtomicizerContract;
+
     private _web3Wrapper: Web3Wrapper;
 
     private _abiDecoder: AbiDecoder;
@@ -59,6 +62,11 @@ export class WyvernProtocol {
 
     public static getDAOContractAddress(network: Network): string {
         return constants.DEPLOYED[network].WyvernDAO;
+    }
+
+    public static getAtomicizerContractAddress(network: Network): string {
+        // @ts-ignore
+        return constants.DEPLOYED[network].WyvernAtomicizer;
     }
 
     /**
@@ -190,6 +198,12 @@ export class WyvernProtocol {
         const tokenContractAddress = config.wyvernTokenContractAddress || WyvernProtocol.getTokenContractAddress(config.network);
         this.wyvernToken = new WyvernTokenContract(
             this._web3Wrapper.getContractInstance((constants.TOKEN_ABI as any), tokenContractAddress),
+            {},
+        );
+
+        const atomicizerContractAddress = config.wyvernAtomicizerContractAddress || WyvernProtocol.getAtomicizerContractAddress(config.network);
+        this.wyvernAtomicizer = new WyvernAtomicizerContract(
+            this._web3Wrapper.getContractInstance((constants.ATOMICIZER_ABI as any), atomicizerContractAddress),
             {},
         );
     }
