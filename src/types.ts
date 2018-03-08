@@ -103,9 +103,12 @@ export interface Order {
     exchange: string;
     maker: string;
     taker: string;
-    makerFee: BigNumber;
-    takerFee: BigNumber;
+    makerRelayerFee: BigNumber;
+    takerRelayerFee: BigNumber;
+    makerProtocolFee: BigNumber;
+    takerProtocolFee: BigNumber;
     feeRecipient: string;
+    feeMethod: number;
     side: number;
     saleKind: number;
     target: string;
