@@ -69,6 +69,11 @@ export class WyvernProtocol {
         return constants.DEPLOYED[network].WyvernAtomicizer;
     }
 
+    public static getTokenTransferProxyAddress(network: Network): string {
+        // @ts-ignore
+        return constants.DEPLOYED[network].WyvernTokenTransferProxy;
+    }
+
     /**
      * Verifies that the elliptic curve signature `signature` was generated
      * by signing `data` with the private key corresponding to the `signerAddress` address.
