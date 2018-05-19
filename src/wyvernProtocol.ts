@@ -65,12 +65,10 @@ export class WyvernProtocol {
     }
 
     public static getAtomicizerContractAddress(network: Network): string {
-        // @ts-ignore
         return constants.DEPLOYED[network].WyvernAtomicizer;
     }
 
     public static getTokenTransferProxyAddress(network: Network): string {
-        // @ts-ignore
         return constants.DEPLOYED[network].WyvernTokenTransferProxy;
     }
 

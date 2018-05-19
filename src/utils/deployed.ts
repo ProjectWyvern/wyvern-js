@@ -46,6 +46,6 @@ export const deployed = {
         'WyvernExchange': '0xb5aa1fb7027290d6d5cbbe3b1aecd5317fa582ec',
         'WyvernDAOProxy': '0xa839d4b5a36265795eba6894651a8af3d0ae2e68',
         'WyvernAtomicizer': '0xc99f70bfd82fb7c8f8191fdfbfb735606b15e5c5',
-        'WyvernTokenTransferProxy': '0x9a33a92b408b07d3be90e9828731b21a7d794af4'
+        'WyvernTokenTransferProxy': '0x9a33a92b408b07d3be90e9828731b21a7d794af4',
     },
 };
