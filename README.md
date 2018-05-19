@@ -8,6 +8,14 @@
 
 This is the standard Javascript SDK for the Wyvern Protocol. Modeled in part after the excellent [0x.js](https://github.com/0xProject/0x.js).
 
+### Versioning
+
+This project uses [semantic versioning](https://semver.org/).
+
+The major version of this library will always correspond with the major version of the Wyvern Protocol, but there is not necessarily an equivalence between the minor version of this library and the minor version of the Wyvern Protocol.
+
+Currently, the latest version of this library supports Wyvern Protocol v2. v2.1 support will be added as soon as v2.1 is deployed to the Ethereum mainnet.
+
 ### Development Information
 
 #### Setup
