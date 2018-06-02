@@ -42,10 +42,11 @@ public {{this.name}} = {
     },
     getABIEncodedTransactionData(
     {{> typed_params inputs=inputs}}
-        txData: TxData = {},
     ): string {
         const self = this as {{contractName}}Contract;
-        const abiEncodedTransactionData = self.web3ContractInstance.{{this.name}}.getData();
+        const abiEncodedTransactionData = self.web3ContractInstance.{{this.name}}.getData(
+            {{> params inputs=inputs}}
+        );
         return abiEncodedTransactionData;
     },
 };
