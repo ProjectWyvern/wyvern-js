@@ -15,41 +15,6 @@ export const tokenABI = [
     },
     {
         'constant': true,
-        'inputs': [
-            {
-                'name': 'txid',
-                'type': 'bytes32',
-            },
-            {
-                'name': 'originalAddress',
-                'type': 'bytes20',
-            },
-            {
-                'name': 'outputIndex',
-                'type': 'uint8',
-            },
-            {
-                'name': 'satoshis',
-                'type': 'uint256',
-            },
-            {
-                'name': 'proof',
-                'type': 'bytes',
-            },
-        ],
-        'name': 'canRedeemUTXO',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
         'inputs': [],
         'name': 'name',
         'outputs': [
@@ -107,29 +72,6 @@ export const tokenABI = [
             {
                 'name': '',
                 'type': 'uint256',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'proof',
-                'type': 'bytes',
-            },
-            {
-                'name': 'merkleLeafHash',
-                'type': 'bytes32',
-            },
-        ],
-        'name': 'verifyProof',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
             },
         ],
         'payable': false,
@@ -272,8 +214,82 @@ export const tokenABI = [
         'name': 'balanceOf',
         'outputs': [
             {
-                'name': 'balance',
+                'name': '',
                 'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'txid',
+                'type': 'bytes32',
+            },
+            {
+                'name': 'outputIndex',
+                'type': 'uint8',
+            },
+            {
+                'name': 'satoshis',
+                'type': 'uint256',
+            },
+            {
+                'name': 'proof',
+                'type': 'bytes32[]',
+            },
+            {
+                'name': 'pubKey',
+                'type': 'bytes',
+            },
+            {
+                'name': 'isCompressed',
+                'type': 'bool',
+            },
+            {
+                'name': 'v',
+                'type': 'uint8',
+            },
+            {
+                'name': 'r',
+                'type': 'bytes32',
+            },
+            {
+                'name': 's',
+                'type': 'bytes32',
+            },
+        ],
+        'name': 'redeemUTXO',
+        'outputs': [
+            {
+                'name': 'tokensRedeemed',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'merkleLeafHash',
+                'type': 'bytes32',
+            },
+            {
+                'name': 'proof',
+                'type': 'bytes32[]',
+            },
+        ],
+        'name': 'canRedeemUTXOHash',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
             },
         ],
         'payable': false,
@@ -302,29 +318,6 @@ export const tokenABI = [
             {
                 'name': '',
                 'type': 'string',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'merkleLeafHash',
-                'type': 'bytes32',
-            },
-            {
-                'name': 'proof',
-                'type': 'bytes',
-            },
-        ],
-        'name': 'canRedeemUTXOHash',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool',
             },
         ],
         'payable': false,
@@ -390,11 +383,38 @@ export const tokenABI = [
         'type': 'function',
     },
     {
-        'constant': false,
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'proof',
+                'type': 'bytes32[]',
+            },
+            {
+                'name': 'merkleLeafHash',
+                'type': 'bytes32',
+            },
+        ],
+        'name': 'verifyProof',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
         'inputs': [
             {
                 'name': 'txid',
                 'type': 'bytes32',
+            },
+            {
+                'name': 'originalAddress',
+                'type': 'bytes20',
             },
             {
                 'name': 'outputIndex',
@@ -406,38 +426,18 @@ export const tokenABI = [
             },
             {
                 'name': 'proof',
-                'type': 'bytes',
-            },
-            {
-                'name': 'pubKey',
-                'type': 'bytes',
-            },
-            {
-                'name': 'isCompressed',
-                'type': 'bool',
-            },
-            {
-                'name': 'v',
-                'type': 'uint8',
-            },
-            {
-                'name': 'r',
-                'type': 'bytes32',
-            },
-            {
-                'name': 's',
-                'type': 'bytes32',
+                'type': 'bytes32[]',
             },
         ],
-        'name': 'redeemUTXO',
+        'name': 'canRedeemUTXO',
         'outputs': [
             {
-                'name': 'tokensRedeemed',
-                'type': 'uint256',
+                'name': '',
+                'type': 'bool',
             },
         ],
         'payable': false,
-        'stateMutability': 'nonpayable',
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -639,7 +639,7 @@ export const tokenABI = [
             {
                 'indexed': false,
                 'name': 'proof',
-                'type': 'bytes',
+                'type': 'bytes32[]',
             },
             {
                 'indexed': false,

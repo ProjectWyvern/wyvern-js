@@ -141,6 +141,44 @@ export const exchangeABI = [
         'constant': true,
         'inputs': [
             {
+                'name': 'addr',
+                'type': 'address',
+            },
+        ],
+        'name': 'testCopyAddress',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bytes',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'arrToCopy',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'testCopy',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bytes',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
                 'name': 'addrs',
                 'type': 'address[7]',
             },
@@ -364,6 +402,15 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
+        'constant': false,
+        'inputs': [],
+        'name': 'renounceOwnership',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
         'constant': true,
         'inputs': [
             {
@@ -541,6 +588,57 @@ export const exchangeABI = [
         ],
         'payable': false,
         'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[7]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
+            },
+            {
+                'name': 'side',
+                'type': 'uint8',
+            },
+            {
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradata',
+                'type': 'bytes',
+            },
+        ],
+        'name': 'hashToSign_',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bytes32',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
         'type': 'function',
     },
     {
@@ -1065,6 +1163,18 @@ export const exchangeABI = [
             },
         ],
         'name': 'OrdersMatched',
+        'type': 'event',
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
+                'name': 'previousOwner',
+                'type': 'address',
+            },
+        ],
+        'name': 'OwnershipRenounced',
         'type': 'event',
     },
     {

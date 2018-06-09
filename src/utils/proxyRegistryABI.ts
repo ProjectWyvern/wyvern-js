@@ -94,9 +94,32 @@ export const proxyRegistryABI = [
         'type': 'function',
     },
     {
+        'constant': false,
+        'inputs': [],
+        'name': 'renounceOwnership',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
         'constant': true,
         'inputs': [],
         'name': 'owner',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [],
+        'name': 'delegateProxyImplementation',
         'outputs': [
             {
                 'name': '',
@@ -172,20 +195,6 @@ export const proxyRegistryABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'authAddress',
-                'type': 'address',
-            },
-        ],
-        'name': 'grantInitialAuthentication',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function',
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
                 'name': 'newOwner',
                 'type': 'address',
             },
@@ -195,6 +204,24 @@ export const proxyRegistryABI = [
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function',
+    },
+    {
+        'inputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'constructor',
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
+                'name': 'previousOwner',
+                'type': 'address',
+            },
+        ],
+        'name': 'OwnershipRenounced',
+        'type': 'event',
     },
     {
         'anonymous': false,
@@ -212,6 +239,20 @@ export const proxyRegistryABI = [
         ],
         'name': 'OwnershipTransferred',
         'type': 'event',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'authAddress',
+                'type': 'address',
+            },
+        ],
+        'name': 'grantInitialAuthentication',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
     },
 ];
 // tslint:disable:max-file-line-count

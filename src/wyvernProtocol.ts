@@ -1,6 +1,7 @@
 import { SchemaValidator } from '@0xproject/json-schemas';
 import { BigNumber, intervalUtils } from '@0xproject/utils';
 import { Web3Wrapper } from '@0xproject/web3-wrapper';
+import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
 
 import {
@@ -246,7 +247,6 @@ export class WyvernProtocol {
         assert.isHexString('orderHash', orderHash);
         /* await assert.isSenderAddressAsync('signerAddress', signerAddress, this._web3Wrapper); */
 
-        /*
         let msgHashHex;
         const nodeVersion = await this._web3Wrapper.getNodeVersionAsync();
         const isParityNode = utils.isParityNode(nodeVersion);
@@ -259,8 +259,6 @@ export class WyvernProtocol {
             const msgHashBuff = ethUtil.hashPersonalMessage(orderHashBuff);
             msgHashHex = ethUtil.bufferToHex(msgHashBuff);
         }
-        */
-        const msgHashHex = orderHash;
 
         const signature = await this._web3Wrapper.signTransactionAsync(signerAddress, msgHashHex);
 
