@@ -129,4 +129,51 @@ export interface SignedOrder extends Order {
     ecSignature: ECSignature;
 }
 
+export enum StateMutability {
+  Pure = 'pure',
+  View = 'view',
+  Payable = 'payable',
+  Nonpayable = 'nonpayable',
+}
+
+export enum FunctionInputKind {
+  Replaceable = 'replaceable',
+  Asset = 'asset',
+  Owner = 'owner',
+  Index = 'index',
+}
+
+export interface AnnotatedFunctionInput {
+  name: string;
+  type: string;
+  kind: FunctionInputKind;
+  value?: any;
+}
+
+export enum FunctionOutputKind {
+  Owner = 'owner',
+  Asset = 'asset',
+  Count = 'count',
+  Other = 'other',
+}
+
+export interface AnnotatedFunctionOutput {
+  name: string;
+  type: string;
+  kind: FunctionOutputKind;
+}
+
+export interface AnnotatedFunctionABI {
+  type: Web3.AbiType.Function;
+  name: string;
+  target: string;
+  inputs: AnnotatedFunctionInput[];
+  outputs: AnnotatedFunctionOutput[];
+  constant: boolean;
+  stateMutability: StateMutability;
+  payable: boolean;
+}
+
+export type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind) => string;
+
 export type Web3Provider = Web3.Provider;

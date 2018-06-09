@@ -1,13 +1,16 @@
 import { SchemaValidator } from '@0xproject/json-schemas';
 import { BigNumber, intervalUtils } from '@0xproject/utils';
 import { Web3Wrapper } from '@0xproject/web3-wrapper';
+import * as ethABI from 'ethereumjs-abi';
 import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
 
 import {
   ECSignature,
+  FunctionInputKind,
   Network,
   Order,
+  ReplacementEncoder,
   SignedOrder,
   TransactionReceiptWithDecodedLogs,
   Web3Provider,
@@ -169,11 +172,72 @@ export class WyvernProtocol {
     }
 
     /**
+     * Encodes the replacementPattern for a supplied ABI and replace kind
+     * @param   abi AnnotatedFunctionABI
+     * @param   replaceKind Parameter kind to replace
+     * @return  The resulting encoded replacementPattern
+     */
+    public static encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
+        const allowReplaceByte = '1';
+        const doNotAllowReplaceByte = '0';
+        /* Four bytes for method ID. */
+        const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
+        doNotAllowReplaceByte, doNotAllowReplaceByte];
+        /* This DOES NOT currently support dynamic-length data (arrays). */
+        abi.inputs.map(i => {
+          const type = ethABI.elementaryName(i.type);
+          const encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
+          if (i.kind === replaceKind) {
+            maskArr.push((allowReplaceByte as any).repeat(encoded.length));
+          } else {
+            maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
+          }
+        });
+        const mask = maskArr.reduce((x, y) => x + y, '');
+        const ret = [];
+        /* Encode into bytes. */
+        for (const char of mask) {
+          const byte = char === allowReplaceByte ? 255 : 0;
+          const buf = Buffer.alloc(1);
+          buf.writeUInt8(byte, 0);
+          ret.push(buf);
+        }
+        return '0x' + Buffer.concat(ret).toString('hex');
+    }
+
+    /**
      * Computes the assetHash for a supplied asset.
      */
     public static getAssetHashHex(assetHash: string, schema: string): string {
         const assetHashHex = utils.getAssetHashHex(assetHash, schema);
         return assetHashHex;
+    }
+
+    /**
+     * Computes the default value for a type
+     * @param type The ABI type to calculate a default value for
+     * @return The default value for that type
+     */
+    private static generateDefaultValue = (type: string): any => {
+        switch (type) {
+          case 'address':
+            /* Null address is sometimes checked in transfer calls. */
+            return '0x1111111111111111111111111111111111111111';
+          case 'bytes32':
+            return '0x0000000000000000000000000000000000000000000000000000000000000000';
+          case 'bool':
+            return false;
+          case 'int':
+          case 'uint':
+          case 'uint8':
+          case 'uint16':
+          case 'uint32':
+          case 'uint64':
+          case 'uint256':
+            return 0;
+          default:
+            throw new Error('Default value not yet implemented for type: ' + type);
+        }
     }
 
     constructor(provider: Web3Provider, config: WyvernProtocolConfig) {
