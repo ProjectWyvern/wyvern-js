@@ -37,7 +37,7 @@ suite('basic', () => {
     });
   });
 
-  test('Basic replacementPattern encoding is correct', () => {
+  test('First replacementPattern encoding is correct', () => {
     const annotatedABI = {
       type: AbiType.Function,
       name: 'testFunction',
@@ -56,7 +56,7 @@ suite('basic', () => {
     assert.equal(methodID, '0xe16b4a9b');
   });
 
-  test('More complex replacementPattern encoding is correct', () => {
+  test('Second complex replacementPattern encoding is correct', () => {
     const annotatedABI = {
       type: AbiType.Function,
       name: 'testFunction',
@@ -76,6 +76,65 @@ suite('basic', () => {
     };
     const encoded = WyvernProtocol.encodeReplacementPattern(annotatedABI);
     assert.equal(encoded, '0x00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+  });
+
+  test('Third replacementPattern encoding is correct', () => {
+    const annotatedABI = {
+      type: AbiType.Function,
+      name: 'testFunction',
+      target: '',
+      inputs: [
+        {
+          name: 'index',
+          type: 'uint256',
+          kind: FunctionInputKind.Replaceable,
+        },
+        {
+          name: 'address',
+          type: 'address',
+          kind: FunctionInputKind.Owner,
+        },
+      ],
+      outputs: [
+      ],
+      constant: false,
+      stateMutability: StateMutability.Payable,
+      payable: true,
+    };
+    const encoded = WyvernProtocol.encodeReplacementPattern(annotatedABI);
+    assert.equal(encoded, '0x00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000');
+  });
+
+  test('Fourth replacementPattern encoding is correct', () => {
+    const annotatedABI = {
+      type: AbiType.Function,
+      name: 'testFunction',
+      target: '',
+      inputs: [
+        {
+          name: 'index',
+          type: 'uint256',
+          kind: FunctionInputKind.Replaceable,
+        },
+        {
+          name: 'addr',
+          type: 'address',
+          kind: FunctionInputKind.Owner,
+        },
+        {
+          name: 'bytes',
+          type: 'bytes32',
+          kind: FunctionInputKind.Replaceable,
+        },
+      ],
+      outputs: [
+      ],
+      constant: false,
+      stateMutability: StateMutability.Payable,
+      payable: true,
+    };
+    const encoded = WyvernProtocol.encodeReplacementPattern(annotatedABI);
+    assert.equal(encoded, '0x00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
   });
 
 });
