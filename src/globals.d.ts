@@ -28,6 +28,8 @@ declare module 'ethereumjs-abi' {
     const soliditySHA3: (argTypes: string[], args: any[]) => Buffer;
     const elementaryName: (name: string) => string;
     const encodeSingle: (type: string, arg: any) => string;
+    const rawEncode: (types: any, values: any) => string;
+    const methodID: (name: string, types: any) => Buffer;
 }
 
 // truffle-hdwallet-provider declarations

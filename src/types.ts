@@ -164,7 +164,7 @@ export interface AnnotatedFunctionOutput {
 }
 
 export interface AnnotatedFunctionABI {
-  type: Web3.AbiType.Function;
+  type: AbiType;
   name: string;
   target: string;
   inputs: AnnotatedFunctionInput[];
