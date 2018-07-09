@@ -101,9 +101,7 @@ export declare const schemas: {
                 $ref: string;
             };
             extra: {
-                id: string;
-                type: string;
-                pattern: string;
+                $ref: string;
             };
             listingTime: {
                 $ref: string;
