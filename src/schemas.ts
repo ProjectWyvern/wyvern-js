@@ -2,6 +2,13 @@ import { schemas as ZeroExSchemas } from '@0xproject/json-schemas';
 
 const data = {type: 'string', pattern: '^0x[0-9a-f]*$'};
 
+// Override numberSchema to allow negative values
+const signedNumberSchema = {
+    id: '/Number',
+    type: 'string',
+    pattern: '^-?\\d+(\\.\\d+)?$',
+};
+
 const orderSchema = {
     id: '/Order',
     properties: {
@@ -24,7 +31,7 @@ const orderSchema = {
         staticExtradata: data,
         paymentToken: { $ref: '/Address' },
         basePrice: { $ref: '/Number' },
-        extra: { $ref: '/Number' },
+        extra: signedNumberSchema,
         listingTime: { $ref: '/Number' },
         expirationTime: { $ref: '/Number' },
         salt: { $ref: '/Number' },
@@ -70,15 +77,8 @@ const signedOrderSchema = {
     ],
 };
 
-// Override numberSchema to allow negative values
-const numberSchema = {
-    id: '/Number',
-    type: 'string',
-    pattern: '^-?\\d+(\\.\\d+)?$',
-};
-
 export const schemas = {
-    numberSchema,
+    numberSchema: ZeroExSchemas.numberSchema,
     addressSchema: ZeroExSchemas.addressSchema,
     ecSignatureSchema: ZeroExSchemas.ecSignatureSchema,
     ecSignatureParameterSchema: ZeroExSchemas.ecSignatureParameterSchema,
