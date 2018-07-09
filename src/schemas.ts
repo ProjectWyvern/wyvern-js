@@ -70,8 +70,15 @@ const signedOrderSchema = {
     ],
 };
 
+// Override numberSchema to allow negative values
+const numberSchema = {
+    id: '/Number',
+    type: 'string',
+    pattern: '^-?\\d+(\\.\\d+)?$',
+};
+
 export const schemas = {
-    numberSchema: ZeroExSchemas.numberSchema,
+    numberSchema,
     addressSchema: ZeroExSchemas.addressSchema,
     ecSignatureSchema: ZeroExSchemas.ecSignatureSchema,
     ecSignatureParameterSchema: ZeroExSchemas.ecSignatureParameterSchema,
