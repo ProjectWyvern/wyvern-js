@@ -223,7 +223,7 @@ export class WyvernProtocol {
           case 'address':
           case 'bytes20':
             /* Null address is sometimes checked in transfer calls. */
-            return '0x0000000000000000000000000000000000000000';
+            return '0x1111111111111111111111111111111111111111';
           case 'bytes32':
             return '0x0000000000000000000000000000000000000000000000000000000000000000';
           case 'bool':
