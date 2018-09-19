@@ -178,7 +178,7 @@ export class WyvernProtocol {
      * @param   replaceKind Parameter kind to replace
      * @return  The resulting encoded replacementPattern
      */
-    public static encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable): string => {
+    public static encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable, encodeToBytes = true): string => {
         const allowReplaceByte = '1';
         const doNotAllowReplaceByte = '0';
         /* Four bytes for method ID. */
@@ -194,9 +194,14 @@ export class WyvernProtocol {
             maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
           }
         });
+
         const mask = maskArr.reduce((x, y) => x + y, '');
-        const ret = [];
+        if (!encodeToBytes) {
+            return mask;
+        }
+
         /* Encode into bytes. */
+        const ret = [];
         for (const char of mask) {
           const byte = char === allowReplaceByte ? 255 : 0;
           const buf = Buffer.alloc(1);
@@ -219,36 +224,32 @@ export class WyvernProtocol {
         const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
         doNotAllowReplaceByte, doNotAllowReplaceByte];
 
-        // Prepare arrays to be passed in. 3 arrays for addresses, values and calldata lengths
-        let encoded = ethABI.encodeSingle(ethABI.elementaryName('uint256'), WyvernProtocol.generateDefaultValue('uint256'));
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * 3));
+        // See https://solidity.readthedocs.io/en/develop/abi-spec.html#examples
+        // Prepare dymanic types to be passed in (they need locations of their data parts). 4 for addresses, values, calldata lengths, calldatas
+        const encodedUint256 = ethABI.encodeSingle(ethABI.elementaryName('uint256'), WyvernProtocol.generateDefaultValue('uint256'));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length * 4));
 
-        // Plus transfer inputs * abis.length
-        abis.map(abi => {
-            maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abi.inputs.length));
-        });
-
+        // Length of addresses array
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
         // Addresses should not be replaced
-        encoded = ethABI.encodeSingle(ethABI.elementaryName('address'), WyvernProtocol.generateDefaultValue('address'));
+        let encoded = ethABI.encodeSingle(ethABI.elementaryName('address'), WyvernProtocol.generateDefaultValue('address'));
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
 
+        // Length of values array
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
         // Same for values...
         encoded = ethABI.encodeSingle(ethABI.elementaryName('uint'), WyvernProtocol.generateDefaultValue('uint'));
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
+
+        // Length of calldatas array
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
         // ... and calldata lengths
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
 
         // Raw replacementPatterns
         abis.map(abi => {
-            abi.inputs.map(i => {
-                const type = ethABI.elementaryName(i.type);
-                encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
-                if (i.kind === replaceKind) {
-                    maskArr.push((allowReplaceByte as any).repeat(encoded.length));
-                } else {
-                    maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
-                }
-            });
+            const replacement = WyvernProtocol.encodeReplacementPattern(abi, replaceKind, false);
+            maskArr.push(replacement);
         });
 
         const mask = maskArr.reduce((x, y) => x + y, '');
