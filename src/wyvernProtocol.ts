@@ -219,9 +219,9 @@ export class WyvernProtocol {
         const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
         doNotAllowReplaceByte, doNotAllowReplaceByte];
 
-        // Prepare 3 arrays and 1 string to be passed in
+        // Prepare 3 arrays and 1 string to be passed in. Add one for jollies
         let encoded = ethABI.encodeSingle(ethABI.elementaryName('uint256'), WyvernProtocol.generateDefaultValue('uint256'));
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * 4));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * 5));
 
         // Addresses should not be replaced
         encoded = ethABI.encodeSingle(ethABI.elementaryName('address'), WyvernProtocol.generateDefaultValue('address'));
