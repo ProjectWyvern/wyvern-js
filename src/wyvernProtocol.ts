@@ -252,13 +252,18 @@ export class WyvernProtocol {
         // Length of replacementPatterns
         maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
         // Raw replacementPatterns
+        const replacementBytes: string[] = [];
         abis.map(abi => {
             const replacement = WyvernProtocol.encodeReplacementPattern(abi, replaceKind, false);
-            maskArr.push(replacement);
+            replacementBytes.push(replacement);
         });
+        const concatenatedReplacementPatterns = replacementBytes.join('');
+        maskArr.push(concatenatedReplacementPatterns);
 
-        // For giggles
-        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
+        if (concatenatedReplacementPatterns.length % 32 !== 0) {
+            // Pad replacementPatterns to nearest multiple of 32
+            maskArr.push((doNotAllowReplaceByte as any).repeat(32 - concatenatedReplacementPatterns.length % 32));
+        }
 
         const mask = maskArr.reduce((x, y) => x + y, '');
         const ret = [];
