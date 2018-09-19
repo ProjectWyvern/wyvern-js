@@ -224,28 +224,33 @@ export class WyvernProtocol {
         const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
         doNotAllowReplaceByte, doNotAllowReplaceByte];
 
+        const encodedUint256 = ethABI.encodeSingle(ethABI.elementaryName('uint256'), WyvernProtocol.generateDefaultValue('uint256'));
+        const dataLocationSize = encodedUint256.length;
+        const dynamicArgumentLengthSize = encodedUint256.length;
+
         // See https://solidity.readthedocs.io/en/develop/abi-spec.html#examples
         // Prepare dymanic types to be passed in (they need locations of their data parts). 4 for addresses, values, calldata lengths, calldatas
-        const encodedUint256 = ethABI.encodeSingle(ethABI.elementaryName('uint256'), WyvernProtocol.generateDefaultValue('uint256'));
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length * 4));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dataLocationSize * 4));
 
         // Length of addresses array
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
         // Addresses should not be replaced
         let encoded = ethABI.encodeSingle(ethABI.elementaryName('address'), WyvernProtocol.generateDefaultValue('address'));
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
 
         // Length of values array
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
-        // Same for values...
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
+        // Add the values...
         encoded = ethABI.encodeSingle(ethABI.elementaryName('uint'), WyvernProtocol.generateDefaultValue('uint'));
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
 
-        // Length of calldatas array
-        maskArr.push((doNotAllowReplaceByte as any).repeat(encodedUint256.length));
+        // Length of calldata lengths array
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
         // ... and calldata lengths
         maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
 
+        // Length of replacementPatterns
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
         // Raw replacementPatterns
         abis.map(abi => {
             const replacement = WyvernProtocol.encodeReplacementPattern(abi, replaceKind, false);
