@@ -257,6 +257,9 @@ export class WyvernProtocol {
             maskArr.push(replacement);
         });
 
+        // For giggles
+        maskArr.push((doNotAllowReplaceByte as any).repeat(dynamicArgumentLengthSize));
+
         const mask = maskArr.reduce((x, y) => x + y, '');
         const ret = [];
         /* Encode into bytes. */
