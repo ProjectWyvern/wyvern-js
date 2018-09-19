@@ -6,6 +6,7 @@ import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
 
 import {
+  AtomicizedReplacementEncoder,
   ECSignature,
   FunctionInputKind,
   Network,
@@ -193,6 +194,54 @@ export class WyvernProtocol {
             maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
           }
         });
+        const mask = maskArr.reduce((x, y) => x + y, '');
+        const ret = [];
+        /* Encode into bytes. */
+        for (const char of mask) {
+          const byte = char === allowReplaceByte ? 255 : 0;
+          const buf = Buffer.alloc(1);
+          buf.writeUInt8(byte, 0);
+          ret.push(buf);
+        }
+        return '0x' + Buffer.concat(ret).toString('hex');
+    }
+
+    /**
+     * Encodes the atomicized replacementPattern for a supplied ABI and replace kind
+     * @param   abis array of AnnotatedFunctionABI
+     * @param   replaceKind Parameter kind to replace
+     * @return  The resulting encoded replacementPattern
+     */
+    public static encodeAtomicizedReplacementPattern: AtomicizedReplacementEncoder = (abis, replaceKind = FunctionInputKind.Replaceable): string => {
+        const allowReplaceByte = '1';
+        const doNotAllowReplaceByte = '0';
+        /* Four bytes for method ID. */
+        const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
+        doNotAllowReplaceByte, doNotAllowReplaceByte];
+
+        // Addresses should not be replaced
+        let encoded = ethABI.encodeSingle(ethABI.elementaryName('address'), WyvernProtocol.generateDefaultValue('address'));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
+
+        // Same for values and calldatas
+        encoded = ethABI.encodeSingle(ethABI.elementaryName('uint'), WyvernProtocol.generateDefaultValue('uint'));
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
+        // calldatas
+        maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length * abis.length));
+
+        // Raw replacementPatterns
+        abis.map(abi => {
+            abi.inputs.map(i => {
+                const type = ethABI.elementaryName(i.type);
+                encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
+                if (i.kind === replaceKind) {
+                    maskArr.push((allowReplaceByte as any).repeat(encoded.length));
+                } else {
+                    maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
+                }
+            });
+        });
+
         const mask = maskArr.reduce((x, y) => x + y, '');
         const ret = [];
         /* Encode into bytes. */

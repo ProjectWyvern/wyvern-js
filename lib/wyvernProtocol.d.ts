@@ -1,5 +1,5 @@
 import { BigNumber } from '@0xproject/utils';
-import { ECSignature, Network, Order, ReplacementEncoder, SignedOrder, TransactionReceiptWithDecodedLogs, Web3Provider, WyvernProtocolConfig } from './types';
+import { AtomicizedReplacementEncoder, ECSignature, Network, Order, ReplacementEncoder, SignedOrder, TransactionReceiptWithDecodedLogs, Web3Provider, WyvernProtocolConfig } from './types';
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
@@ -76,6 +76,13 @@ export declare class WyvernProtocol {
      * @return  The resulting encoded replacementPattern
      */
     static encodeReplacementPattern: ReplacementEncoder;
+    /**
+     * Encodes the atomicized replacementPattern for a supplied ABI and replace kind
+     * @param   abis array of AnnotatedFunctionABI
+     * @param   replaceKind Parameter kind to replace
+     * @return  The resulting encoded replacementPattern
+     */
+    static encodeAtomicizedReplacementPattern: AtomicizedReplacementEncoder;
     /**
      * Computes the assetHash for a supplied asset.
      */

@@ -149,4 +149,5 @@ export interface AnnotatedFunctionABI {
     payable: boolean;
 }
 export declare type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind) => string;
+export declare type AtomicizedReplacementEncoder = (abis: AnnotatedFunctionABI[], kind?: FunctionInputKind) => string;
 export declare type Web3Provider = Web3.Provider;
