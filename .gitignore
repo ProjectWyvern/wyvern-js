@@ -1,2 +1,8 @@
 node_modules/
 _bundles/
+.cache/
+temp/
+.gatsby-context.js
+src/wyvern-ethereum/encode.js
+src/wyvern-ethereum/proposal.js
+src/wyvern-ethereum/test.js
