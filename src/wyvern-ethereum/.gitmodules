@@ -1,3 +1,0 @@
-[submodule "utxo-merkle-proof"]
-	path = utxo-merkle-proof
-	url = https://github.com/ProjectWyvern/utxo-merkle-proof.git
