@@ -20,7 +20,7 @@ Currently, the latest version of this library supports Wyvern Protocol v2. v2.1 
 
 #### Setup
 
-[Node >= v6.9.1](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/) required.
+[Node >= v6.9.1, < 10](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/) required.
 
 Before any development, install the required NPM dependencies:
 
