@@ -1,0 +1,4054 @@
+{
+  "contractName": "AuthenticatedProxy",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "proxyType",
+      "outputs": [
+        {
+          "name": "proxyTypeId",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "user",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "revoked",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "upgradeabilityOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "registry",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "receiveApproval",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "revoked",
+          "type": "bool"
+        }
+      ],
+      "name": "Revoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReceivedEther",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "ReceivedTokens",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addrUser",
+          "type": "address"
+        },
+        {
+          "name": "addrRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "revoke",
+          "type": "bool"
+        }
+      ],
+      "name": "setRevoke",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "name": "howToCall",
+          "type": "uint8"
+        },
+        {
+          "name": "calldata",
+          "type": "bytes"
+        }
+      ],
+      "name": "proxy",
+      "outputs": [
+        {
+          "name": "result",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "name": "howToCall",
+          "type": "uint8"
+        },
+        {
+          "name": "calldata",
+          "type": "bytes"
+        }
+      ],
+      "name": "proxyAssert",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60806040526001805460a060020a60ff021916905534801561002057600080fd5b50610822806100306000396000f3006080604052600436106100ae5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631b0f7ba981146100ef5780633f801f911461016f5780634555d5c9146101dd578063485cc955146102045780634c93505f1461022b5780634f8632ba146102455780635c60da1b1461027657806363d256ce1461028b5780636fde8202146102a05780637b103999146102b55780638f4ffcb1146102ca575b604080513481529051600160a060020a033316917fa419615bc8fda4c87663805ee2a3597a6d71c1d476911d9892f340d965bc7bf1919081900360200190a2005b3480156100fb57600080fd5b50604080516020600460443581810135601f810184900484028501840190955284845261015b948235600160a060020a0316946024803560ff169536959460649492019190819084018382808284375094975061033a9650505050505050565b604080519115158252519081900360200190f35b34801561017b57600080fd5b50604080516020600460443581810135601f81018490048402850184019095528484526101db948235600160a060020a0316946024803560ff169536959460649492019190819084018382808284375094975061052e9650505050505050565b005b3480156101e957600080fd5b506101f2610549565b60408051918252519081900360200190f35b34801561021057600080fd5b506101db600160a060020a036004358116906024351661054e565b34801561023757600080fd5b506101db60043515156105c4565b34801561025157600080fd5b5061025a610643565b60408051600160a060020a039092168252519081900360200190f35b34801561028257600080fd5b5061025a610652565b34801561029757600080fd5b5061015b610661565b3480156102ac57600080fd5b5061025a610671565b3480156102c157600080fd5b5061025a610680565b3480156102d657600080fd5b50604080516020601f6064356004818101359283018490048402850184019095528184526101db94600160a060020a0381358116956024803596604435909316953695608494920191819084018382808284375094975061068f9650505050505050565b60025460009033600160a060020a03908116911614806103ff575060035460a060020a900460ff161580156103ff5750600354604080517f69dc9ff3000000000000000000000000000000000000000000000000000000008152600160a060020a033381166004830152915191909216916369dc9ff39160248083019260209291908290030181600087803b1580156103d257600080fd5b505af11580156103e6573d6000803e3d6000fd5b505050506040513d60208110156103fc57600080fd5b50515b151561040a57600080fd5b600083600181111561041857fe5b141561049c5783600160a060020a03168260405180828051906020019080838360005b8381101561045357818101518382015260200161043b565b50505050905090810190601f1680156104805780820380516001836020036101000a031916815260200191505b509150506000604051808303816000865af19150509050610527565b60018360018111156104aa57fe5b14156105275783600160a060020a03168260405180828051906020019080838360005b838110156104e55781810151838201526020016104cd565b50505050905090810190601f1680156105125780820380516001836020036101000a031916815260200191505b50915050600060405180830381855af4925050505b9392505050565b61053983838361033a565b151561054457600080fd5b505050565b600290565b60015460a060020a900460ff161561056557600080fd5b6001805474ff0000000000000000000000000000000000000000191660a060020a17905560028054600160a060020a0393841673ffffffffffffffffffffffffffffffffffffffff199182161790915560038054929093169116179055565b60025433600160a060020a039081169116146105df57600080fd5b6003805482151560a060020a810274ff0000000000000000000000000000000000000000199092169190911790915560408051918252517f2165014523a6f4135deffed62d70149aad59b64de5aac51e3abbcbe2a83e2f7e9181900360200190a150565b600254600160a060020a031681565b600054600160a060020a031690565b60035460a060020a900460ff1681565b600154600160a060020a031690565b600354600160a060020a031681565b604080517f23b872dd000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152308116602483015260448201869052915184928316916323b872dd9160648083019260209291908290030181600087803b15801561070357600080fd5b505af1158015610717573d6000803e3d6000fd5b505050506040513d602081101561072d57600080fd5b5051151561073a57600080fd5b82600160a060020a031685600160a060020a03167fd65b48fd35864b3528d38e44760be5553248f89bf3ff6b06cca57817cc2650bf86856040518083815260200180602001828103825283818151815260200191508051906020019080838360005b838110156107b457818101518382015260200161079c565b50505050905090810190601f1680156107e15780820380516001836020036101000a031916815260200191505b50935050505060405180910390a350505050505600a165627a7a72305820081159724a86e228bc0881bf8e78a8d241b156f02531306a6dc375bfb55144a60029",
+  "deployedBytecode": "0x6080604052600436106100ae5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631b0f7ba981146100ef5780633f801f911461016f5780634555d5c9146101dd578063485cc955146102045780634c93505f1461022b5780634f8632ba146102455780635c60da1b1461027657806363d256ce1461028b5780636fde8202146102a05780637b103999146102b55780638f4ffcb1146102ca575b604080513481529051600160a060020a033316917fa419615bc8fda4c87663805ee2a3597a6d71c1d476911d9892f340d965bc7bf1919081900360200190a2005b3480156100fb57600080fd5b50604080516020600460443581810135601f810184900484028501840190955284845261015b948235600160a060020a0316946024803560ff169536959460649492019190819084018382808284375094975061033a9650505050505050565b604080519115158252519081900360200190f35b34801561017b57600080fd5b50604080516020600460443581810135601f81018490048402850184019095528484526101db948235600160a060020a0316946024803560ff169536959460649492019190819084018382808284375094975061052e9650505050505050565b005b3480156101e957600080fd5b506101f2610549565b60408051918252519081900360200190f35b34801561021057600080fd5b506101db600160a060020a036004358116906024351661054e565b34801561023757600080fd5b506101db60043515156105c4565b34801561025157600080fd5b5061025a610643565b60408051600160a060020a039092168252519081900360200190f35b34801561028257600080fd5b5061025a610652565b34801561029757600080fd5b5061015b610661565b3480156102ac57600080fd5b5061025a610671565b3480156102c157600080fd5b5061025a610680565b3480156102d657600080fd5b50604080516020601f6064356004818101359283018490048402850184019095528184526101db94600160a060020a0381358116956024803596604435909316953695608494920191819084018382808284375094975061068f9650505050505050565b60025460009033600160a060020a03908116911614806103ff575060035460a060020a900460ff161580156103ff5750600354604080517f69dc9ff3000000000000000000000000000000000000000000000000000000008152600160a060020a033381166004830152915191909216916369dc9ff39160248083019260209291908290030181600087803b1580156103d257600080fd5b505af11580156103e6573d6000803e3d6000fd5b505050506040513d60208110156103fc57600080fd5b50515b151561040a57600080fd5b600083600181111561041857fe5b141561049c5783600160a060020a03168260405180828051906020019080838360005b8381101561045357818101518382015260200161043b565b50505050905090810190601f1680156104805780820380516001836020036101000a031916815260200191505b509150506000604051808303816000865af19150509050610527565b60018360018111156104aa57fe5b14156105275783600160a060020a03168260405180828051906020019080838360005b838110156104e55781810151838201526020016104cd565b50505050905090810190601f1680156105125780820380516001836020036101000a031916815260200191505b50915050600060405180830381855af4925050505b9392505050565b61053983838361033a565b151561054457600080fd5b505050565b600290565b60015460a060020a900460ff161561056557600080fd5b6001805474ff0000000000000000000000000000000000000000191660a060020a17905560028054600160a060020a0393841673ffffffffffffffffffffffffffffffffffffffff199182161790915560038054929093169116179055565b60025433600160a060020a039081169116146105df57600080fd5b6003805482151560a060020a810274ff0000000000000000000000000000000000000000199092169190911790915560408051918252517f2165014523a6f4135deffed62d70149aad59b64de5aac51e3abbcbe2a83e2f7e9181900360200190a150565b600254600160a060020a031681565b600054600160a060020a031690565b60035460a060020a900460ff1681565b600154600160a060020a031690565b600354600160a060020a031681565b604080517f23b872dd000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152308116602483015260448201869052915184928316916323b872dd9160648083019260209291908290030181600087803b15801561070357600080fd5b505af1158015610717573d6000803e3d6000fd5b505050506040513d602081101561072d57600080fd5b5051151561073a57600080fd5b82600160a060020a031685600160a060020a03167fd65b48fd35864b3528d38e44760be5553248f89bf3ff6b06cca57817cc2650bf86856040518083815260200180602001828103825283818151815260200191508051906020019080838360005b838110156107b457818101518382015260200161079c565b50505050905090810190601f1680156107e15780820380516001836020036101000a031916815260200191505b50935050505060405180910390a350505050505600a165627a7a72305820081159724a86e228bc0881bf8e78a8d241b156f02531306a6dc375bfb55144a60029",
+  "sourceMap": "358:2741:20:-;;;470:24;;;-1:-1:-1;;;;;;470:24:20;;;358:2741;5:2:-1;;;;30:1;27;20:12;5:2;358:2741:20;;;;;;;",
+  "deployedSourceMap": "358:2741:20:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1100:36:14;;;1126:9;1100:36;;;;-1:-1:-1;;;;;1114:10:14;1100:36;;;;;;;;;;;;358:2741:20;2214:433;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2214:433:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2214:433:20;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2214:433:20;;-1:-1:-1;2214:433:20;;-1:-1:-1;;;;;;;2214:433:20;;;;;;;;;;;;;;;;;;;2947:149;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2947:149:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2947:149:20;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2947:149:20;;-1:-1:-1;2947:149:20;;-1:-1:-1;;;;;;;2947:149:20;;;994:82:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;994:82:25;;;;;;;;;;;;;;;;;;;;1240:210:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1240:210:20;-1:-1:-1;;;;;1240:210:20;;;;;;;;;;1650:151;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1650:151:20;;;;;;;542:19;;8:9:-1;5:2;;;30:1;27;20:12;5:2;542:19:20;;;;;;;;-1:-1:-1;;;;;542:19:20;;;;;;;;;;;;;;803:89:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;803:89:25;;;;719:19:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;719:19:20;;;;397:99:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;397:99:25;;;;640:29:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;640:29:20;;;;741:244:14;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;741:244:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;741:244:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;741:244:14;;-1:-1:-1;741:244:14;;-1:-1:-1;;;;;;;741:244:14;2214:433:20;2361:4;;2312:11;;2347:10;-1:-1:-1;;;;;2347:18:20;;;2361:4;;2347:18;;:66;;-1:-1:-1;2371:7:20;;-1:-1:-1;;;2371:7:20;;;;2370:8;:42;;;;-1:-1:-1;2382:8:20;;:30;;;;;;-1:-1:-1;;;;;2401:10:20;2382:30;;;;;;;;:8;;;;;:18;;:30;;;;;;;;;;;;;;-1:-1:-1;2382:8:20;:30;;;5:2:-1;;;;30:1;27;20:12;5:2;2382:30:20;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2382:30:20;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2382:30:20;2370:42;2339:75;;;;;;;;2441:14;2428:9;:27;;;;;;;;;2424:194;;;2480:19;;;;-1:-1:-1;;;;;2480:9:20;;;:19;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2480:19:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2471:28;;2424:194;;;2533:22;2520:9;:35;;;;;;;;;2516:102;;;2580:27;;;;-1:-1:-1;;;;;2580:17:20;;;:27;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2580:27:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;2516:102:20;2214:433;;;;;:::o;2947:149::-;3056:32;3062:4;3068:9;3079:8;3056:5;:32::i;:::-;3048:41;;;;;;;;2947:149;;;:::o;994:82:25:-;1070:1;994:82;:::o;1240:210:20:-;1345:11;;-1:-1:-1;;;1345:11:20;;;;1344:12;1336:21;;;;;;1381:4;1367:18;;-1:-1:-1;;1367:18:20;-1:-1:-1;;;1367:18:20;;;-1:-1:-1;1395:15:20;;-1:-1:-1;;;;;1395:15:20;;;-1:-1:-1;;1395:15:20;;;;;;;1420:8;:23;;;;;;;;;;;1240:210::o;1650:151::-;1733:4;;1719:10;-1:-1:-1;;;;;1719:18:20;;;1733:4;;1719:18;1711:27;;;;;;1748:7;:16;;;;;-1:-1:-1;;;1748:16:20;;-1:-1:-1;;1748:16:20;;;;;;;;;;1779:15;;;;;;;;;;;;;;;;1650:151;:::o;542:19::-;;;-1:-1:-1;;;;;542:19:20;;:::o;803:89:25:-;850:7;872:15;-1:-1:-1;;;;;872:15:25;;803:89::o;719:19:20:-;;;-1:-1:-1;;;719:19:20;;;;;:::o;397:99:25:-;471:20;;-1:-1:-1;;;;;471:20:25;;397:99::o;640:29:20:-;;;-1:-1:-1;;;;;640:29:20;;:::o;741:244:14:-;884:33;;;;;;-1:-1:-1;;;;;884:33:14;;;;;;;905:4;884:33;;;;;;;;;;;;;;860:5;;884:14;;;;;:33;;;;;;;;;;;;;;-1:-1:-1;884:14:14;:33;;;5:2:-1;;;;30:1;27;20:12;5:2;884:33:14;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;884:33:14;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;884:33:14;876:42;;;;;;;;933:45;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;933:45:14;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;933:45:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;741:244;;;;;:::o",
+  "source": "/* \n\n  Proxy contract to hold access to assets on behalf of a user (e.g. ERC20 approve) and execute calls under particular conditions.\n\n*/\n\npragma solidity 0.4.23;\n\nimport \"./ProxyRegistry.sol\";\nimport \"../common/TokenRecipient.sol\";\nimport \"./proxy/OwnedUpgradeabilityStorage.sol\";\n\n/**\n * @title AuthenticatedProxy\n * @author Project Wyvern Developers\n */\ncontract AuthenticatedProxy is TokenRecipient, OwnedUpgradeabilityStorage {\n\n    /* Whether initialized. */\n    bool initialized = false;\n\n    /* Address which owns this proxy. */\n    address public user;\n\n    /* Associated registry with contract authentication information. */\n    ProxyRegistry public registry;\n\n    /* Whether access has been revoked. */\n    bool public revoked;\n\n    /* Delegate call could be used to atomically transfer multiple assets owned by the proxy contract with one order. */\n    enum HowToCall { Call, DelegateCall }\n\n    /* Event fired when the proxy access is revoked or unrevoked. */\n    event Revoked(bool revoked);\n\n    /**\n     * Initialize an AuthenticatedProxy\n     *\n     * @param addrUser Address of user on whose behalf this proxy will act\n     * @param addrRegistry Address of ProxyRegistry contract which will manage this proxy\n     */\n    function initialize (address addrUser, ProxyRegistry addrRegistry)\n        public\n    {\n        require(!initialized);\n        initialized = true;\n        user = addrUser;\n        registry = addrRegistry;\n    }\n\n    /**\n     * Set the revoked flag (allows a user to revoke ProxyRegistry access)\n     *\n     * @dev Can be called by the user only\n     * @param revoke Whether or not to revoke access\n     */\n    function setRevoke(bool revoke)\n        public\n    {\n        require(msg.sender == user);\n        revoked = revoke;\n        emit Revoked(revoke);\n    }\n\n    /**\n     * Execute a message call from the proxy contract\n     *\n     * @dev Can be called by the user, or by a contract authorized by the registry as long as the user has not revoked access\n     * @param dest Address to which the call will be sent\n     * @param howToCall Which kind of call to make\n     * @param calldata Calldata to send\n     * @return Result of the call (success or failure)\n     */\n    function proxy(address dest, HowToCall howToCall, bytes calldata)\n        public\n        returns (bool result)\n    {\n        require(msg.sender == user || (!revoked && registry.contracts(msg.sender)));\n        if (howToCall == HowToCall.Call) {\n            result = dest.call(calldata);\n        } else if (howToCall == HowToCall.DelegateCall) {\n            result = dest.delegatecall(calldata);\n        }\n        return result;\n    }\n\n    /**\n     * Execute a message call and assert success\n     * \n     * @dev Same functionality as `proxy`, just asserts the return value\n     * @param dest Address to which the call will be sent\n     * @param howToCall What kind of call to make\n     * @param calldata Calldata to send\n     */\n    function proxyAssert(address dest, HowToCall howToCall, bytes calldata)\n        public\n    {\n        require(proxy(dest, howToCall, calldata));\n    }\n\n}\n",
+  "sourcePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/AuthenticatedProxy.sol",
+  "ast": {
+    "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/AuthenticatedProxy.sol",
+    "exportedSymbols": {
+      "AuthenticatedProxy": [
+        5367
+      ]
+    },
+    "id": 5368,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5222,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "140:23:20"
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/ProxyRegistry.sol",
+        "file": "./ProxyRegistry.sol",
+        "id": 5223,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 5553,
+        "src": "165:29:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/common/TokenRecipient.sol",
+        "file": "../common/TokenRecipient.sol",
+        "id": 5224,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 894,
+        "src": "195:38:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/proxy/OwnedUpgradeabilityStorage.sol",
+        "file": "./proxy/OwnedUpgradeabilityStorage.sol",
+        "id": 5225,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 5753,
+        "src": "234:48:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5226,
+              "name": "TokenRecipient",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 893,
+              "src": "389:14:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_TokenRecipient_$893",
+                "typeString": "contract TokenRecipient"
+              }
+            },
+            "id": 5227,
+            "nodeType": "InheritanceSpecifier",
+            "src": "389:14:20"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5228,
+              "name": "OwnedUpgradeabilityStorage",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5752,
+              "src": "405:26:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OwnedUpgradeabilityStorage_$5752",
+                "typeString": "contract OwnedUpgradeabilityStorage"
+              }
+            },
+            "id": 5229,
+            "nodeType": "InheritanceSpecifier",
+            "src": "405:26:20"
+          }
+        ],
+        "contractDependencies": [
+          893,
+          5752
+        ],
+        "contractKind": "contract",
+        "documentation": "@title AuthenticatedProxy\n@author Project Wyvern Developers",
+        "fullyImplemented": true,
+        "id": 5367,
+        "linearizedBaseContracts": [
+          5367,
+          5752,
+          893
+        ],
+        "name": "AuthenticatedProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5232,
+            "name": "initialized",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "470:24:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5230,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "470:4:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "66616c7365",
+              "id": 5231,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "bool",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "489:5:20",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              },
+              "value": "false"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 5234,
+            "name": "user",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "542:19:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 5233,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "542:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 5236,
+            "name": "registry",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "640:29:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+              "typeString": "contract ProxyRegistry"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 5235,
+              "name": "ProxyRegistry",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5552,
+              "src": "640:13:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                "typeString": "contract ProxyRegistry"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 5238,
+            "name": "revoked",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "719:19:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5237,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "719:4:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "AuthenticatedProxy.HowToCall",
+            "id": 5241,
+            "members": [
+              {
+                "id": 5239,
+                "name": "Call",
+                "nodeType": "EnumValue",
+                "src": "883:4:20"
+              },
+              {
+                "id": 5240,
+                "name": "DelegateCall",
+                "nodeType": "EnumValue",
+                "src": "889:12:20"
+              }
+            ],
+            "name": "HowToCall",
+            "nodeType": "EnumDefinition",
+            "src": "866:37:20"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 5245,
+            "name": "Revoked",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 5244,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5243,
+                  "indexed": false,
+                  "name": "revoked",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5245,
+                  "src": "992:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5242,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "992:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "991:14:20"
+            },
+            "src": "978:28:20"
+          },
+          {
+            "body": {
+              "id": 5269,
+              "nodeType": "Block",
+              "src": "1326:124:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5254,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "1344:12:20",
+                        "subExpression": {
+                          "argumentTypes": null,
+                          "id": 5253,
+                          "name": "initialized",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5232,
+                          "src": "1345:11:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5252,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "1336:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5255,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1336:21:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5256,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1336:21:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5259,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5257,
+                      "name": "initialized",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5232,
+                      "src": "1367:11:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "74727565",
+                      "id": 5258,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1381:4:20",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1367:18:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5260,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1367:18:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5263,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5261,
+                      "name": "user",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5234,
+                      "src": "1395:4:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5262,
+                      "name": "addrUser",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5247,
+                      "src": "1402:8:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1395:15:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 5264,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1395:15:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5267,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5265,
+                      "name": "registry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5236,
+                      "src": "1420:8:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                        "typeString": "contract ProxyRegistry"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5266,
+                      "name": "addrRegistry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5249,
+                      "src": "1431:12:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                        "typeString": "contract ProxyRegistry"
+                      }
+                    },
+                    "src": "1420:23:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                      "typeString": "contract ProxyRegistry"
+                    }
+                  },
+                  "id": 5268,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1420:23:20"
+                }
+              ]
+            },
+            "documentation": "Initialize an AuthenticatedProxy\n     * @param addrUser Address of user on whose behalf this proxy will act\n@param addrRegistry Address of ProxyRegistry contract which will manage this proxy",
+            "id": 5270,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5250,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5247,
+                  "name": "addrUser",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5270,
+                  "src": "1261:16:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5246,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1261:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5249,
+                  "name": "addrRegistry",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5270,
+                  "src": "1279:26:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                    "typeString": "contract ProxyRegistry"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5248,
+                    "name": "ProxyRegistry",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5552,
+                    "src": "1279:13:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                      "typeString": "contract ProxyRegistry"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1260:46:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5251,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1326:0:20"
+            },
+            "scope": 5367,
+            "src": "1240:210:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5290,
+              "nodeType": "Block",
+              "src": "1701:100:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 5279,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 5276,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7001,
+                            "src": "1719:3:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 5277,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1719:10:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 5278,
+                          "name": "user",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5234,
+                          "src": "1733:4:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1719:18:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5275,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "1711:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5280,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1711:27:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5281,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1711:27:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5284,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5282,
+                      "name": "revoked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5238,
+                      "src": "1748:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5283,
+                      "name": "revoke",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5272,
+                      "src": "1758:6:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1748:16:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5285,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1748:16:20"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5287,
+                        "name": "revoke",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5272,
+                        "src": "1787:6:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5286,
+                      "name": "Revoked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5245,
+                      "src": "1779:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 5288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1779:15:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5289,
+                  "nodeType": "EmitStatement",
+                  "src": "1774:20:20"
+                }
+              ]
+            },
+            "documentation": "Set the revoked flag (allows a user to revoke ProxyRegistry access)\n     * @dev Can be called by the user only\n@param revoke Whether or not to revoke access",
+            "id": 5291,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setRevoke",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5273,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5272,
+                  "name": "revoke",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5291,
+                  "src": "1669:11:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5271,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1669:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1668:13:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5274,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1701:0:20"
+            },
+            "scope": 5367,
+            "src": "1650:151:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5347,
+              "nodeType": "Block",
+              "src": "2329:318:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 5316,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 5306,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 5303,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7001,
+                              "src": "2347:3:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 5304,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2347:10:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "id": 5305,
+                            "name": "user",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5234,
+                            "src": "2361:4:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "2347:18:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "||",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "components": [
+                            {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              },
+                              "id": 5314,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 5308,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "nodeType": "UnaryOperation",
+                                "operator": "!",
+                                "prefix": true,
+                                "src": "2370:8:20",
+                                "subExpression": {
+                                  "argumentTypes": null,
+                                  "id": 5307,
+                                  "name": "revoked",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5238,
+                                  "src": "2371:7:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_bool",
+                                    "typeString": "bool"
+                                  }
+                                },
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "&&",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "expression": {
+                                      "argumentTypes": null,
+                                      "id": 5311,
+                                      "name": "msg",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 7001,
+                                      "src": "2401:3:20",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_magic_message",
+                                        "typeString": "msg"
+                                      }
+                                    },
+                                    "id": 5312,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "sender",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": null,
+                                    "src": "2401:10:20",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "id": 5309,
+                                    "name": "registry",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 5236,
+                                    "src": "2382:8:20",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                                      "typeString": "contract ProxyRegistry"
+                                    }
+                                  },
+                                  "id": 5310,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "contracts",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 5420,
+                                  "src": "2382:18:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
+                                    "typeString": "function (address) view external returns (bool)"
+                                  }
+                                },
+                                "id": 5313,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "2382:30:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              },
+                              "src": "2370:42:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            }
+                          ],
+                          "id": 5315,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "TupleExpression",
+                          "src": "2369:44:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "2347:66:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5302,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "2339:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5317,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2339:75:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5318,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2339:75:20"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    },
+                    "id": 5322,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 5319,
+                      "name": "howToCall",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5295,
+                      "src": "2428:9:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5320,
+                        "name": "HowToCall",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5241,
+                        "src": "2441:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_HowToCall_$5241_$",
+                          "typeString": "type(enum AuthenticatedProxy.HowToCall)"
+                        }
+                      },
+                      "id": 5321,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Call",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2441:14:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      }
+                    },
+                    "src": "2428:27:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      },
+                      "id": 5334,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 5331,
+                        "name": "howToCall",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5295,
+                        "src": "2520:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_HowToCall_$5241",
+                          "typeString": "enum AuthenticatedProxy.HowToCall"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5332,
+                          "name": "HowToCall",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5241,
+                          "src": "2533:9:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_enum$_HowToCall_$5241_$",
+                            "typeString": "type(enum AuthenticatedProxy.HowToCall)"
+                          }
+                        },
+                        "id": 5333,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "memberName": "DelegateCall",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2533:22:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_HowToCall_$5241",
+                          "typeString": "enum AuthenticatedProxy.HowToCall"
+                        }
+                      },
+                      "src": "2520:35:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 5343,
+                    "nodeType": "IfStatement",
+                    "src": "2516:102:20",
+                    "trueBody": {
+                      "id": 5342,
+                      "nodeType": "Block",
+                      "src": "2557:61:20",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 5340,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 5335,
+                              "name": "result",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5300,
+                              "src": "2571:6:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                {
+                                  "argumentTypes": null,
+                                  "id": 5338,
+                                  "name": "calldata",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5297,
+                                  "src": "2598:8:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                    "typeString": "bytes memory"
+                                  }
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": [
+                                  {
+                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                    "typeString": "bytes memory"
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": null,
+                                  "id": 5336,
+                                  "name": "dest",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5293,
+                                  "src": "2580:4:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                },
+                                "id": 5337,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "delegatecall",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": null,
+                                "src": "2580:17:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_baredelegatecall_nonpayable$__$returns$_t_bool_$",
+                                  "typeString": "function () returns (bool)"
+                                }
+                              },
+                              "id": 5339,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2580:27:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            "src": "2571:36:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "id": 5341,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2571:36:20"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 5344,
+                  "nodeType": "IfStatement",
+                  "src": "2424:194:20",
+                  "trueBody": {
+                    "id": 5330,
+                    "nodeType": "Block",
+                    "src": "2457:53:20",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5328,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 5323,
+                            "name": "result",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5300,
+                            "src": "2471:6:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 5326,
+                                "name": "calldata",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5297,
+                                "src": "2490:8:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 5324,
+                                "name": "dest",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5293,
+                                "src": "2480:4:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              },
+                              "id": 5325,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "call",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": null,
+                              "src": "2480:9:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_barecall_payable$__$returns$_t_bool_$",
+                                "typeString": "function () payable returns (bool)"
+                              }
+                            },
+                            "id": 5327,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2480:19:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "src": "2471:28:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 5329,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2471:28:20"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5345,
+                    "name": "result",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5300,
+                    "src": "2634:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5301,
+                  "id": 5346,
+                  "nodeType": "Return",
+                  "src": "2627:13:20"
+                }
+              ]
+            },
+            "documentation": "Execute a message call from the proxy contract\n     * @dev Can be called by the user, or by a contract authorized by the registry as long as the user has not revoked access\n@param dest Address to which the call will be sent\n@param howToCall Which kind of call to make\n@param calldata Calldata to send\n@return Result of the call (success or failure)",
+            "id": 5348,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "proxy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5298,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5293,
+                  "name": "dest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2229:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5292,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2229:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5295,
+                  "name": "howToCall",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2243:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_HowToCall_$5241",
+                    "typeString": "enum AuthenticatedProxy.HowToCall"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5294,
+                    "name": "HowToCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5241,
+                    "src": "2243:9:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5297,
+                  "name": "calldata",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2264:14:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5296,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2264:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2228:51:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5301,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5300,
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2312:11:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5299,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2312:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2311:13:20"
+            },
+            "scope": 5367,
+            "src": "2214:433:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5365,
+              "nodeType": "Block",
+              "src": "3038:58:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 5359,
+                            "name": "dest",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5350,
+                            "src": "3062:4:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 5360,
+                            "name": "howToCall",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5352,
+                            "src": "3068:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_HowToCall_$5241",
+                              "typeString": "enum AuthenticatedProxy.HowToCall"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 5361,
+                            "name": "calldata",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5354,
+                            "src": "3079:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_enum$_HowToCall_$5241",
+                              "typeString": "enum AuthenticatedProxy.HowToCall"
+                            },
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 5358,
+                          "name": "proxy",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5348,
+                          "src": "3056:5:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_enum$_HowToCall_$5241_$_t_bytes_memory_ptr_$returns$_t_bool_$",
+                            "typeString": "function (address,enum AuthenticatedProxy.HowToCall,bytes memory) returns (bool)"
+                          }
+                        },
+                        "id": 5362,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "3056:32:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5357,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "3048:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5363,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3048:41:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5364,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3048:41:20"
+                }
+              ]
+            },
+            "documentation": "Execute a message call and assert success\n\n     * @dev Same functionality as `proxy`, just asserts the return value\n@param dest Address to which the call will be sent\n@param howToCall What kind of call to make\n@param calldata Calldata to send",
+            "id": 5366,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "proxyAssert",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5355,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5350,
+                  "name": "dest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "2968:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5349,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2968:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5352,
+                  "name": "howToCall",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "2982:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_HowToCall_$5241",
+                    "typeString": "enum AuthenticatedProxy.HowToCall"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5351,
+                    "name": "HowToCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5241,
+                    "src": "2982:9:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5354,
+                  "name": "calldata",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "3003:14:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5353,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3003:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2967:51:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5356,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3038:0:20"
+            },
+            "scope": 5367,
+            "src": "2947:149:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5368,
+        "src": "358:2741:20"
+      }
+    ],
+    "src": "140:2960:20"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/AuthenticatedProxy.sol",
+    "exportedSymbols": {
+      "AuthenticatedProxy": [
+        5367
+      ]
+    },
+    "id": 5368,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5222,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "140:23:20"
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/ProxyRegistry.sol",
+        "file": "./ProxyRegistry.sol",
+        "id": 5223,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 5553,
+        "src": "165:29:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/common/TokenRecipient.sol",
+        "file": "../common/TokenRecipient.sol",
+        "id": 5224,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 894,
+        "src": "195:38:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/cwgoes/working/crypto/wyvern/wyvern-ethereum/contracts/registry/proxy/OwnedUpgradeabilityStorage.sol",
+        "file": "./proxy/OwnedUpgradeabilityStorage.sol",
+        "id": 5225,
+        "nodeType": "ImportDirective",
+        "scope": 5368,
+        "sourceUnit": 5753,
+        "src": "234:48:20",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5226,
+              "name": "TokenRecipient",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 893,
+              "src": "389:14:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_TokenRecipient_$893",
+                "typeString": "contract TokenRecipient"
+              }
+            },
+            "id": 5227,
+            "nodeType": "InheritanceSpecifier",
+            "src": "389:14:20"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5228,
+              "name": "OwnedUpgradeabilityStorage",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5752,
+              "src": "405:26:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OwnedUpgradeabilityStorage_$5752",
+                "typeString": "contract OwnedUpgradeabilityStorage"
+              }
+            },
+            "id": 5229,
+            "nodeType": "InheritanceSpecifier",
+            "src": "405:26:20"
+          }
+        ],
+        "contractDependencies": [
+          893,
+          5752
+        ],
+        "contractKind": "contract",
+        "documentation": "@title AuthenticatedProxy\n@author Project Wyvern Developers",
+        "fullyImplemented": true,
+        "id": 5367,
+        "linearizedBaseContracts": [
+          5367,
+          5752,
+          893
+        ],
+        "name": "AuthenticatedProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5232,
+            "name": "initialized",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "470:24:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5230,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "470:4:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "66616c7365",
+              "id": 5231,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "bool",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "489:5:20",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              },
+              "value": "false"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 5234,
+            "name": "user",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "542:19:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 5233,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "542:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 5236,
+            "name": "registry",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "640:29:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+              "typeString": "contract ProxyRegistry"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 5235,
+              "name": "ProxyRegistry",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5552,
+              "src": "640:13:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                "typeString": "contract ProxyRegistry"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 5238,
+            "name": "revoked",
+            "nodeType": "VariableDeclaration",
+            "scope": 5367,
+            "src": "719:19:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5237,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "719:4:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "AuthenticatedProxy.HowToCall",
+            "id": 5241,
+            "members": [
+              {
+                "id": 5239,
+                "name": "Call",
+                "nodeType": "EnumValue",
+                "src": "883:4:20"
+              },
+              {
+                "id": 5240,
+                "name": "DelegateCall",
+                "nodeType": "EnumValue",
+                "src": "889:12:20"
+              }
+            ],
+            "name": "HowToCall",
+            "nodeType": "EnumDefinition",
+            "src": "866:37:20"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 5245,
+            "name": "Revoked",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 5244,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5243,
+                  "indexed": false,
+                  "name": "revoked",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5245,
+                  "src": "992:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5242,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "992:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "991:14:20"
+            },
+            "src": "978:28:20"
+          },
+          {
+            "body": {
+              "id": 5269,
+              "nodeType": "Block",
+              "src": "1326:124:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5254,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "1344:12:20",
+                        "subExpression": {
+                          "argumentTypes": null,
+                          "id": 5253,
+                          "name": "initialized",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5232,
+                          "src": "1345:11:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5252,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "1336:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5255,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1336:21:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5256,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1336:21:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5259,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5257,
+                      "name": "initialized",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5232,
+                      "src": "1367:11:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "74727565",
+                      "id": 5258,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1381:4:20",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1367:18:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5260,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1367:18:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5263,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5261,
+                      "name": "user",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5234,
+                      "src": "1395:4:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5262,
+                      "name": "addrUser",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5247,
+                      "src": "1402:8:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1395:15:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 5264,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1395:15:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5267,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5265,
+                      "name": "registry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5236,
+                      "src": "1420:8:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                        "typeString": "contract ProxyRegistry"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5266,
+                      "name": "addrRegistry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5249,
+                      "src": "1431:12:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                        "typeString": "contract ProxyRegistry"
+                      }
+                    },
+                    "src": "1420:23:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                      "typeString": "contract ProxyRegistry"
+                    }
+                  },
+                  "id": 5268,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1420:23:20"
+                }
+              ]
+            },
+            "documentation": "Initialize an AuthenticatedProxy\n     * @param addrUser Address of user on whose behalf this proxy will act\n@param addrRegistry Address of ProxyRegistry contract which will manage this proxy",
+            "id": 5270,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "initialize",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5250,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5247,
+                  "name": "addrUser",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5270,
+                  "src": "1261:16:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5246,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1261:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5249,
+                  "name": "addrRegistry",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5270,
+                  "src": "1279:26:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                    "typeString": "contract ProxyRegistry"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5248,
+                    "name": "ProxyRegistry",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5552,
+                    "src": "1279:13:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                      "typeString": "contract ProxyRegistry"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1260:46:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5251,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1326:0:20"
+            },
+            "scope": 5367,
+            "src": "1240:210:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5290,
+              "nodeType": "Block",
+              "src": "1701:100:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 5279,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 5276,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7001,
+                            "src": "1719:3:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 5277,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1719:10:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 5278,
+                          "name": "user",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5234,
+                          "src": "1733:4:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1719:18:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5275,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "1711:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5280,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1711:27:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5281,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1711:27:20"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5284,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5282,
+                      "name": "revoked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5238,
+                      "src": "1748:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5283,
+                      "name": "revoke",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5272,
+                      "src": "1758:6:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1748:16:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5285,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1748:16:20"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5287,
+                        "name": "revoke",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5272,
+                        "src": "1787:6:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5286,
+                      "name": "Revoked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5245,
+                      "src": "1779:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bool_$returns$__$",
+                        "typeString": "function (bool)"
+                      }
+                    },
+                    "id": 5288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1779:15:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5289,
+                  "nodeType": "EmitStatement",
+                  "src": "1774:20:20"
+                }
+              ]
+            },
+            "documentation": "Set the revoked flag (allows a user to revoke ProxyRegistry access)\n     * @dev Can be called by the user only\n@param revoke Whether or not to revoke access",
+            "id": 5291,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setRevoke",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5273,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5272,
+                  "name": "revoke",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5291,
+                  "src": "1669:11:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5271,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1669:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1668:13:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5274,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1701:0:20"
+            },
+            "scope": 5367,
+            "src": "1650:151:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5347,
+              "nodeType": "Block",
+              "src": "2329:318:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 5316,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 5306,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 5303,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7001,
+                              "src": "2347:3:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 5304,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2347:10:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "id": 5305,
+                            "name": "user",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5234,
+                            "src": "2361:4:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "2347:18:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "||",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "components": [
+                            {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              },
+                              "id": 5314,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 5308,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "nodeType": "UnaryOperation",
+                                "operator": "!",
+                                "prefix": true,
+                                "src": "2370:8:20",
+                                "subExpression": {
+                                  "argumentTypes": null,
+                                  "id": 5307,
+                                  "name": "revoked",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5238,
+                                  "src": "2371:7:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_bool",
+                                    "typeString": "bool"
+                                  }
+                                },
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "&&",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "expression": {
+                                      "argumentTypes": null,
+                                      "id": 5311,
+                                      "name": "msg",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 7001,
+                                      "src": "2401:3:20",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_magic_message",
+                                        "typeString": "msg"
+                                      }
+                                    },
+                                    "id": 5312,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "sender",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": null,
+                                    "src": "2401:10:20",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "id": 5309,
+                                    "name": "registry",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 5236,
+                                    "src": "2382:8:20",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_contract$_ProxyRegistry_$5552",
+                                      "typeString": "contract ProxyRegistry"
+                                    }
+                                  },
+                                  "id": 5310,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "contracts",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 5420,
+                                  "src": "2382:18:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
+                                    "typeString": "function (address) view external returns (bool)"
+                                  }
+                                },
+                                "id": 5313,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "2382:30:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              },
+                              "src": "2370:42:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            }
+                          ],
+                          "id": 5315,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "TupleExpression",
+                          "src": "2369:44:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "2347:66:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5302,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "2339:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5317,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2339:75:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5318,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2339:75:20"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    },
+                    "id": 5322,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 5319,
+                      "name": "howToCall",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5295,
+                      "src": "2428:9:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5320,
+                        "name": "HowToCall",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5241,
+                        "src": "2441:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_HowToCall_$5241_$",
+                          "typeString": "type(enum AuthenticatedProxy.HowToCall)"
+                        }
+                      },
+                      "id": 5321,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Call",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2441:14:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      }
+                    },
+                    "src": "2428:27:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_enum$_HowToCall_$5241",
+                        "typeString": "enum AuthenticatedProxy.HowToCall"
+                      },
+                      "id": 5334,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 5331,
+                        "name": "howToCall",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5295,
+                        "src": "2520:9:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_HowToCall_$5241",
+                          "typeString": "enum AuthenticatedProxy.HowToCall"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5332,
+                          "name": "HowToCall",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5241,
+                          "src": "2533:9:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_enum$_HowToCall_$5241_$",
+                            "typeString": "type(enum AuthenticatedProxy.HowToCall)"
+                          }
+                        },
+                        "id": 5333,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "memberName": "DelegateCall",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2533:22:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_HowToCall_$5241",
+                          "typeString": "enum AuthenticatedProxy.HowToCall"
+                        }
+                      },
+                      "src": "2520:35:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 5343,
+                    "nodeType": "IfStatement",
+                    "src": "2516:102:20",
+                    "trueBody": {
+                      "id": 5342,
+                      "nodeType": "Block",
+                      "src": "2557:61:20",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 5340,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 5335,
+                              "name": "result",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5300,
+                              "src": "2571:6:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                {
+                                  "argumentTypes": null,
+                                  "id": 5338,
+                                  "name": "calldata",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5297,
+                                  "src": "2598:8:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                    "typeString": "bytes memory"
+                                  }
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": [
+                                  {
+                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                    "typeString": "bytes memory"
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": null,
+                                  "id": 5336,
+                                  "name": "dest",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 5293,
+                                  "src": "2580:4:20",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                },
+                                "id": 5337,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "delegatecall",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": null,
+                                "src": "2580:17:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_baredelegatecall_nonpayable$__$returns$_t_bool_$",
+                                  "typeString": "function () returns (bool)"
+                                }
+                              },
+                              "id": 5339,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2580:27:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            "src": "2571:36:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "id": 5341,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2571:36:20"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 5344,
+                  "nodeType": "IfStatement",
+                  "src": "2424:194:20",
+                  "trueBody": {
+                    "id": 5330,
+                    "nodeType": "Block",
+                    "src": "2457:53:20",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5328,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 5323,
+                            "name": "result",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5300,
+                            "src": "2471:6:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 5326,
+                                "name": "calldata",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5297,
+                                "src": "2490:8:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 5324,
+                                "name": "dest",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5293,
+                                "src": "2480:4:20",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              },
+                              "id": 5325,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "call",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": null,
+                              "src": "2480:9:20",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_barecall_payable$__$returns$_t_bool_$",
+                                "typeString": "function () payable returns (bool)"
+                              }
+                            },
+                            "id": 5327,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2480:19:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "src": "2471:28:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 5329,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2471:28:20"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5345,
+                    "name": "result",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5300,
+                    "src": "2634:6:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5301,
+                  "id": 5346,
+                  "nodeType": "Return",
+                  "src": "2627:13:20"
+                }
+              ]
+            },
+            "documentation": "Execute a message call from the proxy contract\n     * @dev Can be called by the user, or by a contract authorized by the registry as long as the user has not revoked access\n@param dest Address to which the call will be sent\n@param howToCall Which kind of call to make\n@param calldata Calldata to send\n@return Result of the call (success or failure)",
+            "id": 5348,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "proxy",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5298,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5293,
+                  "name": "dest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2229:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5292,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2229:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5295,
+                  "name": "howToCall",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2243:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_HowToCall_$5241",
+                    "typeString": "enum AuthenticatedProxy.HowToCall"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5294,
+                    "name": "HowToCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5241,
+                    "src": "2243:9:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5297,
+                  "name": "calldata",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2264:14:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5296,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2264:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2228:51:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5301,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5300,
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5348,
+                  "src": "2312:11:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5299,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2312:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2311:13:20"
+            },
+            "scope": 5367,
+            "src": "2214:433:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5365,
+              "nodeType": "Block",
+              "src": "3038:58:20",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 5359,
+                            "name": "dest",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5350,
+                            "src": "3062:4:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 5360,
+                            "name": "howToCall",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5352,
+                            "src": "3068:9:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_HowToCall_$5241",
+                              "typeString": "enum AuthenticatedProxy.HowToCall"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 5361,
+                            "name": "calldata",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5354,
+                            "src": "3079:8:20",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_enum$_HowToCall_$5241",
+                              "typeString": "enum AuthenticatedProxy.HowToCall"
+                            },
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 5358,
+                          "name": "proxy",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5348,
+                          "src": "3056:5:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_enum$_HowToCall_$5241_$_t_bytes_memory_ptr_$returns$_t_bool_$",
+                            "typeString": "function (address,enum AuthenticatedProxy.HowToCall,bytes memory) returns (bool)"
+                          }
+                        },
+                        "id": 5362,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "3056:32:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 5357,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        7004,
+                        7005
+                      ],
+                      "referencedDeclaration": 7004,
+                      "src": "3048:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 5363,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3048:41:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5364,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3048:41:20"
+                }
+              ]
+            },
+            "documentation": "Execute a message call and assert success\n\n     * @dev Same functionality as `proxy`, just asserts the return value\n@param dest Address to which the call will be sent\n@param howToCall What kind of call to make\n@param calldata Calldata to send",
+            "id": 5366,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "proxyAssert",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5355,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5350,
+                  "name": "dest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "2968:12:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5349,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2968:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5352,
+                  "name": "howToCall",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "2982:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_HowToCall_$5241",
+                    "typeString": "enum AuthenticatedProxy.HowToCall"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5351,
+                    "name": "HowToCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5241,
+                    "src": "2982:9:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_HowToCall_$5241",
+                      "typeString": "enum AuthenticatedProxy.HowToCall"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5354,
+                  "name": "calldata",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5366,
+                  "src": "3003:14:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5353,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3003:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2967:51:20"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5356,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3038:0:20"
+            },
+            "scope": 5367,
+            "src": "2947:149:20",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5368,
+        "src": "358:2741:20"
+      }
+    ],
+    "src": "140:2960:20"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-06-12T05:05:32.636Z"
+}

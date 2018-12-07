@@ -1,3 +1,0 @@
-[submodule "src/wyvern-ethereum"]
-	path = src/wyvern-ethereum
-	url = https://github.com/ProjectWyvern/wyvern-ethereum.git

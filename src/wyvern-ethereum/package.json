@@ -1,0 +1,63 @@
+{
+  "name": "wyvern-ethereum",
+  "version": "1.0.0",
+  "description": "Wyvern Ethereum Contracts",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@digix/doxity": "0.5.2",
+    "bitcoinjs-lib": "https://github.com/ProjectWyvern/bitcoinjs-lib.git",
+    "bs58check": "^2.1.0",
+    "coveralls": "^3.0.1",
+    "ethereumjs-abi": "^0.6.5",
+    "ethereumjs-testrpc": "^6.0.3",
+    "ethereumjs-util": "^5.1.2",
+    "openzeppelin-solidity": "git+https://github.com/OpenZeppelin/openzeppelin-solidity.git",
+    "solc": "^0.4.23",
+    "solidity-coverage": "^0.5.0",
+    "solidity-static-analysis": "^1.1.0",
+    "solium": "^1.1.7",
+    "standard": "^10.0.3",
+    "truffle": "^4.1.3",
+    "truffle-compile": "^3.0.10",
+    "vorpal": "^1.12.0",
+    "web3": "1.0.0-beta.18"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "scripts": {
+    "test": "scripts/test.sh",
+    "develop": "scripts/develop.sh",
+    "compile": "scripts/compile.sh",
+    "testrpc": "scripts/testrpc.sh",
+    "lint": "scripts/lint.sh",
+    "analyze": "scripts/analyze.sh",
+    "coverage": "scripts/coverage.sh",
+    "flatten": "scripts/flatten.sh",
+    "doc": "scripts/doc.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectWyvern/wyvern-ethereum.git"
+  },
+  "keywords": [
+    "wyvern",
+    "exchange",
+    "ethereum",
+    "cryptocurrency",
+    "token"
+  ],
+  "author": "Project Wyvern Developers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectWyvern/wyvern-ethereum/issues"
+  },
+  "homepage": "https://github.com/ProjectWyvern/wyvern-ethereum#readme"
+}
