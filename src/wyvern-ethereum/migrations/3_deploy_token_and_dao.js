@@ -5,7 +5,7 @@ const WyvernToken = artifacts.require('./WyvernToken.sol')
 const WyvernDAO = artifacts.require('./WyvernDAO.sol')
 
 const { setConfig } = require('./config.js')
-const { utxoMerkleRoot, utxoAmount } = require('../test/aux.js')
+const { utxoMerkleRoot, utxoAmount } = require('../test/data.js')
 
 module.exports = (deployer, network) => {
   if (network === 'main' || network === 'rinkeby') return

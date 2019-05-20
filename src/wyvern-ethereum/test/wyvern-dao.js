@@ -4,7 +4,7 @@ const WyvernDAO = artifacts.require('WyvernDAO')
 const WyvernToken = artifacts.require('WyvernToken')
 const BigNumber = require('bignumber.js')
 
-const { utxoAmount } = require('./aux.js')
+const { utxoAmount } = require('./data.js')
 
 contract('WyvernDAO', (accounts) => {
   it('should have the right initial balance', () => {
