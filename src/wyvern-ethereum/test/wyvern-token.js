@@ -4,7 +4,7 @@ const bitcoin = require('bitcoinjs-lib')
 const bs58check = require('bs58check')
 const { ecsign, pubToAddress } = require('ethereumjs-util')
 
-const { utxoMerkleTree, utxoAmount, utxoSet, hashUTXO, network } = require('./aux.js')
+const { utxoMerkleTree, utxoAmount, utxoSet, hashUTXO, network } = require('./data.js')
 
 const WyvernToken = artifacts.require('WyvernToken')
 
