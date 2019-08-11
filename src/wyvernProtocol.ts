@@ -187,7 +187,7 @@ export class WyvernProtocol {
         /* This DOES NOT currently support dynamic-length data (arrays). */
         abi.inputs.map(i => {
           const type = ethABI.elementaryName(i.type);
-          const encoded = ethABI.encodeSingle(type, WyvernProtocol.generateDefaultValue(i.type));
+          const encoded = ethABI.encodeSingle(type, i.value || WyvernProtocol.generateDefaultValue(i.type));
           if (i.kind === replaceKind) {
             maskArr.push((allowReplaceByte as any).repeat(encoded.length));
           } else {
