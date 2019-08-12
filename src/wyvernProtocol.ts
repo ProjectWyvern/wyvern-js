@@ -179,36 +179,34 @@ export class WyvernProtocol {
      * @return  The resulting encoded replacementPattern
      */
     public static encodeReplacementPattern: ReplacementEncoder = (abi, replaceKind = FunctionInputKind.Replaceable, encodeToBytes = true): string => {
-        const allowReplaceByte = '1';
-        const doNotAllowReplaceByte = '0';
-        /* Four bytes for method ID. */
-        const maskArr: string[] = [doNotAllowReplaceByte, doNotAllowReplaceByte,
-        doNotAllowReplaceByte, doNotAllowReplaceByte];
-        /* This DOES NOT currently support dynamic-length data (arrays). */
-        abi.inputs.map(i => {
-          const type = ethABI.elementaryName(i.type);
-          const encoded = ethABI.encodeSingle(type, i.value !== undefined ? i.value : WyvernProtocol.generateDefaultValue(i.type));
-          if (i.kind === replaceKind) {
-            maskArr.push((allowReplaceByte as any).repeat(encoded.length));
-          } else {
-            maskArr.push((doNotAllowReplaceByte as any).repeat(encoded.length));
-          }
-        });
-
-        const mask = maskArr.reduce((x, y) => x + y, '');
-        if (!encodeToBytes) {
-            return mask;
-        }
-
-        /* Encode into bytes. */
-        const ret = [];
-        for (const char of mask) {
-          const byte = char === allowReplaceByte ? 255 : 0;
-          const buf = Buffer.alloc(1);
-          buf.writeUInt8(byte, 0);
-          ret.push(buf);
-        }
-        return '0x' + Buffer.concat(ret).toString('hex');
+        const output: Buffer[] = [];
+        const data: Buffer[] = [];
+        const dynamicOffset = abi.inputs.reduce((len, {type}) => {
+            const size = ethABI.parseTypeArray(type);
+            return len + (typeof size === 'number' ? size * 32 : 32);
+        }, 0);
+        abi.inputs
+            .map(({kind, type, value}) => ({
+                bitmask: kind === replaceKind ? 255 : 0,
+                type: ethABI.elementaryName(type),
+                value: value !== undefined ? value : WyvernProtocol.generateDefaultValue(type),
+            }))
+            .reduce((offset, {bitmask, type, value}) => {
+                const cur = new Buffer(ethABI.encodeSingle(type, value).length).fill(bitmask);
+                if (ethABI.isDynamic(type)) {
+                    if (bitmask) {
+                        throw new Error('Replacement is not supported for dynamic parameters.');
+                    }
+                    output.push(new Buffer(ethABI.encodeSingle('uint256', dynamicOffset).length));
+                    data.push(cur);
+                    return offset + cur.length;
+                }
+                output.push(cur);
+                return offset;
+            }, dynamicOffset);
+        const methodIdMask = new Buffer(4);
+        const mask = Buffer.concat([methodIdMask, Buffer.concat(output.concat(data))]);
+        return encodeToBytes ? `0x${mask.toString('hex')}` : mask.map(b => b ? 1 : 0).join('');
     }
 
     /**

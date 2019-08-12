@@ -27,9 +27,12 @@ declare module 'compare-versions' {
 declare module 'ethereumjs-abi' {
     const soliditySHA3: (argTypes: string[], args: any[]) => Buffer;
     const elementaryName: (name: string) => string;
-    const encodeSingle: (type: string, arg: any) => string;
+    const encodeSingle: (type: string, arg: any) => Buffer;
     const rawEncode: (types: any, values: any) => string;
     const methodID: (name: string, types: any) => Buffer;
+    const isArray: (type: string) => boolean;
+    const isDynamic: (type: string) => boolean;
+    const parseTypeArray: (type: string) => number | 'dynamic' | null;
 }
 
 // truffle-hdwallet-provider declarations
