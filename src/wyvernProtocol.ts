@@ -192,6 +192,7 @@ export class WyvernProtocol {
                 value: value !== undefined ? value : WyvernProtocol.generateDefaultValue(type),
             }))
             .reduce((offset, {bitmask, type, value}) => {
+                // The 0xff bytes in the mask select the replacement bytes. All other bytes are 0x00.
                 const cur = new Buffer(ethABI.encodeSingle(type, value).length).fill(bitmask);
                 if (ethABI.isDynamic(type)) {
                     if (bitmask) {
@@ -204,6 +205,7 @@ export class WyvernProtocol {
                 output.push(cur);
                 return offset;
             }, dynamicOffset);
+        // 4 initial bytes of 0x00 for the method hash.
         const methodIdMask = new Buffer(4);
         const mask = Buffer.concat([methodIdMask, Buffer.concat(output.concat(data))]);
         return encodeToBytes ? `0x${mask.toString('hex')}` : mask.map(b => b ? 1 : 0).join('');
