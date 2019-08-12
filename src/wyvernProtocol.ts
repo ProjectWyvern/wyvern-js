@@ -182,8 +182,8 @@ export class WyvernProtocol {
         const output: Buffer[] = [];
         const data: Buffer[] = [];
         const dynamicOffset = abi.inputs.reduce((len, {type}) => {
-            const size = ethABI.parseTypeArray(type);
-            return len + (typeof size === 'number' ? size * 32 : 32);
+            const match = type.match(/\[(.+)\]$/);
+            return len + (match ? parseInt(match[1], 10) * 32 : 32);
         }, 0);
         abi.inputs
             .map(({kind, type, value}) => ({
