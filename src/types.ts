@@ -142,6 +142,7 @@ export enum FunctionInputKind {
   Owner = 'owner',
   Index = 'index',
   Count = 'count',
+  Data = 'data',
 }
 
 export interface AnnotatedFunctionInput {

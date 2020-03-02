@@ -92,7 +92,7 @@ export declare class WyvernProtocol {
      * @param type The ABI type to calculate a default value for
      * @return The default value for that type
      */
-    private static generateDefaultValue;
+    static generateDefaultValue: (type: string) => any;
     constructor(provider: Web3Provider, config: WyvernProtocolConfig);
     /**
      * Sets a new web3 provider for wyvernProtocol.js. Updating the provider will stop all
