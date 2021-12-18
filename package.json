@@ -58,6 +58,6 @@
     "awesome-typescript-loader": "^3.4.1",
     "@types/lodash": "^4.14.92",
     "@types/node": "^9.3.0",
-    "ts-node": "^6.1.0",
+    "ts-node": "^6.1.0"
   }
 }
