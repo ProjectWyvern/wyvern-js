@@ -3102,7 +3102,7 @@ tslint-eslint-rules@^4.1.1:
 
 tslint-react@^5.0.0:
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-5.0.0.tgz#d0ae644e8163bdd3e134012e9353094904e8dd44"
+  resolved "https://registry.npmjs.org/tslint-react/-/tslint-react-5.0.0.tgz"
   integrity sha512-/IbcSmoBPlFic8kQaRfQ4knTY4mivwo5LVzvozvX6Dyu2ynEnrh1dIcR2ujjyp/IodXqY/H5GbxFxSMo/Kf2Hg==
   dependencies:
     tsutils "^3.17.1"
@@ -3140,7 +3140,7 @@ tsutils@^2.29.0:
 
 tsutils@^3.17.1:
   version "3.21.0"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
+  resolved "https://registry.npmjs.org/tsutils/-/tsutils-3.21.0.tgz"
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
