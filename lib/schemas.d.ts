@@ -120,6 +120,8 @@ export declare const schemas: {
         id: string;
         allOf: ({
             $ref: string;
+            properties?: undefined;
+            required?: undefined;
         } | {
             properties: {
                 ecSignature: {
@@ -127,6 +129,7 @@ export declare const schemas: {
                 };
             };
             required: string[];
+            $ref?: undefined;
         })[];
     };
 };

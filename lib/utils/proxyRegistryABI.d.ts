@@ -12,11 +12,16 @@ export declare const proxyRegistryABI: ({
     'payable': boolean;
     'stateMutability': string;
     'type': string;
+    'anonymous'?: undefined;
 } | {
     'inputs': never[];
     'payable': boolean;
     'stateMutability': string;
     'type': string;
+    'constant'?: undefined;
+    'name'?: undefined;
+    'outputs'?: undefined;
+    'anonymous'?: undefined;
 } | {
     'anonymous': boolean;
     'inputs': {
@@ -26,4 +31,8 @@ export declare const proxyRegistryABI: ({
     }[];
     'name': string;
     'type': string;
+    'constant'?: undefined;
+    'outputs'?: undefined;
+    'payable'?: undefined;
+    'stateMutability'?: undefined;
 })[];
