@@ -12,6 +12,7 @@ export declare const daoABI: ({
     'payable': boolean;
     'stateMutability': string;
     'type': string;
+    'anonymous'?: undefined;
 } | {
     'inputs': {
         'name': string;
@@ -20,10 +21,19 @@ export declare const daoABI: ({
     'payable': boolean;
     'stateMutability': string;
     'type': string;
+    'constant'?: undefined;
+    'name'?: undefined;
+    'outputs'?: undefined;
+    'anonymous'?: undefined;
 } | {
     'payable': boolean;
     'stateMutability': string;
     'type': string;
+    'constant'?: undefined;
+    'inputs'?: undefined;
+    'name'?: undefined;
+    'outputs'?: undefined;
+    'anonymous'?: undefined;
 } | {
     'anonymous': boolean;
     'inputs': {
@@ -33,4 +43,8 @@ export declare const daoABI: ({
     }[];
     'name': string;
     'type': string;
+    'constant'?: undefined;
+    'outputs'?: undefined;
+    'payable'?: undefined;
+    'stateMutability'?: undefined;
 })[];

@@ -5,6 +5,12 @@ import * as ethABI from 'ethereumjs-abi';
 import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
 
+import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
+import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
+import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
+import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
+import { WyvernTokenContract } from './abi_gen/wyvern_token';
+import { schemas } from './schemas';
 import {
   AtomicizedReplacementEncoder,
   ECSignature,
@@ -18,20 +24,12 @@ import {
   WyvernProtocolConfig,
   WyvernProtocolError,
 } from './types';
-
-import { schemas } from './schemas';
 import { AbiDecoder } from './utils/abi_decoder';
 import { assert } from './utils/assert';
 import { constants } from './utils/constants';
 import { decorators } from './utils/decorators';
 import { signatureUtils } from './utils/signature_utils';
 import { utils } from './utils/utils';
-
-import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
-import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
-import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
-import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
-import { WyvernTokenContract } from './abi_gen/wyvern_token';
 
 export class WyvernProtocol {
 

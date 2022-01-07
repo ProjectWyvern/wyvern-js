@@ -14,30 +14,30 @@ export declare type AsyncMethod = (...args: any[]) => Promise<any>;
 export declare type SyncMethod = (...args: any[]) => any;
 export declare enum Network {
     Main = "main",
-    Rinkeby = "rinkeby",
+    Rinkeby = "rinkeby"
 }
 export declare enum SaleKind {
     FixedPrice = 0,
     EnglishAuction = 1,
-    DutchAuction = 2,
+    DutchAuction = 2
 }
 export declare enum HowToCall {
     Call = 0,
     DelegateCall = 1,
     StaticCall = 2,
-    Create = 3,
+    Create = 3
 }
 export declare enum AbiType {
     Function = "function",
     Constructor = "constructor",
     Event = "event",
-    Fallback = "fallback",
+    Fallback = "fallback"
 }
 export declare enum WyvernProtocolError {
     InvalidSignature = "INVALID_SIGNATURE",
     TransactionMiningTimeout = "TRANSACTION_MINING_TIMEOUT",
     InvalidJump = "INVALID_JUMP",
-    OutOfGas = "OUT_OF_GAS",
+    OutOfGas = "OUT_OF_GAS"
 }
 export interface ECSignature {
     v: number;
@@ -66,7 +66,7 @@ export declare enum SolidityTypes {
     Uint8 = "uint8",
     Uint = "uint",
     Bytes = "bytes",
-    String = "string",
+    String = "string"
 }
 export declare type RawLog = Web3.LogEntry;
 export interface ContractEvent {
@@ -113,7 +113,7 @@ export declare enum StateMutability {
     Pure = "pure",
     View = "view",
     Payable = "payable",
-    Nonpayable = "nonpayable",
+    Nonpayable = "nonpayable"
 }
 export declare enum FunctionInputKind {
     Replaceable = "replaceable",
@@ -121,7 +121,7 @@ export declare enum FunctionInputKind {
     Owner = "owner",
     Index = "index",
     Count = "count",
-    Data = "data",
+    Data = "data"
 }
 export interface AnnotatedFunctionInput {
     name: string;
@@ -133,7 +133,7 @@ export declare enum FunctionOutputKind {
     Owner = "owner",
     Asset = "asset",
     Count = "count",
-    Other = "other",
+    Other = "other"
 }
 export interface AnnotatedFunctionOutput {
     name: string;

@@ -82,6 +82,7 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'anonymous'?: undefined;
     } | {
         'inputs': {
             'name': string;
@@ -90,6 +91,10 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'constant'?: undefined;
+        'name'?: undefined;
+        'outputs'?: undefined;
+        'anonymous'?: undefined;
     } | {
         'anonymous': boolean;
         'inputs': {
@@ -99,6 +104,10 @@ export declare const constants: {
         }[];
         'name': string;
         'type': string;
+        'constant'?: undefined;
+        'outputs'?: undefined;
+        'payable'?: undefined;
+        'stateMutability'?: undefined;
     })[];
     PROXY_REGISTRY_ABI: ({
         'constant': boolean;
@@ -114,11 +123,16 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'anonymous'?: undefined;
     } | {
         'inputs': never[];
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'constant'?: undefined;
+        'name'?: undefined;
+        'outputs'?: undefined;
+        'anonymous'?: undefined;
     } | {
         'anonymous': boolean;
         'inputs': {
@@ -128,6 +142,10 @@ export declare const constants: {
         }[];
         'name': string;
         'type': string;
+        'constant'?: undefined;
+        'outputs'?: undefined;
+        'payable'?: undefined;
+        'stateMutability'?: undefined;
     })[];
     DAO_ABI: ({
         'constant': boolean;
@@ -143,6 +161,7 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'anonymous'?: undefined;
     } | {
         'inputs': {
             'name': string;
@@ -151,10 +170,19 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'constant'?: undefined;
+        'name'?: undefined;
+        'outputs'?: undefined;
+        'anonymous'?: undefined;
     } | {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'constant'?: undefined;
+        'inputs'?: undefined;
+        'name'?: undefined;
+        'outputs'?: undefined;
+        'anonymous'?: undefined;
     } | {
         'anonymous': boolean;
         'inputs': {
@@ -164,6 +192,10 @@ export declare const constants: {
         }[];
         'name': string;
         'type': string;
+        'constant'?: undefined;
+        'outputs'?: undefined;
+        'payable'?: undefined;
+        'stateMutability'?: undefined;
     })[];
     TOKEN_ABI: ({
         'constant': boolean;
@@ -179,6 +211,7 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'anonymous'?: undefined;
     } | {
         'inputs': {
             'name': string;
@@ -187,6 +220,10 @@ export declare const constants: {
         'payable': boolean;
         'stateMutability': string;
         'type': string;
+        'constant'?: undefined;
+        'name'?: undefined;
+        'outputs'?: undefined;
+        'anonymous'?: undefined;
     } | {
         'anonymous': boolean;
         'inputs': {
@@ -196,5 +233,9 @@ export declare const constants: {
         }[];
         'name': string;
         'type': string;
+        'constant'?: undefined;
+        'outputs'?: undefined;
+        'payable'?: undefined;
+        'stateMutability'?: undefined;
     })[];
 };
