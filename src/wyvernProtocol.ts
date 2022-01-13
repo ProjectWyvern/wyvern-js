@@ -188,7 +188,6 @@ export class WyvernProtocol {
    */
   @decorators.syncWyvernProtocolErrorHandler
   public static getOrderHashHex(order: Order | SignedOrder): string {
-    assert.doesConformToSchema('order', order, schemas.orderSchema);
     const orderHashHex = utils.getOrderHashHex(order);
     return orderHashHex;
   }
@@ -391,7 +390,6 @@ export class WyvernProtocol {
 
   constructor(provider: Web3Provider, config: WyvernProtocolConfig) {
     assert.isWeb3Provider('provider', provider);
-    // assert.doesConformToSchema('config', config, wyvernProtocolConfigSchema)
     this._web3Wrapper = new Web3Wrapper(provider, {
       gasPrice: config.gasPrice,
     });

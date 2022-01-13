@@ -17,7 +17,7 @@
             }
         ],
         "curly": true,
-        "eofline": true,
+        "eofline": false,
         "encoding": true,
         "import-spacing": true,
         "indent": [true, "spaces", 4],
