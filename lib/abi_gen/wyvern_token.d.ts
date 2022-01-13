@@ -1,111 +1,137 @@
-/**
- * This file is auto-generated using abi-gen. Don't edit directly.
- * Templates can be found at https://github.com/0xProject/0x.js/tree/development/packages/abi-gen-templates.
- */
-import { TxData } from '@0xproject/types';
-import { BigNumber } from '@0xproject/utils';
-import * as Web3 from 'web3';
-import { BaseContract } from './base_contract';
+import { EncoderOverrides, ContractFunctionObj, ContractTxFunctionObj, BaseContract } from '@0x/base-contract';
+import { BlockRange, ContractAbi, ContractArtifact, DecodedLogArgs, LogWithDecodedArgs, TxData, SupportedProvider } from 'ethereum-types';
+import { BigNumber } from '@0x/utils';
+import { EventCallback, IndexedFilterValues, SimpleContractArtifact } from '@0x/types';
+import { Web3Wrapper } from '@0x/web3-wrapper';
+export declare type WyvernTokenEventArgs = WyvernTokenBurnEventArgs | WyvernTokenUTXORedeemedEventArgs | WyvernTokenTokensReleasedEventArgs | WyvernTokenApprovalEventArgs | WyvernTokenTransferEventArgs;
+export declare enum WyvernTokenEvents {
+    Burn = "Burn",
+    UTXORedeemed = "UTXORedeemed",
+    TokensReleased = "TokensReleased",
+    Approval = "Approval",
+    Transfer = "Transfer"
+}
+export interface WyvernTokenBurnEventArgs extends DecodedLogArgs {
+    burner: string;
+    value: BigNumber;
+}
+export interface WyvernTokenUTXORedeemedEventArgs extends DecodedLogArgs {
+    txid: string;
+    outputIndex: BigNumber;
+    satoshis: BigNumber;
+    proof: string[];
+    pubKey: string;
+    v: BigNumber;
+    r: string;
+    s: string;
+    redeemer: string;
+    numberOfTokens: BigNumber;
+}
+export interface WyvernTokenTokensReleasedEventArgs extends DecodedLogArgs {
+    destination: string;
+    numberOfTokens: BigNumber;
+}
+export interface WyvernTokenApprovalEventArgs extends DecodedLogArgs {
+    owner: string;
+    spender: string;
+    value: BigNumber;
+}
+export interface WyvernTokenTransferEventArgs extends DecodedLogArgs {
+    from: string;
+    to: string;
+    value: BigNumber;
+}
 export declare class WyvernTokenContract extends BaseContract {
-    MULTIPLIER: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    name: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    maximumRedeemable: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    approve: {
-        sendTransactionAsync(_spender_0: string, _value_1: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_spender_0: string, _value_1: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_spender_0: string, _value_1: BigNumber): string;
-    };
-    totalSupply: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    multiplier: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    transferFrom: {
-        sendTransactionAsync(_from_0: string, _to_1: string, _value_2: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_from_0: string, _to_1: string, _value_2: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_from_0: string, _to_1: string, _value_2: BigNumber): string;
-    };
-    decimals: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    burn: {
-        sendTransactionAsync(_value_0: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_value_0: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_value_0: BigNumber): string;
-    };
-    pubKeyToEthereumAddress: {
-        callAsync(pubKey_0: string, txData?: TxData): Promise<string>;
-    };
-    MINT_AMOUNT: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    decreaseApproval: {
-        sendTransactionAsync(_spender_0: string, _subtractedValue_1: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_spender_0: string, _subtractedValue_1: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_spender_0: string, _subtractedValue_1: BigNumber): string;
-    };
-    balanceOf: {
-        callAsync(_owner_0: string, txData?: TxData): Promise<BigNumber>;
-    };
-    redeemUTXO: {
-        sendTransactionAsync(txid_0: string, outputIndex_1: number | BigNumber, satoshis_2: BigNumber, proof_3: string[], pubKey_4: string, isCompressed_5: boolean, v_6: number | BigNumber, r_7: string, s_8: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(txid_0: string, outputIndex_1: number | BigNumber, satoshis_2: BigNumber, proof_3: string[], pubKey_4: string, isCompressed_5: boolean, v_6: number | BigNumber, r_7: string, s_8: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(txid_0: string, outputIndex_1: number | BigNumber, satoshis_2: BigNumber, proof_3: string[], pubKey_4: string, isCompressed_5: boolean, v_6: number | BigNumber, r_7: string, s_8: string): string;
-    };
-    canRedeemUTXOHash: {
-        callAsync(merkleLeafHash_0: string, proof_1: string[], txData?: TxData): Promise<boolean>;
-    };
-    releaseTokens: {
-        sendTransactionAsync(destination_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(destination_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(destination_0: string): string;
-    };
-    symbol: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    transfer: {
-        sendTransactionAsync(_to_0: string, _value_1: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_to_0: string, _value_1: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_to_0: string, _value_1: BigNumber): string;
-    };
-    validateSignature: {
-        callAsync(hash_0: string, v_1: number | BigNumber, r_2: string, s_3: string, expected_4: string, txData?: TxData): Promise<boolean>;
-    };
-    verifyProof: {
-        callAsync(proof_0: string[], merkleLeafHash_1: string, txData?: TxData): Promise<boolean>;
-    };
-    canRedeemUTXO: {
-        callAsync(txid_0: string, originalAddress_1: string, outputIndex_2: number | BigNumber, satoshis_3: BigNumber, proof_4: string[], txData?: TxData): Promise<boolean>;
-    };
-    ecdsaVerify: {
-        callAsync(addr_0: string, pubKey_1: string, v_2: number | BigNumber, r_3: string, s_4: string, txData?: TxData): Promise<boolean>;
-    };
-    increaseApproval: {
-        sendTransactionAsync(_spender_0: string, _addedValue_1: BigNumber, txData?: TxData): Promise<string>;
-        estimateGasAsync(_spender_0: string, _addedValue_1: BigNumber, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(_spender_0: string, _addedValue_1: BigNumber): string;
-    };
-    allowance: {
-        callAsync(_owner_0: string, _spender_1: string, txData?: TxData): Promise<BigNumber>;
-    };
-    pubKeyToBitcoinAddress: {
-        callAsync(pubKey_0: string, isCompressed_1: boolean, txData?: TxData): Promise<string>;
-    };
-    rootUTXOMerkleTreeHash: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    totalRedeemed: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    SATS_TO_TOKENS: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    constructor(web3ContractInstance: Web3.ContractInstance, defaults: Partial<TxData>);
+    /**
+     * @ignore
+     */
+    static deployedBytecode: string | undefined;
+    static contractName: string;
+    private readonly _methodABIIndex;
+    private readonly _subscriptionManager;
+    static deployFrom0xArtifactAsync(artifact: ContractArtifact | SimpleContractArtifact, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: (ContractArtifact | SimpleContractArtifact);
+    }, merkleRoot: string, totalUtxoAmount: BigNumber): Promise<WyvernTokenContract>;
+    static deployWithLibrariesFrom0xArtifactAsync(artifact: ContractArtifact, libraryArtifacts: {
+        [libraryName: string]: ContractArtifact;
+    }, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: (ContractArtifact | SimpleContractArtifact);
+    }, merkleRoot: string, totalUtxoAmount: BigNumber): Promise<WyvernTokenContract>;
+    static deployAsync(bytecode: string, abi: ContractAbi, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: ContractAbi;
+    }, merkleRoot: string, totalUtxoAmount: BigNumber): Promise<WyvernTokenContract>;
+    /**
+     * @returns      The contract ABI
+     */
+    static ABI(): ContractAbi;
+    protected static _deployLibrariesAsync(artifact: ContractArtifact, libraryArtifacts: {
+        [libraryName: string]: ContractArtifact;
+    }, web3Wrapper: Web3Wrapper, txDefaults: Partial<TxData>, libraryAddresses?: {
+        [libraryName: string]: string;
+    }): Promise<{
+        [libraryName: string]: string;
+    }>;
+    getFunctionSignature(methodName: string): string;
+    getABIDecodedTransactionData<T>(methodName: string, callData: string): T;
+    getABIDecodedReturnData<T>(methodName: string, callData: string): T;
+    getSelector(methodName: string): string;
+    MULTIPLIER(): ContractFunctionObj<BigNumber>;
+    name(): ContractFunctionObj<string>;
+    maximumRedeemable(): ContractFunctionObj<BigNumber>;
+    approve(_spender: string, _value: BigNumber): ContractTxFunctionObj<boolean>;
+    totalSupply(): ContractFunctionObj<BigNumber>;
+    multiplier(): ContractFunctionObj<BigNumber>;
+    transferFrom(_from: string, _to: string, _value: BigNumber): ContractTxFunctionObj<boolean>;
+    decimals(): ContractFunctionObj<BigNumber>;
+    burn(_value: BigNumber): ContractTxFunctionObj<void>;
+    pubKeyToEthereumAddress(pubKey: string): ContractFunctionObj<string>;
+    MINT_AMOUNT(): ContractFunctionObj<BigNumber>;
+    decreaseApproval(_spender: string, _subtractedValue: BigNumber): ContractTxFunctionObj<boolean>;
+    balanceOf(_owner: string): ContractFunctionObj<BigNumber>;
+    redeemUTXO(txid: string, outputIndex: number | BigNumber, satoshis: BigNumber, proof: string[], pubKey: string, isCompressed: boolean, v: number | BigNumber, r: string, s: string): ContractTxFunctionObj<BigNumber>;
+    canRedeemUTXOHash(merkleLeafHash: string, proof: string[]): ContractFunctionObj<boolean>;
+    releaseTokens(destination: string): ContractTxFunctionObj<void>;
+    symbol(): ContractFunctionObj<string>;
+    transfer(_to: string, _value: BigNumber): ContractTxFunctionObj<boolean>;
+    validateSignature(hash: string, v: number | BigNumber, r: string, s: string, expected: string): ContractFunctionObj<boolean>;
+    verifyProof(proof: string[], merkleLeafHash: string): ContractFunctionObj<boolean>;
+    canRedeemUTXO(txid: string, originalAddress: string, outputIndex: number | BigNumber, satoshis: BigNumber, proof: string[]): ContractFunctionObj<boolean>;
+    ecdsaVerify(addr: string, pubKey: string, v: number | BigNumber, r: string, s: string): ContractFunctionObj<boolean>;
+    increaseApproval(_spender: string, _addedValue: BigNumber): ContractTxFunctionObj<boolean>;
+    allowance(_owner: string, _spender: string): ContractFunctionObj<BigNumber>;
+    pubKeyToBitcoinAddress(pubKey: string, isCompressed: boolean): ContractFunctionObj<string>;
+    rootUTXOMerkleTreeHash(): ContractFunctionObj<string>;
+    totalRedeemed(): ContractFunctionObj<BigNumber>;
+    SATS_TO_TOKENS(): ContractFunctionObj<BigNumber>;
+    /**
+     * Subscribe to an event type emitted by the WyvernToken contract.
+     * @param eventName The WyvernToken contract event you would like to subscribe to.
+     * @param indexFilterValues An object where the keys are indexed args returned by the event and
+     * the value is the value you are interested in. E.g `{maker: aUserAddressHex}`
+     * @param callback Callback that gets called when a log is added/removed
+     * @param isVerbose Enable verbose subscription warnings (e.g recoverable network issues encountered)
+     * @return Subscription token used later to unsubscribe
+     */
+    subscribe<ArgsType extends WyvernTokenEventArgs>(eventName: WyvernTokenEvents, indexFilterValues: IndexedFilterValues, callback: EventCallback<ArgsType>, isVerbose?: boolean, blockPollingIntervalMs?: number): string;
+    /**
+     * Cancel a subscription
+     * @param subscriptionToken Subscription token returned by `subscribe()`
+     */
+    unsubscribe(subscriptionToken: string): void;
+    /**
+     * Cancels all existing subscriptions
+     */
+    unsubscribeAll(): void;
+    /**
+     * Gets historical logs without creating a subscription
+     * @param eventName The WyvernToken contract event you would like to subscribe to.
+     * @param blockRange Block range to get logs from.
+     * @param indexFilterValues An object where the keys are indexed args returned by the event and
+     * the value is the value you are interested in. E.g `{_from: aUserAddressHex}`
+     * @return Array of logs that match the parameters
+     */
+    getLogsAsync<ArgsType extends WyvernTokenEventArgs>(eventName: WyvernTokenEvents, blockRange: BlockRange, indexFilterValues: IndexedFilterValues): Promise<Array<LogWithDecodedArgs<ArgsType>>>;
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>, logDecodeDependencies?: {
+        [contractName: string]: ContractAbi;
+    }, deployedBytecode?: string | undefined, encoderOverrides?: Partial<EncoderOverrides>);
 }

@@ -1,10 +1,10 @@
-import { BigNumber } from '@0xproject/utils';
-import { AtomicizedReplacementEncoder, ECSignature, Network, Order, ReplacementEncoder, SignedOrder, TransactionReceiptWithDecodedLogs, Web3Provider, WyvernProtocolConfig } from './types';
+import { BigNumber } from '@0x/utils';
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
 import { WyvernProxyRegistryContract } from './abi_gen/wyvern_proxy_registry';
 import { WyvernTokenContract } from './abi_gen/wyvern_token';
+import { AtomicizedReplacementEncoder, ECSignature, Network, Order, ReplacementEncoder, SignedOrder, TransactionReceiptWithDecodedLogs, Web3Provider, WyvernProtocolConfig } from './types';
 export declare class WyvernProtocol {
     static NULL_ADDRESS: string;
     static MAX_UINT_256: BigNumber;

@@ -1,70 +1,98 @@
-/**
- * This file is auto-generated using abi-gen. Don't edit directly.
- * Templates can be found at https://github.com/0xProject/0x.js/tree/development/packages/abi-gen-templates.
- */
-import { TxData } from '@0xproject/types';
-import { BigNumber } from '@0xproject/utils';
-import * as Web3 from 'web3';
-import { BaseContract } from './base_contract';
+import { EncoderOverrides, ContractFunctionObj, ContractTxFunctionObj, BaseContract } from '@0x/base-contract';
+import { BlockRange, ContractAbi, ContractArtifact, DecodedLogArgs, LogWithDecodedArgs, TxData, SupportedProvider } from 'ethereum-types';
+import { BigNumber } from '@0x/utils';
+import { EventCallback, IndexedFilterValues, SimpleContractArtifact } from '@0x/types';
+import { Web3Wrapper } from '@0x/web3-wrapper';
+export declare type WyvernProxyRegistryEventArgs = WyvernProxyRegistryOwnershipRenouncedEventArgs | WyvernProxyRegistryOwnershipTransferredEventArgs;
+export declare enum WyvernProxyRegistryEvents {
+    OwnershipRenounced = "OwnershipRenounced",
+    OwnershipTransferred = "OwnershipTransferred"
+}
+export interface WyvernProxyRegistryOwnershipRenouncedEventArgs extends DecodedLogArgs {
+    previousOwner: string;
+}
+export interface WyvernProxyRegistryOwnershipTransferredEventArgs extends DecodedLogArgs {
+    previousOwner: string;
+    newOwner: string;
+}
 export declare class WyvernProxyRegistryContract extends BaseContract {
-    name: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    initialAddressSet: {
-        callAsync(txData?: TxData): Promise<boolean>;
-    };
-    endGrantAuthentication: {
-        sendTransactionAsync(addr_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(addr_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(addr_0: string): string;
-    };
-    revokeAuthentication: {
-        sendTransactionAsync(addr_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(addr_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(addr_0: string): string;
-    };
-    pending: {
-        callAsync(index_0: string, txData?: TxData): Promise<BigNumber>;
-    };
-    contracts: {
-        callAsync(index_0: string, txData?: TxData): Promise<boolean>;
-    };
-    renounceOwnership: {
-        sendTransactionAsync(txData?: TxData): Promise<string>;
-        estimateGasAsync(txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(): string;
-    };
-    owner: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    delegateProxyImplementation: {
-        callAsync(txData?: TxData): Promise<string>;
-    };
-    proxies: {
-        callAsync(index_0: string, txData?: TxData): Promise<string>;
-    };
-    startGrantAuthentication: {
-        sendTransactionAsync(addr_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(addr_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(addr_0: string): string;
-    };
-    registerProxy: {
-        sendTransactionAsync(txData?: TxData): Promise<string>;
-        estimateGasAsync(txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(): string;
-    };
-    DELAY_PERIOD: {
-        callAsync(txData?: TxData): Promise<BigNumber>;
-    };
-    transferOwnership: {
-        sendTransactionAsync(newOwner_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(newOwner_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(newOwner_0: string): string;
-    };
-    grantInitialAuthentication: {
-        sendTransactionAsync(authAddress_0: string, txData?: TxData): Promise<string>;
-        estimateGasAsync(authAddress_0: string, txData?: TxData): Promise<number>;
-        getABIEncodedTransactionData(authAddress_0: string): string;
-    };
-    constructor(web3ContractInstance: Web3.ContractInstance, defaults: Partial<TxData>);
+    /**
+     * @ignore
+     */
+    static deployedBytecode: string | undefined;
+    static contractName: string;
+    private readonly _methodABIIndex;
+    private readonly _subscriptionManager;
+    static deployFrom0xArtifactAsync(artifact: ContractArtifact | SimpleContractArtifact, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: (ContractArtifact | SimpleContractArtifact);
+    }): Promise<WyvernProxyRegistryContract>;
+    static deployWithLibrariesFrom0xArtifactAsync(artifact: ContractArtifact, libraryArtifacts: {
+        [libraryName: string]: ContractArtifact;
+    }, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: (ContractArtifact | SimpleContractArtifact);
+    }): Promise<WyvernProxyRegistryContract>;
+    static deployAsync(bytecode: string, abi: ContractAbi, supportedProvider: SupportedProvider, txDefaults: Partial<TxData>, logDecodeDependencies: {
+        [contractName: string]: ContractAbi;
+    }): Promise<WyvernProxyRegistryContract>;
+    /**
+     * @returns      The contract ABI
+     */
+    static ABI(): ContractAbi;
+    protected static _deployLibrariesAsync(artifact: ContractArtifact, libraryArtifacts: {
+        [libraryName: string]: ContractArtifact;
+    }, web3Wrapper: Web3Wrapper, txDefaults: Partial<TxData>, libraryAddresses?: {
+        [libraryName: string]: string;
+    }): Promise<{
+        [libraryName: string]: string;
+    }>;
+    getFunctionSignature(methodName: string): string;
+    getABIDecodedTransactionData<T>(methodName: string, callData: string): T;
+    getABIDecodedReturnData<T>(methodName: string, callData: string): T;
+    getSelector(methodName: string): string;
+    name(): ContractFunctionObj<string>;
+    initialAddressSet(): ContractFunctionObj<boolean>;
+    endGrantAuthentication(addr: string): ContractTxFunctionObj<void>;
+    revokeAuthentication(addr: string): ContractTxFunctionObj<void>;
+    pending(index_0: string): ContractFunctionObj<BigNumber>;
+    contracts(index_0: string): ContractFunctionObj<boolean>;
+    renounceOwnership(): ContractTxFunctionObj<void>;
+    owner(): ContractFunctionObj<string>;
+    delegateProxyImplementation(): ContractFunctionObj<string>;
+    proxies(index_0: string): ContractFunctionObj<string>;
+    startGrantAuthentication(addr: string): ContractTxFunctionObj<void>;
+    registerProxy(): ContractTxFunctionObj<string>;
+    DELAY_PERIOD(): ContractFunctionObj<BigNumber>;
+    transferOwnership(newOwner: string): ContractTxFunctionObj<void>;
+    grantInitialAuthentication(authAddress: string): ContractTxFunctionObj<void>;
+    /**
+     * Subscribe to an event type emitted by the WyvernProxyRegistry contract.
+     * @param eventName The WyvernProxyRegistry contract event you would like to subscribe to.
+     * @param indexFilterValues An object where the keys are indexed args returned by the event and
+     * the value is the value you are interested in. E.g `{maker: aUserAddressHex}`
+     * @param callback Callback that gets called when a log is added/removed
+     * @param isVerbose Enable verbose subscription warnings (e.g recoverable network issues encountered)
+     * @return Subscription token used later to unsubscribe
+     */
+    subscribe<ArgsType extends WyvernProxyRegistryEventArgs>(eventName: WyvernProxyRegistryEvents, indexFilterValues: IndexedFilterValues, callback: EventCallback<ArgsType>, isVerbose?: boolean, blockPollingIntervalMs?: number): string;
+    /**
+     * Cancel a subscription
+     * @param subscriptionToken Subscription token returned by `subscribe()`
+     */
+    unsubscribe(subscriptionToken: string): void;
+    /**
+     * Cancels all existing subscriptions
+     */
+    unsubscribeAll(): void;
+    /**
+     * Gets historical logs without creating a subscription
+     * @param eventName The WyvernProxyRegistry contract event you would like to subscribe to.
+     * @param blockRange Block range to get logs from.
+     * @param indexFilterValues An object where the keys are indexed args returned by the event and
+     * the value is the value you are interested in. E.g `{_from: aUserAddressHex}`
+     * @return Array of logs that match the parameters
+     */
+    getLogsAsync<ArgsType extends WyvernProxyRegistryEventArgs>(eventName: WyvernProxyRegistryEvents, blockRange: BlockRange, indexFilterValues: IndexedFilterValues): Promise<Array<LogWithDecodedArgs<ArgsType>>>;
+    constructor(address: string, supportedProvider: SupportedProvider, txDefaults?: Partial<TxData>, logDecodeDependencies?: {
+        [contractName: string]: ContractAbi;
+    }, deployedBytecode?: string | undefined, encoderOverrides?: Partial<EncoderOverrides>);
 }

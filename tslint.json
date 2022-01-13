@@ -27,7 +27,6 @@
         "max-classes-per-file": false,
         "max-classes-per-file": [true, 1],
         "max-line-length": false,
-        "max-file-line-count": [true, 500],
         "member-access": true,
         "member-ordering": [true, "public-before-private", "static-before-instance", "variables-before-functions"],
         "newline-before-return": false,
@@ -94,6 +93,7 @@
         "jsx-no-string-ref": true,
         "jsx-self-close": true,
         "jsx-wrap-multiline": false,
-        "jsx-no-bind": false
+        "jsx-no-bind": false,
+        "prefer-conditional-expression": false
     }
 }
