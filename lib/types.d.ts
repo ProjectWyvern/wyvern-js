@@ -1,5 +1,5 @@
 import { BigNumber } from '@0x/utils';
-import { DecodedLogEntry, LogEntry, LogEntryEvent, Provider, TransactionReceipt } from 'ethereum-types';
+import { DecodedLogEntry, LogEntry, LogEntryEvent, TransactionReceipt, Web3JsProvider } from 'ethereum-types';
 export interface WyvernProtocolConfig {
     network: Network;
     gasPrice?: BigNumber;
@@ -151,4 +151,4 @@ export interface AnnotatedFunctionABI {
 }
 export declare type ReplacementEncoder = (abi: AnnotatedFunctionABI, kind?: FunctionInputKind, encodeToBytes?: boolean) => string;
 export declare type AtomicizedReplacementEncoder = (abis: AnnotatedFunctionABI[], kind?: FunctionInputKind) => string;
-export declare type Web3Provider = Provider;
+export declare type Web3Provider = Web3JsProvider;
