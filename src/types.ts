@@ -1,5 +1,11 @@
 import { BigNumber } from '@0x/utils';
-import { DecodedLogEntry, LogEntry, LogEntryEvent, Provider, TransactionReceipt } from 'ethereum-types';
+import {
+  DecodedLogEntry,
+  LogEntry,
+  LogEntryEvent,
+  TransactionReceipt,
+  Web3JsProvider,
+} from 'ethereum-types';
 
 export interface WyvernProtocolConfig {
   network: Network;
@@ -189,4 +195,4 @@ export type AtomicizedReplacementEncoder = (
   kind?: FunctionInputKind,
 ) => string;
 
-export type Web3Provider = Provider;
+export type Web3Provider = Web3JsProvider;
