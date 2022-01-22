@@ -30,7 +30,7 @@
     "@0x/assert": "^3.0.30",
     "@0x/base-contract": "^6.4.4",
     "@0x/json-schemas": "^6.4.0",
-    "@0x/utils": "^6.5.0",
+    "@0x/utils": "https://github.com/ProjectOpensea/0x-tools/raw/provider-patch/utils/0x-utils-6.5.0.tgz",
     "@0x/web3-wrapper": "^7.6.1",
     "bn.js": "^4.11.8",
     "ethereumjs-abi": "https://github.com/ProjectWyvern/ethereumjs-abi.git",
