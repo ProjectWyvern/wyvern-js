@@ -4,6 +4,7 @@ import { Web3Wrapper } from '@0xproject/web3-wrapper';
 import * as ethABI from 'ethereumjs-abi';
 import * as ethUtil from 'ethereumjs-util';
 import * as _ from 'lodash';
+import { AuthenticatedProxyContract } from './abi_gen/authenticated_proxy';
 
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
@@ -369,6 +370,21 @@ export class WyvernProtocol {
     public async getAvailableAddressesAsync(): Promise<string[]> {
         const availableAddresses = await this._web3Wrapper.getAvailableAddressesAsync();
         return availableAddresses;
+    }
+
+    /**
+     * Gets the authenticated proxy contract for a specific account address
+     * @param accountAddress address to retrieve the proxy contract from
+     */
+    public async getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract> {
+        const proxyAddress = await this.wyvernProxyRegistry.proxies.callAsync(
+          accountAddress
+        );
+
+        return new AuthenticatedProxyContract(
+            this._web3Wrapper.getContractInstance((constants.AUTHENTICATED_PROXY_ABI as any), proxyAddress),
+            {},
+        )
     }
 
     /**
