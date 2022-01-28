@@ -19,5 +19,5 @@ export const constants = {
     PROXY_REGISTRY_ABI: proxyRegistryABI,
     DAO_ABI: daoABI,
     TOKEN_ABI: tokenABI,
-    AUTHENTICATED_PROXY_ABI: authenticatedProxyABI
+    AUTHENTICATED_PROXY_ABI: authenticatedProxyABI,
 };

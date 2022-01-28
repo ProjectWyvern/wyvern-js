@@ -1,4 +1,5 @@
 import { BigNumber } from '@0xproject/utils';
+import { AuthenticatedProxyContract } from './abi_gen/authenticated_proxy';
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
@@ -106,6 +107,11 @@ export declare class WyvernProtocol {
      * @return  An array of available user Ethereum addresses.
      */
     getAvailableAddressesAsync(): Promise<string[]>;
+    /**
+     * Gets the authenticated proxy contract for a specific account address
+     * @param accountAddress address to retrieve the proxy contract from
+     */
+    getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract>;
     /**
      * Signs an orderHash and returns its elliptic curve signature.
      * This method currently supports TestRPC, Geth and Parity above and below V1.6.6
