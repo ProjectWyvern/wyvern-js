@@ -23,12 +23,12 @@
     uuid "^3.1.0"
     web3 "^0.20.0"
 
-"@0xproject/abi-gen@^0.1.1":
-  version "0.1.7"
-  resolved "https://registry.npmjs.org/@0xproject/abi-gen/-/abi-gen-0.1.7.tgz"
-  integrity sha512-mFFprGLVYHl9sD6PGwcAwTqncueqfau6wPGwJV7mQ/Vj3thMo17BY8xzpeSIkXjrdo6lZHlzyVUVrEA1krfjSw==
+"@0xproject/abi-gen@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@0xproject/abi-gen/-/abi-gen-0.1.2.tgz#a74baa088f94ff83431573b5a3e010ccbb5ba300"
+  integrity sha512-vwArB0lTTuInOWTh5KeeNeJTswrGJrHebau8sdrG8TBNiVwAAehthfWflieMRKK54D11Z+7TO8fupCMa7BaoxA==
   dependencies:
-    "@0xproject/utils" "^0.3.0"
+    "@0xproject/utils" "^0.2.0"
     chalk "^2.3.0"
     glob "^7.1.2"
     handlebars "^4.0.11"
@@ -111,7 +111,7 @@
     lodash "^4.17.4"
     web3 "^0.20.0"
 
-"@0xproject/utils@^0.3.0", "@0xproject/utils@^0.3.4":
+"@0xproject/utils@^0.3.4":
   version "0.3.4"
   resolved "https://registry.npmjs.org/@0xproject/utils/-/utils-0.3.4.tgz"
   integrity sha512-6rNzuZvY3PghEMcZBGzwGdyMBQ11DXXWWMF3Ar3ajRZvSIjPSLpO7cVXcQQOTnTksiSDLJn/kkaQHz8ZT9yJ+w==
@@ -178,15 +178,15 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-17.0.0.tgz"
   integrity sha512-eMhwJXc931Ihh4tkU+Y7GiLzT/y/DBNpNtr4yU9O2w3SYBsr9NaOPhQlLKRmoWtI54uNwuo0IOUFQjVOTZYRvw==
 
+"@types/node@16.11.0":
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.0.tgz#4b95f2327bacd1ef8f08d8ceda193039c5d7f52e"
+  integrity sha512-8MLkBIYQMuhRBQzGN9875bYsOhPnf/0rgXGo66S2FemHkhbn9qtsz9ywV1iCG+vbjigE4WUNVvw37Dx+L0qsPg==
+
 "@types/node@^8.0.53":
   version "8.10.66"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.10.66.tgz"
   integrity sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==
-
-"@types/node@^9.3.0":
-  version "9.6.61"
-  resolved "https://registry.npmjs.org/@types/node/-/node-9.6.61.tgz"
-  integrity sha512-/aKAdg5c8n468cYLy2eQrcR5k6chlbNwZNGUj3TboyPa2hcO2QAJcfymlqPzMiRj8B6nYKXjzQz36minFE0RwQ==
 
 "@types/pbkdf2@^3.0.0":
   version "3.1.0"

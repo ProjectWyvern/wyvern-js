@@ -12,7 +12,7 @@ export declare const exchangeABI: ({
     'payable': boolean;
     'stateMutability': string;
     'type': string;
-    'anonymous'?: undefined;
+    anonymous?: undefined;
 } | {
     'inputs': {
         'name': string;
@@ -21,10 +21,10 @@ export declare const exchangeABI: ({
     'payable': boolean;
     'stateMutability': string;
     'type': string;
-    'constant'?: undefined;
-    'name'?: undefined;
-    'outputs'?: undefined;
-    'anonymous'?: undefined;
+    constant?: undefined;
+    name?: undefined;
+    outputs?: undefined;
+    anonymous?: undefined;
 } | {
     'anonymous': boolean;
     'inputs': {
@@ -34,8 +34,8 @@ export declare const exchangeABI: ({
     }[];
     'name': string;
     'type': string;
-    'constant'?: undefined;
-    'outputs'?: undefined;
-    'payable'?: undefined;
-    'stateMutability'?: undefined;
+    constant?: undefined;
+    outputs?: undefined;
+    payable?: undefined;
+    stateMutability?: undefined;
 })[];
