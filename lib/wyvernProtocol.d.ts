@@ -11,6 +11,7 @@ export declare class WyvernProtocol {
     static MAX_UINT_256: BigNumber;
     wyvernExchange: WyvernExchangeContract;
     wyvernProxyRegistry: WyvernProxyRegistryContract;
+    wyvern2_2ProxyRegistry: WyvernProxyRegistryContract;
     wyvernDAO: WyvernDAOContract;
     wyvernToken: WyvernTokenContract;
     wyvernAtomicizer: WyvernAtomicizerContract;
