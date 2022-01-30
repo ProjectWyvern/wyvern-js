@@ -42,8 +42,6 @@ export class WyvernProtocol {
 
     public wyvernProxyRegistry: WyvernProxyRegistryContract;
 
-    public wyvern2_2ProxyRegistry: WyvernProxyRegistryContract;
-
     public wyvernDAO: WyvernDAOContract;
 
     public wyvernToken: WyvernTokenContract;
@@ -332,19 +330,6 @@ export class WyvernProtocol {
             {},
         );
 
-        const wyvern2_2ProxyRegistryContractAddress =
-          config.network === Network.Main
-            ? '0xa5409ec958c83c3f309868babaca7c86dcb077c1'
-            : '0xf57b2c51ded3a29e6891aba85459d600256cf317';
-
-        this.wyvern2_2ProxyRegistry = new WyvernProxyRegistryContract(
-          this._web3Wrapper.getContractInstance(
-            constants.PROXY_REGISTRY_ABI as any,
-            wyvern2_2ProxyRegistryContractAddress,
-          ),
-          {},
-        );
-
         const daoContractAddress = config.wyvernDAOContractAddress || WyvernProtocol.getDAOContractAddress(config.network);
         this.wyvernDAO = new WyvernDAOContract(
             this._web3Wrapper.getContractInstance((constants.DAO_ABI as any), daoContractAddress),
@@ -392,7 +377,7 @@ export class WyvernProtocol {
      * @param accountAddress address to retrieve the proxy contract from
      */
     public async getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract> {
-        const proxyAddress = await this.wyvern2_2ProxyRegistry.proxies.callAsync(
+        const proxyAddress = await this.wyvernProxyRegistry.proxies.callAsync(
           accountAddress,
         );
 
