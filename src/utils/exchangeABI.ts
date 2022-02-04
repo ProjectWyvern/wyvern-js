@@ -139,40 +139,16 @@ export const exchangeABI = [
     },
     {
         'constant': true,
-        'inputs': [
-            {
-                'name': 'addr',
-                'type': 'address',
-            },
-        ],
-        'name': 'testCopyAddress',
+        'inputs': [],
+        'name': 'DOMAIN_SEPARATOR',
         'outputs': [
             {
                 'name': '',
-                'type': 'bytes',
+                'type': 'bytes32',
             },
         ],
         'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function',
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'arrToCopy',
-                'type': 'bytes',
-            },
-        ],
-        'name': 'testCopy',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bytes',
-            },
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -349,6 +325,15 @@ export const exchangeABI = [
         'type': 'function',
     },
     {
+        'constant': false,
+        'inputs': [],
+        'name': 'incrementNonce',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
         'constant': true,
         'inputs': [
             {
@@ -458,7 +443,7 @@ export const exchangeABI = [
             },
         ],
         'payable': false,
-        'stateMutability': 'pure',
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -638,7 +623,26 @@ export const exchangeABI = [
             },
         ],
         'payable': false,
-        'stateMutability': 'pure',
+        'stateMutability': 'view',
+        'type': 'function',
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': '',
+                'type': 'address',
+            },
+        ],
+        'name': 'nonces',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256',
+            },
+        ],
+        'payable': false,
+        'stateMutability': 'view',
         'type': 'function',
     },
     {
@@ -920,14 +924,14 @@ export const exchangeABI = [
         'constant': true,
         'inputs': [
             {
-                'name': '',
+                'name': 'hash',
                 'type': 'bytes32',
             },
         ],
         'name': 'approvedOrders',
         'outputs': [
             {
-                'name': '',
+                'name': 'approved',
                 'type': 'bool',
             },
         ],
@@ -944,6 +948,68 @@ export const exchangeABI = [
             },
         ],
         'name': 'transferOwnership',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function',
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'addrs',
+                'type': 'address[7]',
+            },
+            {
+                'name': 'uints',
+                'type': 'uint256[9]',
+            },
+            {
+                'name': 'feeMethod',
+                'type': 'uint8',
+            },
+            {
+                'name': 'side',
+                'type': 'uint8',
+            },
+            {
+                'name': 'saleKind',
+                'type': 'uint8',
+            },
+            {
+                'name': 'howToCall',
+                'type': 'uint8',
+            },
+            {
+                'name': 'calldata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'replacementPattern',
+                'type': 'bytes',
+            },
+            {
+                'name': 'staticExtradata',
+                'type': 'bytes',
+            },
+            {
+                'name': 'v',
+                'type': 'uint8',
+            },
+            {
+                'name': 'r',
+                'type': 'bytes32',
+            },
+            {
+                'name': 's',
+                'type': 'bytes32',
+            },
+            {
+                'name': 'nonce',
+                'type': 'uint256',
+            },
+        ],
+        'name': 'cancelOrderWithNonce_',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -1163,6 +1229,23 @@ export const exchangeABI = [
             },
         ],
         'name': 'OrdersMatched',
+        'type': 'event',
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
+                'name': 'maker',
+                'type': 'address',
+            },
+            {
+                'indexed': false,
+                'name': 'newNonce',
+                'type': 'uint256',
+            },
+        ],
+        'name': 'NonceIncremented',
         'type': 'event',
     },
     {

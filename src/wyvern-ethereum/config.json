@@ -9,7 +9,7 @@
       "WyvernDAO": "0x1b4c767502d01deee83af491c946b469e0620e30",
       "WyvernRegistry": "0xe59640a71231352aa97d3f1b503ad066c799fad9",
       "SaleKindInterface": "0x726f4782c533c8aa98da9291f586dc37b41b0bb8",
-      "WyvernExchange": "0x5206e78b21ce315ce284fb24cf05e0585a93b1d9",
+      "WyvernExchange": "0xdd54d660178b28f6033a953b0e55073cfa7e3744",
       "DirectEscrowProvider": "0x22f617c80e5f4908b943b938e7dc5ab735e64372",
       "WyvernProxyRegistry": "0xf57b2c51ded3a29e6891aba85459d600256cf317",
       "TestStatic": "0xc33a203d61c688433e53fcb6f3af7c6aa12192a4",
@@ -44,7 +44,7 @@
       "TestStatic": "0x38a0f4acbb5efabb44539f960a60376cb6547602",
       "WyvernProxyRegistry": "0xa5409ec958c83c3f309868babaca7c86dcb077c1",
       "SaleKindInterface": "0x77a1dada690ab5172d80ae3b7ccaf88ee3c2e607",
-      "WyvernExchange": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+      "WyvernExchange": "0x6c66f76776688dd68b66d0c6a99bb0cf24d2e42d",
       "WyvernDAOProxy": "0xa839d4b5a36265795eba6894651a8af3d0ae2e68",
       "WyvernAtomicizer": "0xc99f70bfd82fb7c8f8191fdfbfb735606b15e5c5",
       "WyvernTokenTransferProxy": "0xe5c783ee536cf5e63e792988335c4255169be4e1"
