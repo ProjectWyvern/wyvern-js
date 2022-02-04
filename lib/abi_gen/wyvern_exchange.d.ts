@@ -35,11 +35,8 @@ export declare class WyvernExchangeContract extends BaseContract {
     codename: {
         callAsync(txData?: TxData): Promise<string>;
     };
-    testCopyAddress: {
-        callAsync(addr_0: string, txData?: TxData): Promise<string>;
-    };
-    testCopy: {
-        callAsync(arrToCopy_0: string, txData?: TxData): Promise<string>;
+    DOMAIN_SEPARATOR: {
+        callAsync(txData?: TxData): Promise<string>;
     };
     calculateCurrentPrice_: {
         callAsync(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, txData?: TxData): Promise<BigNumber>;
@@ -57,6 +54,11 @@ export declare class WyvernExchangeContract extends BaseContract {
     };
     validateOrder_: {
         callAsync(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, v_9: number | BigNumber, r_10: string, s_11: string, txData?: TxData): Promise<boolean>;
+    };
+    incrementNonce: {
+        sendTransactionAsync(txData?: TxData): Promise<string>;
+        estimateGasAsync(txData?: TxData): Promise<number>;
+        getABIEncodedTransactionData(): string;
     };
     calculateFinalPrice: {
         callAsync(side_0: number | BigNumber, saleKind_1: number | BigNumber, basePrice_2: BigNumber, extra_3: BigNumber, listingTime_4: BigNumber, expirationTime_5: BigNumber, txData?: TxData): Promise<BigNumber>;
@@ -89,6 +91,9 @@ export declare class WyvernExchangeContract extends BaseContract {
     hashToSign_: {
         callAsync(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, txData?: TxData): Promise<string>;
     };
+    nonces: {
+        callAsync(index_0: string, txData?: TxData): Promise<BigNumber>;
+    };
     cancelledOrFinalized: {
         callAsync(index_0: string, txData?: TxData): Promise<boolean>;
     };
@@ -118,12 +123,17 @@ export declare class WyvernExchangeContract extends BaseContract {
         callAsync(addrs_0: string[], uints_1: BigNumber[], feeMethodsSidesKindsHowToCalls_2: (number | BigNumber)[], calldataBuy_3: string, calldataSell_4: string, replacementPatternBuy_5: string, replacementPatternSell_6: string, staticExtradataBuy_7: string, staticExtradataSell_8: string, txData?: TxData): Promise<BigNumber>;
     };
     approvedOrders: {
-        callAsync(index_0: string, txData?: TxData): Promise<boolean>;
+        callAsync(hash_0: string, txData?: TxData): Promise<boolean>;
     };
     transferOwnership: {
         sendTransactionAsync(newOwner_0: string, txData?: TxData): Promise<string>;
         estimateGasAsync(newOwner_0: string, txData?: TxData): Promise<number>;
         getABIEncodedTransactionData(newOwner_0: string): string;
+    };
+    cancelOrderWithNonce_: {
+        sendTransactionAsync(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, v_9: number | BigNumber, r_10: string, s_11: string, nonce_12: BigNumber, txData?: TxData): Promise<string>;
+        estimateGasAsync(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, v_9: number | BigNumber, r_10: string, s_11: string, nonce_12: BigNumber, txData?: TxData): Promise<number>;
+        getABIEncodedTransactionData(addrs_0: string[], uints_1: BigNumber[], feeMethod_2: number | BigNumber, side_3: number | BigNumber, saleKind_4: number | BigNumber, howToCall_5: number | BigNumber, calldata_6: string, replacementPattern_7: string, staticExtradata_8: string, v_9: number | BigNumber, r_10: string, s_11: string, nonce_12: BigNumber): string;
     };
     constructor(web3ContractInstance: Web3.ContractInstance, defaults: Partial<TxData>);
 }
