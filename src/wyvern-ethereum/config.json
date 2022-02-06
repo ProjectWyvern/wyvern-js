@@ -11,11 +11,11 @@
       "SaleKindInterface": "0x726f4782c533c8aa98da9291f586dc37b41b0bb8",
       "WyvernExchange": "0xdd54d660178b28f6033a953b0e55073cfa7e3744",
       "DirectEscrowProvider": "0x22f617c80e5f4908b943b938e7dc5ab735e64372",
-      "WyvernProxyRegistry": "0xf57b2c51ded3a29e6891aba85459d600256cf317",
+      "WyvernProxyRegistry": "0x1e525eeaf261ca41b809884cbde9dd9e1619573a",
       "TestStatic": "0xc33a203d61c688433e53fcb6f3af7c6aa12192a4",
       "WyvernDAOProxy": "0x65cb6ea254f716ac9ffdf542994214dabf1c8aa2",
       "WyvernAtomicizer": "0x613a12b156ffa304f714cc38d6ae5d3df70d8063",
-      "WyvernTokenTransferProxy": "0x82d102457854c985221249f86659c9d6cf12aa72"
+      "WyvernTokenTransferProxy": "0xcdc9188485316bf6fa416d02b4f680227c50b89e"
     },
     "development": {
       "Migrations": "0x0545f898c5d9e028f69e969ca3250bf0bcaedbcf",
