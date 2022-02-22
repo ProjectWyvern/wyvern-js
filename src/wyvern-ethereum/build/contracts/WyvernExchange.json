@@ -141,40 +141,16 @@
     },
     {
       "constant": true,
-      "inputs": [
-        {
-          "name": "addr",
-          "type": "address"
-        }
-      ],
-      "name": "testCopyAddress",
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
       "outputs": [
         {
           "name": "",
-          "type": "bytes"
+          "type": "bytes32"
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "arrToCopy",
-          "type": "bytes"
-        }
-      ],
-      "name": "testCopy",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bytes"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "pure",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -351,6 +327,15 @@
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [],
+      "name": "incrementNonce",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -460,7 +445,7 @@
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -640,7 +625,26 @@
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -922,14 +926,14 @@
       "constant": true,
       "inputs": [
         {
-          "name": "",
+          "name": "hash",
           "type": "bytes32"
         }
       ],
       "name": "approvedOrders",
       "outputs": [
         {
-          "name": "",
+          "name": "approved",
           "type": "bool"
         }
       ],
@@ -946,6 +950,68 @@
         }
       ],
       "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addrs",
+          "type": "address[7]"
+        },
+        {
+          "name": "uints",
+          "type": "uint256[9]"
+        },
+        {
+          "name": "feeMethod",
+          "type": "uint8"
+        },
+        {
+          "name": "side",
+          "type": "uint8"
+        },
+        {
+          "name": "saleKind",
+          "type": "uint8"
+        },
+        {
+          "name": "howToCall",
+          "type": "uint8"
+        },
+        {
+          "name": "calldata",
+          "type": "bytes"
+        },
+        {
+          "name": "replacementPattern",
+          "type": "bytes"
+        },
+        {
+          "name": "staticExtradata",
+          "type": "bytes"
+        },
+        {
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "name": "s",
+          "type": "bytes32"
+        },
+        {
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelOrderWithNonce_",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -1165,6 +1231,23 @@
         }
       ],
       "name": "OrdersMatched",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "maker",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newNonce",
+          "type": "uint256"
+        }
+      ],
+      "name": "NonceIncremented",
       "type": "event"
     },
     {
@@ -2411,13 +2494,13 @@
     "1": {
       "events": {},
       "links": {},
-      "address": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+      "address": "0x7f268357a8c2552623316e2562d90e642bb538e5",
       "transactionHash": "0xedf9fbcf691727068c9fd67f018bc7db73eacdbc198ad48f11cc75fe8baaa1d3"
     },
     "4": {
       "events": {},
       "links": {},
-      "address": "0x5206e78b21ce315ce284fb24cf05e0585a93b1d9",
+      "address": "0xdd54d660178b28f6033a953b0e55073cfa7e3744",
       "transactionHash": "0x5ce4de9dcb77b74b4829c0d3c516a3e68cf7e4de52cd477b7be9ba2db0d90109"
     }
   },

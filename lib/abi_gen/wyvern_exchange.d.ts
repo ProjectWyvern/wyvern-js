@@ -3,12 +3,13 @@ import { BlockRange, ContractAbi, ContractArtifact, DecodedLogArgs, LogWithDecod
 import { BigNumber } from '@0x/utils';
 import { EventCallback, IndexedFilterValues, SimpleContractArtifact } from '@0x/types';
 import { Web3Wrapper } from '@0x/web3-wrapper';
-export declare type WyvernExchangeEventArgs = WyvernExchangeOrderApprovedPartOneEventArgs | WyvernExchangeOrderApprovedPartTwoEventArgs | WyvernExchangeOrderCancelledEventArgs | WyvernExchangeOrdersMatchedEventArgs | WyvernExchangeOwnershipRenouncedEventArgs | WyvernExchangeOwnershipTransferredEventArgs;
+export declare type WyvernExchangeEventArgs = WyvernExchangeOrderApprovedPartOneEventArgs | WyvernExchangeOrderApprovedPartTwoEventArgs | WyvernExchangeOrderCancelledEventArgs | WyvernExchangeOrdersMatchedEventArgs | WyvernExchangeNonceIncrementedEventArgs | WyvernExchangeOwnershipRenouncedEventArgs | WyvernExchangeOwnershipTransferredEventArgs;
 export declare enum WyvernExchangeEvents {
     OrderApprovedPartOne = "OrderApprovedPartOne",
     OrderApprovedPartTwo = "OrderApprovedPartTwo",
     OrderCancelled = "OrderCancelled",
     OrdersMatched = "OrdersMatched",
+    NonceIncremented = "NonceIncremented",
     OwnershipRenounced = "OwnershipRenounced",
     OwnershipTransferred = "OwnershipTransferred"
 }
@@ -52,6 +53,10 @@ export interface WyvernExchangeOrdersMatchedEventArgs extends DecodedLogArgs {
     taker: string;
     price: BigNumber;
     metadata: string;
+}
+export interface WyvernExchangeNonceIncrementedEventArgs extends DecodedLogArgs {
+    maker: string;
+    newNonce: BigNumber;
 }
 export interface WyvernExchangeOwnershipRenouncedEventArgs extends DecodedLogArgs {
     previousOwner: string;
@@ -102,13 +107,13 @@ export declare class WyvernExchangeContract extends BaseContract {
     guardedArrayReplace(array: string, desired: string, mask: string): ContractFunctionObj<string>;
     minimumTakerProtocolFee(): ContractFunctionObj<BigNumber>;
     codename(): ContractFunctionObj<string>;
-    testCopyAddress(addr: string): ContractFunctionObj<string>;
-    testCopy(arrToCopy: string): ContractFunctionObj<string>;
+    DOMAIN_SEPARATOR(): ContractFunctionObj<string>;
     calculateCurrentPrice_(addrs: string[], uints: BigNumber[], feeMethod: number | BigNumber, side: number | BigNumber, saleKind: number | BigNumber, howToCall: number | BigNumber, calldata: string, replacementPattern: string, staticExtradata: string): ContractFunctionObj<BigNumber>;
     changeProtocolFeeRecipient(newProtocolFeeRecipient: string): ContractTxFunctionObj<void>;
     version(): ContractFunctionObj<string>;
     orderCalldataCanMatch(buyCalldata: string, buyReplacementPattern: string, sellCalldata: string, sellReplacementPattern: string): ContractFunctionObj<boolean>;
     validateOrder_(addrs: string[], uints: BigNumber[], feeMethod: number | BigNumber, side: number | BigNumber, saleKind: number | BigNumber, howToCall: number | BigNumber, calldata: string, replacementPattern: string, staticExtradata: string, v: number | BigNumber, r: string, s: string): ContractFunctionObj<boolean>;
+    incrementNonce(): ContractTxFunctionObj<void>;
     calculateFinalPrice(side: number | BigNumber, saleKind: number | BigNumber, basePrice: BigNumber, extra: BigNumber, listingTime: BigNumber, expirationTime: BigNumber): ContractFunctionObj<BigNumber>;
     protocolFeeRecipient(): ContractFunctionObj<string>;
     renounceOwnership(): ContractTxFunctionObj<void>;
@@ -118,6 +123,7 @@ export declare class WyvernExchangeContract extends BaseContract {
     registry(): ContractFunctionObj<string>;
     minimumMakerProtocolFee(): ContractFunctionObj<BigNumber>;
     hashToSign_(addrs: string[], uints: BigNumber[], feeMethod: number | BigNumber, side: number | BigNumber, saleKind: number | BigNumber, howToCall: number | BigNumber, calldata: string, replacementPattern: string, staticExtradata: string): ContractFunctionObj<string>;
+    nonces(index_0: string): ContractFunctionObj<BigNumber>;
     cancelledOrFinalized(index_0: string): ContractFunctionObj<boolean>;
     owner(): ContractFunctionObj<string>;
     exchangeToken(): ContractFunctionObj<string>;
@@ -126,8 +132,9 @@ export declare class WyvernExchangeContract extends BaseContract {
     validateOrderParameters_(addrs: string[], uints: BigNumber[], feeMethod: number | BigNumber, side: number | BigNumber, saleKind: number | BigNumber, howToCall: number | BigNumber, calldata: string, replacementPattern: string, staticExtradata: string): ContractFunctionObj<boolean>;
     INVERSE_BASIS_POINT(): ContractFunctionObj<BigNumber>;
     calculateMatchPrice_(addrs: string[], uints: BigNumber[], feeMethodsSidesKindsHowToCalls: Array<number | BigNumber>, calldataBuy: string, calldataSell: string, replacementPatternBuy: string, replacementPatternSell: string, staticExtradataBuy: string, staticExtradataSell: string): ContractFunctionObj<BigNumber>;
-    approvedOrders(index_0: string): ContractFunctionObj<boolean>;
+    approvedOrders(hash: string): ContractFunctionObj<boolean>;
     transferOwnership(newOwner: string): ContractTxFunctionObj<void>;
+    cancelOrderWithNonce_(addrs: string[], uints: BigNumber[], feeMethod: number | BigNumber, side: number | BigNumber, saleKind: number | BigNumber, howToCall: number | BigNumber, calldata: string, replacementPattern: string, staticExtradata: string, v: number | BigNumber, r: string, s: string, nonce: BigNumber): ContractTxFunctionObj<void>;
     /**
      * Subscribe to an event type emitted by the WyvernExchange contract.
      * @param eventName The WyvernExchange contract event you would like to subscribe to.
