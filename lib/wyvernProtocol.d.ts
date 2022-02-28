@@ -1,4 +1,5 @@
 import { BigNumber } from '@0x/utils';
+import { AuthenticatedProxyContract } from './abi_gen/authenticated_proxy';
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
 import { WyvernExchangeContract } from './abi_gen/wyvern_exchange';
@@ -15,6 +16,7 @@ export declare class WyvernProtocol {
     wyvernAtomicizer: WyvernAtomicizerContract;
     private _web3Wrapper;
     private _abiDecoder;
+    private _provider;
     static getExchangeContractAddress(network: Network): string;
     static getProxyRegistryContractAddress(network: Network): string;
     static getTokenContractAddress(network: Network): string;
@@ -123,4 +125,9 @@ export declare class WyvernProtocol {
      * @return  Transaction receipt with decoded log args.
      */
     awaitTransactionMinedAsync(txHash: string, pollingIntervalMs?: number, timeoutMs?: number): Promise<TransactionReceiptWithDecodedLogs>;
+    /**
+     * Gets the authenticated proxy contract for a specific account address
+     * @param accountAddress address to retrieve the proxy contract from
+     */
+    getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract>;
 }
