@@ -9,7 +9,7 @@
         "outDir": "lib",
         "noImplicitThis": false,
         "module": "commonjs",
-        "target": "es5",
+        "target": "es6",
         "types": ["node"],
         "lib": ["es2017", "dom"],
         "sourceMap": true,

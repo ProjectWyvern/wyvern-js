@@ -46,7 +46,7 @@ const asyncErrorHandlerFactory = (errorTransformer: ErrorTransformer) => {
                 const result = await originalMethod.apply(this, args);
                 return result;
             } catch (error) {
-                const transformedError = errorTransformer(error);
+                const transformedError = errorTransformer(error as Error);
                 throw transformedError;
             }
         };
@@ -73,7 +73,7 @@ const syncErrorHandlerFactory = (errorTransformer: ErrorTransformer) => {
                 const result = originalMethod.apply(this, args);
                 return result;
             } catch (error) {
-                const transformedError = errorTransformer(error);
+                const transformedError = errorTransformer(error as Error);
                 throw transformedError;
             }
         };

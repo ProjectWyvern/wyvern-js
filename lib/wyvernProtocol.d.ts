@@ -1,4 +1,4 @@
-import { BigNumber } from '@0xproject/utils';
+import { BigNumber } from '@0x/utils';
 import { AuthenticatedProxyContract } from './abi_gen/authenticated_proxy';
 import { WyvernAtomicizerContract } from './abi_gen/wyvern_atomicizer';
 import { WyvernDAOContract } from './abi_gen/wyvern_d_a_o';
@@ -16,6 +16,7 @@ export declare class WyvernProtocol {
     wyvernAtomicizer: WyvernAtomicizerContract;
     private _web3Wrapper;
     private _abiDecoder;
+    private _provider;
     static getExchangeContractAddress(network: Network): string;
     static getProxyRegistryContractAddress(network: Network): string;
     static getTokenContractAddress(network: Network): string;
@@ -108,11 +109,6 @@ export declare class WyvernProtocol {
      */
     getAvailableAddressesAsync(): Promise<string[]>;
     /**
-     * Gets the authenticated proxy contract for a specific account address
-     * @param accountAddress address to retrieve the proxy contract from
-     */
-    getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract>;
-    /**
      * Signs an orderHash and returns its elliptic curve signature.
      * This method currently supports TestRPC, Geth and Parity above and below V1.6.6
      * @param   orderHash       Hex encoded orderHash to sign.
@@ -129,4 +125,9 @@ export declare class WyvernProtocol {
      * @return  Transaction receipt with decoded log args.
      */
     awaitTransactionMinedAsync(txHash: string, pollingIntervalMs?: number, timeoutMs?: number): Promise<TransactionReceiptWithDecodedLogs>;
+    /**
+     * Gets the authenticated proxy contract for a specific account address
+     * @param accountAddress address to retrieve the proxy contract from
+     */
+    getAuthenticatedProxy(accountAddress: string): Promise<AuthenticatedProxyContract>;
 }

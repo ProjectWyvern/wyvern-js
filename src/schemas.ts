@@ -1,4 +1,4 @@
-import { schemas as ZeroExSchemas } from '@0xproject/json-schemas';
+import { schemas as ZeroExSchemas } from '@0x/json-schemas';
 
 const data = {type: 'string', pattern: '^0x[0-9a-f]*$'};
 

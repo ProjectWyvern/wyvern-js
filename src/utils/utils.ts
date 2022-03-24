@@ -1,6 +1,6 @@
 /* Sourced from 0x.js */
 
-import { BigNumber } from '@0xproject/utils';
+import { BigNumber } from '@0x/utils';
 import BN = require('bn.js');
 import * as ethABI from 'ethereumjs-abi';
 import * as ethUtil from 'ethereumjs-util';
@@ -51,10 +51,10 @@ export const utils = {
             { value: order.saleKind, type: SolidityTypes.Uint8 },
             { value: order.target, type: SolidityTypes.Address },
             { value: order.howToCall, type: SolidityTypes.Uint8 },
-            { value: new Buffer(order.calldata.slice(2), 'hex'), type: SolidityTypes.Bytes },
-            { value: new Buffer(order.replacementPattern.slice(2), 'hex'), type: SolidityTypes.Bytes },
+            { value: Buffer.from(order.calldata.slice(2), 'hex'), type: SolidityTypes.Bytes },
+            { value: Buffer.from(order.replacementPattern.slice(2), 'hex'), type: SolidityTypes.Bytes },
             { value: order.staticTarget, type: SolidityTypes.Address },
-            { value: new Buffer(order.staticExtradata.slice(2), 'hex'), type: SolidityTypes.Bytes },
+            { value: Buffer.from(order.staticExtradata.slice(2), 'hex'), type: SolidityTypes.Bytes },
             { value: order.paymentToken, type: SolidityTypes.Address },
             { value: utils.bigNumberToBN(order.basePrice), type: SolidityTypes.Uint256 },
             { value: utils.bigNumberToBN(order.extra), type: SolidityTypes.Uint256 },
@@ -68,7 +68,7 @@ export const utils = {
         return ethUtil.bufferToHex(hash);
     },
     getCurrentUnixTimestampSec(): BigNumber {
-        return new BigNumber(Date.now() / 1000).round();
+        return new BigNumber(Date.now() / 1000).integerValue();
     },
     getCurrentUnixTimestampMs(): BigNumber {
         return new BigNumber(Date.now());

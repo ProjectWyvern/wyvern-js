@@ -7,4 +7,5 @@ src/wyvern-ethereum/encode.js
 src/wyvern-ethereum/proposal.js
 src/wyvern-ethereum/test.js
 .DS_STORE
+yarn-error.log
 .vscode
