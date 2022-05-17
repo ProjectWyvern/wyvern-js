@@ -37,8 +37,7 @@
     "ethers": "^4.0.49",
     "json-loader": "^0.5.7",
     "jsonschema": "^1.2.2",
-    "lodash": "^4.17.21",
-    "web3": "^1.7.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@0x/abi-gen": "^5.7.0",

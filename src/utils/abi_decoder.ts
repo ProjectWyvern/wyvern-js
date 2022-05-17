@@ -2,13 +2,13 @@
 
 import { BigNumber } from '@0x/utils';
 import { AbiDefinition, EventAbi, EventParameter, LogEntry } from 'ethereum-types';
+import { AbiCoder, keccak256 } from 'ethers/utils';
 import * as _ from 'lodash';
-import Web3 from 'web3';
-import * as SolidityCoder from 'web3/lib/solidity/coder';
 
 import { AbiType, ContractEventArgs, DecodedLogArgs, LogWithDecodedArgs, RawLog, SolidityTypes } from '../types';
 
 export class AbiDecoder {
+    private _abiCoder = new AbiCoder();
     private _savedABIs: AbiDefinition[] = [];
     private _methodIds: { [signatureHash: string]: EventAbi } = {};
     private static _padZeros(address: string) {
@@ -39,7 +39,7 @@ export class AbiDecoder {
 
         const nonIndexedInputs = _.filter(event.inputs, input => !input.indexed);
         const dataTypes = _.map(nonIndexedInputs, input => input.type);
-        const decodedData = SolidityCoder.decodeParams(dataTypes, logData.slice('0x'.length));
+        const decodedData = this._abiCoder.decode(dataTypes, logData.slice('0x'.length));
 
         _.map(event.inputs, (param: EventParameter) => {
             // Indexed parameters are stored in topics. Non-indexed ones in decodedData
@@ -68,7 +68,7 @@ export class AbiDecoder {
             if (abi.type === AbiType.Event) {
                 const eventAbi = abi as EventAbi;
                 const signature = `${eventAbi.name}(${_.map(eventAbi.inputs, input => input.type).join(',')})`;
-                const signatureHash = new Web3().utils.sha3(signature) as string;
+                const signatureHash = keccak256(signature);
                 this._methodIds[signatureHash] = eventAbi;
             }
         });
